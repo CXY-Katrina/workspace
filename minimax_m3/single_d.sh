@@ -2,8 +2,8 @@ unset ftp_proxy
 unset https_proxy
 unset http_proxy
 
-export NETWORK_CARD_NAME=enp48s3u1u2
-export IP_ADDRESS=141.61.81.153
+export NETWORK_CARD_NAME=enp194s0f0
+export IP_ADDRESS=80.5.9.136
 
 export VLLM_SERVER_DEV_MODE=1
 export HCCL_BUFFSIZE=2048
@@ -13,17 +13,23 @@ export HCCL_SOCKET_IFNAME=$NETWORK_CARD_NAME
 export LD_PRELOAD=/usr/lib/aarch64-linux-gnu/libjemalloc.so.2:$LD_PRELOAD
 export GLOO_SOCKET_IFNAME=$NETWORK_CARD_NAME
 export PYTORCH_NPU_ALLOC_CONF="expandable_segments:True" 
-export ASCEND_RT_VISIBLE_DEVICES=$1
 
-vllm serve /workspace/MiniMax-M3-w8a8-0626  \
+export VLLM_ASCEND_LLMDD_RPC_PORT=6657
+export VLLM_DISABLE_COMPILE_CACHE=0
+export HCCL_DETERMINISTIC=true
+
+
+vllm serve /home/data/MiniMax-M3-w8a8-from-bf16-convert  \
   --host 0.0.0.0 \
-  --port $2 \
+  --port 30060 \
   --enable-expert-parallel \
-  --data-parallel-size $3 \
-  --data-parallel-rank $4 \
-  --data-parallel-address $5 \
-  --data-parallel-rpc-port $6 \
-  --tensor-parallel-size $7 \
+  --data-parallel-size 4 \
+  --data-parallel-size-local 4 \
+  --data-parallel-start-rank 0 \
+  --api-server-count 1 \
+  --data-parallel-address 80.5.9.136 \
+  --data-parallel-rpc-port 5964  \
+  --tensor-parallel-size 4 \
   --seed 1024 \
   --served-model-name minimax-m3 \
   --reasoning-parser minimax_m3 \
@@ -31,38 +37,38 @@ vllm serve /workspace/MiniMax-M3-w8a8-0626  \
   --max-model-len 67560 \
   --max-num-batched-tokens 32768 \
   --trust-remote-code \
-  --max-num-seqs 64 \
+  --max-num_seqs 64 \
   --gpu-memory-utilization 0.95 \
   --compilation-config '{"cudagraph_mode": "FULL_DECODE_ONLY"}' \
-  --speculative-config '{"model":"/workspace/MiniMax-M3-EAGLE3-GQA", "method":"eagle3", "num_speculative_tokens":3}' \
-  --profiler-config '{"profiler": "torch", "torch_profiler_dir": "/workspace/hjb/profile/decode_profiling_128k_tp4_dp4_2", "torch_profiler_with_stack": false}' \
+  --speculative-config '{"model":"/home/data/MiniMax-M3-EAGLE3-GQA", "method":"eagle3", "num_speculative_tokens":3}' \
+  --profiler-config '{"profiler": "torch", "torch_profiler_dir": "/workspace/profill", "torch_profiler_with_stack": false}' \
   --additional-config '{
-      "enable_cpu_binding": true,
-      "ascend_compilation_config": {
-          "enable_static_kernel": false,
-          "fuse_norm_quant": false
-      },
-      "multistream_overlap_shared_expert": true,
-      "weight_nz_mode": 2,
-      "enable_shared_expert_dp": true,
-      "enable_flashcomm1": true,
-      "enable_reduce_sample": false
+    "enable_cpu_binding": true,
+    "ascend_compilation_config": {
+      "enable_static_kernel": false,
+      "fuse_norm_quant": false
+    },
+    "multistream_overlap_shared_expert": true,
+    "weight_nz_mode": 2,
+    "enable_shared_expert_dp": true,
+    "enable_flashcomm1": true,
+    "enable_reduce_sample": false
   }' \
   --kv-transfer-config \
   '{"kv_connector": "MooncakeConnectorV1",
   "kv_role": "kv_consumer",
   "kv_port": "23010",
   "kv_connector_extra_config": {
-          "prefill": {
-                  "dp_size": 2,
-                  "tp_size": 4,
-                  "pp_size": 2,
-                  "pp_layer_partition": "30,30"
-          },
-          "decode": {
-                  "dp_size": 4,
-                  "tp_size": 4
-          }
-  }
+            "prefill": {
+                    "dp_size": 2,
+                    "tp_size": 4,
+                    "pp_size": 2,
+                    "pp_layer_partition": "30,30"
+             },
+             "decode": {
+                    "dp_size": 4,
+                    "tp_size": 4
+             }
+      }
   }' \
-> /workspace/hjb/m3_support/logs/decode_log_w8a8_64k_tp4_dp4.log 2>&1 &
+  > ./out.log 2>&1 &
