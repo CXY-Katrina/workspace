@@ -1,0 +1,5 @@
+# Keep presentation source scripts; omit intermediate build products.
+.pptx-build/*
+!.pptx-build/*.mjs
+!.pptx-build/*.py
+__pycache__/

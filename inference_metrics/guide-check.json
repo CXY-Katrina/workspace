@@ -1,0 +1,27 @@
+{
+  "horizontal_containment": [
+    {
+      "width": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "width": 1600,
+      "scrollWidth": 1600
+    },
+    {
+      "width": 1920,
+      "scrollWidth": 1920
+    },
+    {
+      "width": 2048,
+      "scrollWidth": 2048
+    },
+    {
+      "width": 390,
+      "scrollWidth": 390
+    }
+  ],
+  "interactions": "passed",
+  "page_errors": [],
+  "note": "Explanatory guide intentionally scrolls vertically."
+}

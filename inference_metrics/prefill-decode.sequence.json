@@ -1,0 +1,132 @@
+{
+  "schema_version": 1,
+  "diagram_type": "sequence",
+  "meta": {
+    "title": "从 Prefill 到 Decode：指标从哪里来",
+    "locale": "zh-CN",
+    "quality_profile": "showcase",
+    "column_fit": "spread",
+    "viewBox": [
+      1040,
+      520
+    ]
+  },
+  "participants": [
+    {
+      "id": "client",
+      "type": "external",
+      "label": "客户端",
+      "sublabel": "记录接收时间"
+    },
+    {
+      "id": "scheduler",
+      "type": "frontend",
+      "label": "服务与调度",
+      "sublabel": "接入、排队、流式返回"
+    },
+    {
+      "id": "model",
+      "type": "backend",
+      "label": "模型执行",
+      "sublabel": "Prefill → Decode"
+    }
+  ],
+  "segments": [
+    {
+      "from": 150,
+      "to": 310,
+      "label": "TTFT：发送 → 首 token"
+    },
+    {
+      "from": 324,
+      "to": 405,
+      "label": "TPOT：首 → 末 / (N−1)"
+    },
+    {
+      "from": 420,
+      "to": 470,
+      "label": "E2E 至请求完成"
+    }
+  ],
+  "messages": [
+    {
+      "id": "send",
+      "from": "client",
+      "to": "scheduler",
+      "y": 165,
+      "label": "t₀：发送请求",
+      "variant": "emphasis"
+    },
+    {
+      "id": "prefill",
+      "from": "scheduler",
+      "to": "model",
+      "y": 212,
+      "label": "排队后执行 Prefill；建立 KV cache"
+    },
+    {
+      "id": "first-generated",
+      "from": "model",
+      "to": "scheduler",
+      "y": 257,
+      "label": "采样首 token；开始后续 Decode",
+      "variant": "return"
+    },
+    {
+      "id": "first-received",
+      "from": "scheduler",
+      "to": "client",
+      "y": 302,
+      "label": "t₁：收到 token 1；TTFT 截止",
+      "variant": "emphasis"
+    },
+    {
+      "id": "second-received",
+      "from": "scheduler",
+      "to": "client",
+      "y": 347,
+      "label": "t₂：收到 token 2；ITL₂ = t₂ − t₁",
+      "variant": "emphasis"
+    },
+    {
+      "id": "last-received",
+      "from": "scheduler",
+      "to": "client",
+      "y": 392,
+      "label": "tₙ：收到 token N；TPOT 范围截止",
+      "variant": "emphasis"
+    },
+    {
+      "id": "finish",
+      "from": "scheduler",
+      "to": "client",
+      "y": 435,
+      "label": "t_end：流结束；E2E = t_end − t₀",
+      "variant": "return"
+    }
+  ],
+  "activations": [
+    {
+      "participant": "model",
+      "from": 212,
+      "to": 390,
+      "type": "backend"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "客户端测量范围",
+      "items": [
+        "TTFT 含排队与 Prefill；ITL₂ = t₂ − t₁"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "推导关系",
+      "items": [
+        "TPOT = (tₙ − t₁) / (N−1)；不包含首 token"
+      ]
+    }
+  ]
+}
