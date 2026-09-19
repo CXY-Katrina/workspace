@@ -1,0 +1,655 @@
+[
+  {
+    "run": {
+      "id": 30706604916,
+      "name": "Weekly-A3",
+      "created_at": "2026-08-01T15:45:03Z",
+      "html_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/30706604916"
+    },
+    "job": {
+      "id": 91414604420,
+      "name": "multi-node (main, QWEN3_235B_PD, QWEN3_235B_PD.yaml, 3) / QWEN3_235B_PD.yaml",
+      "started_at": "2026-08-01T20:31:44Z",
+      "conclusion": "failure",
+      "html_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/30706604916/job/91414604420"
+    },
+    "scores": [],
+    "score_lines": [],
+    "ref": "5d6ddd906dc13b2e83242cb5433856e0fb875434",
+    "request_id": ""
+  },
+  {
+    "run": {
+      "id": 31265243190,
+      "name": "Weekly-A3",
+      "created_at": "2026-08-08T15:45:03Z",
+      "html_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/31265243190"
+    },
+    "job": {
+      "id": 93165119539,
+      "name": "multi-node (main, QWEN3_235B_PD, QWEN3_235B_PD.yaml, 3) / QWEN3_235B_PD.yaml",
+      "started_at": "2026-08-08T22:38:44Z",
+      "conclusion": "failure",
+      "html_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/31265243190/job/93165119539"
+    },
+    "scores": [
+      "92.11523881728583"
+    ],
+    "score_lines": [
+      "2026-08-08T23:53:58.8517415Z running aisbench cmd: ais_bench --models vllm_api_general_chat_custom --datasets gsm8k_gen_0_shot_cot_chat_prompt --debug > output_accuracy.txt 2>&1 &",
+      "2026-08-08T23:53:58.9372859Z [2026-08-08 23:53:52,505] [ais_bench] [INFO] Task vllm-api-general-chat/gsm8k: {'accuracy': 92.11523881728583}",
+      "2026-08-08T23:53:58.9462514Z gsm8k      50861a     accuracy  gen                       92.12",
+      "2026-08-08T23:53:58.9528153Z | gsm8k | 50861a | accuracy | gen | 92.12 |",
+      "2026-08-08T23:53:58.9548798Z [2026-08-08 23:53:58] [ERROR] [1/1] Benchmark failed: acc, reason: Accuracy verification failed. The accuracy of /root/.cache/modelscope/hub/datasets/vllm-ascend/gsm8k is 92.12, which is not within 1 relative to baseline 96.74.",
+      "2026-08-08T23:53:58.9561351Z [2026-08-08 23:53:58] [ERROR] The following aisbench case failed: {'case_type': 'accuracy', 'dataset_path': 'vllm-ascend/gsm8k', 'request_conf': 'vllm_api_general_chat', 'dataset_conf': 'gsm8k/gsm8k_gen_0_shot_cot_chat_prompt', 'max_out_len': 32768, 'batch_size': 64, 'baseline': 96.74, 'threshold': 1, 'temperature': 0.6, 'top_p': 0.95, 'ignore_eos': False, 'thinking': True, 'case_name': 'acc'}, reason is Accuracy verification failed. The accuracy of /root/.cache/modelscope/hub/datasets/vllm-ascend/gsm8k is 92.12, which is not within 1 relative to baseline 96.74.",
+      "2026-08-08T23:54:05.2260822Z Accuracy verification failed. The accuracy of /root/.cache/modelscope/hub/datasets/vllm-ascend/gsm8k is 92.12, which is not within 1 relative to baseline 96.74."
+    ],
+    "ref": "d2e818f572299c93f1f7f3b2aed05b615f58b527",
+    "request_id": ""
+  },
+  {
+    "run": {
+      "id": 31893599009,
+      "name": "Weekly-A3",
+      "created_at": "2026-08-15T15:45:03Z",
+      "html_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/31893599009"
+    },
+    "job": {
+      "id": 95036086307,
+      "name": "multi-node (main, QWEN3_235B_PD, QWEN3_235B_PD.yaml, tests/e2e/weekly/multi_node/external_dp/conf... / QWEN3_235B_PD.yaml",
+      "started_at": "2026-08-15T16:08:57Z",
+      "conclusion": "failure",
+      "html_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/31893599009/job/95036086307"
+    },
+    "scores": [],
+    "score_lines": [],
+    "ref": "d5e9816065ede613327d93908f87fee9f5c47128",
+    "request_id": ""
+  },
+  {
+    "run": {
+      "id": 32582635108,
+      "name": "Weekly-A3",
+      "created_at": "2026-08-22T15:45:03Z",
+      "html_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/32582635108"
+    },
+    "job": {
+      "id": 97101945400,
+      "name": "multi-node (main, QWEN3_235B_PD, QWEN3_235B_PD.yaml, tests/e2e/weekly/multi_node/external_dp/conf... / QWEN3_235B_PD.yaml",
+      "started_at": "2026-08-22T22:20:30Z",
+      "conclusion": "failure",
+      "html_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/32582635108/job/97101945400"
+    },
+    "scores": [],
+    "score_lines": [],
+    "ref": "182b75ea84ff13ece27b57391331ef8935410aea",
+    "request_id": ""
+  },
+  {
+    "run": {
+      "id": 33136214842,
+      "name": "Weekly-A3",
+      "created_at": "2026-08-28T02:32:26Z",
+      "html_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33136214842"
+    },
+    "job": {
+      "id": 98737418489,
+      "name": "multi-node (main, QWEN3_235B_PD, QWEN3_235B_PD.yaml, tests/e2e/weekly/multi_node/external_dp/conf... / QWEN3_235B_PD.yaml",
+      "started_at": "2026-08-28T02:38:43Z",
+      "conclusion": "failure",
+      "html_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33136214842/job/98737418489"
+    },
+    "scores": [],
+    "score_lines": [],
+    "ref": "efe26cd81640a36bb08cf7b5ef607339ca066d41",
+    "request_id": "33136066871"
+  },
+  {
+    "run": {
+      "id": 33261092260,
+      "name": "Weekly-A3",
+      "created_at": "2026-08-29T15:45:03Z",
+      "html_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33261092260"
+    },
+    "job": {
+      "id": 99155616108,
+      "name": "multi-node (main, QWEN3_235B_PD, QWEN3_235B_PD.yaml, tests/e2e/weekly/multi_node/external_dp/conf... / QWEN3_235B_PD.yaml",
+      "started_at": "2026-08-29T20:22:58Z",
+      "conclusion": "success",
+      "html_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33261092260/job/99155616108"
+    },
+    "scores": [
+      "95.98180439727066"
+    ],
+    "score_lines": [
+      "2026-08-29T21:00:10.7755214Z running aisbench cmd: ais_bench --models vllm_api_general_chat_custom --datasets gsm8k_gen_0_shot_cot_chat_prompt --debug > output_accuracy.txt 2>&1 &",
+      "2026-08-29T21:00:10.8547646Z [2026-08-29 21:00:04,835] [ais_bench] [INFO] Task vllm-api-general-chat/gsm8k: {'accuracy': 95.98180439727066}",
+      "2026-08-29T21:00:10.8650398Z gsm8k      50861a     accuracy  gen                       95.98",
+      "2026-08-29T21:00:10.8692681Z | gsm8k | 50861a | accuracy | gen | 95.98 |"
+    ],
+    "ref": "e6a133f710c54e84cefcd29be46678c50008e8ea",
+    "request_id": ""
+  },
+  {
+    "run": {
+      "id": 33941449988,
+      "name": "Nightly-A3",
+      "created_at": "2026-09-05T03:17:41Z",
+      "html_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33941449988"
+    },
+    "job": {
+      "id": 101240169230,
+      "name": "multi-node (main, QWEN3_235B_PD, QWEN3_235B_PD.yaml, tests/e2e/nightly/multi_node/external_dp/con... / QWEN3_235B_PD.yaml",
+      "started_at": "2026-09-05T03:22:38Z",
+      "conclusion": "success",
+      "html_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33941449988/job/101240169230"
+    },
+    "scores": [
+      "96.28506444275966"
+    ],
+    "score_lines": [
+      "2026-09-05T04:11:38.0738940Z running aisbench cmd: ais_bench --models vllm_api_general_chat_custom --datasets gsm8k_gen_0_shot_cot_chat_prompt --debug > output_accuracy.txt 2>&1 &",
+      "2026-09-05T04:11:38.1486524Z [2026-09-05 04:11:31,769] [ais_bench] [INFO] Task vllm-api-general-chat/gsm8k: {'accuracy': 96.28506444275966}",
+      "2026-09-05T04:11:38.1563631Z gsm8k      50861a     accuracy  gen                       96.29",
+      "2026-09-05T04:11:38.1622711Z | gsm8k | 50861a | accuracy | gen | 96.29 |"
+    ],
+    "ref": "31495777169a955d1fcd139692b05692eab6be2b",
+    "request_id": "33941353743"
+  },
+  {
+    "run": {
+      "id": 33975742339,
+      "name": "Weekly-A3",
+      "created_at": "2026-09-05T15:45:04Z",
+      "html_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33975742339"
+    },
+    "job": {
+      "id": 101371714716,
+      "name": "multi-node (main, QWEN3_235B_PD, QWEN3_235B_PD.yaml, tests/e2e/weekly/multi_node/external_dp/conf... / QWEN3_235B_PD.yaml",
+      "started_at": "2026-09-05T20:34:20Z",
+      "conclusion": "success",
+      "html_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/33975742339/job/101371714716"
+    },
+    "scores": [
+      "96.20924943138742"
+    ],
+    "score_lines": [
+      "2026-09-05T21:13:08.4958846Z running aisbench cmd: ais_bench --models vllm_api_general_chat_custom --datasets gsm8k_gen_0_shot_cot_chat_prompt --debug > output_accuracy.txt 2>&1 &",
+      "2026-09-05T21:13:08.5688978Z [2026-09-05 21:13:05,119] [ais_bench] [INFO] Task vllm-api-general-chat/gsm8k: {'accuracy': 96.20924943138742}",
+      "2026-09-05T21:13:08.5765095Z gsm8k      50861a     accuracy  gen                       96.21",
+      "2026-09-05T21:13:08.5824181Z | gsm8k | 50861a | accuracy | gen | 96.21 |"
+    ],
+    "ref": "c1bb35f729f2e8685b84ee93adb974040a6cc3dc",
+    "request_id": ""
+  },
+  {
+    "run": {
+      "id": 34139883239,
+      "name": "Nightly-A3",
+      "created_at": "2026-09-07T15:45:03Z",
+      "html_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/34139883239"
+    },
+    "job": {
+      "id": 101803481648,
+      "name": "multi-node (main, QWEN3_235B_PD, QWEN3_235B_PD.yaml, tests/e2e/nightly/multi_node/external_dp/con... / QWEN3_235B_PD.yaml",
+      "started_at": "2026-09-07T16:02:00Z",
+      "conclusion": "failure",
+      "html_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/34139883239/job/101803481648"
+    },
+    "scores": [],
+    "score_lines": [],
+    "ref": "e89f87ddb594e7eece265ebcf42b03bff845bd90",
+    "request_id": ""
+  },
+  {
+    "run": {
+      "id": 34246756642,
+      "name": "Nightly-A3",
+      "created_at": "2026-09-08T15:45:03Z",
+      "html_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/34246756642"
+    },
+    "job": {
+      "id": 102193148553,
+      "name": "multi-node (main, QWEN3_235B_PD, QWEN3_235B_PD.yaml, tests/e2e/nightly/multi_node/external_dp/con... / QWEN3_235B_PD.yaml",
+      "started_at": "2026-09-08T18:49:58Z",
+      "conclusion": "success",
+      "html_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/34246756642/job/102193148553"
+    },
+    "scores": [
+      "95.90598938589841"
+    ],
+    "score_lines": [
+      "2026-09-08T19:38:14.0403647Z running aisbench cmd: ais_bench --models vllm_api_general_chat_custom --datasets gsm8k_gen_0_shot_cot_chat_prompt --debug > output_accuracy.txt 2>&1 &",
+      "2026-09-08T19:38:14.1128788Z [2026-09-08 19:38:07,422] [ais_bench] [INFO] Task vllm-api-general-chat/gsm8k: {'accuracy': 95.90598938589841}",
+      "2026-09-08T19:38:14.1205807Z gsm8k      50861a     accuracy  gen                       95.91",
+      "2026-09-08T19:38:14.1264350Z | gsm8k | 50861a | accuracy | gen | 95.91 |"
+    ],
+    "ref": "f23a1f2ad6aedea74889510438d420be119c6156",
+    "request_id": ""
+  },
+  {
+    "run": {
+      "id": 34372289942,
+      "name": "Nightly-A3",
+      "created_at": "2026-09-09T15:45:04Z",
+      "html_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/34372289942"
+    },
+    "job": {
+      "id": 102569399234,
+      "name": "multi-node (main, QWEN3_235B_PD, QWEN3_235B_PD.yaml, tests/e2e/nightly/multi_node/external_dp/con... / QWEN3_235B_PD.yaml",
+      "started_at": "2026-09-09T17:19:31Z",
+      "conclusion": "success",
+      "html_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/34372289942/job/102569399234"
+    },
+    "scores": [
+      "95.83017437452615"
+    ],
+    "score_lines": [
+      "2026-09-09T17:58:08.1433370Z running aisbench cmd: ais_bench --models vllm_api_general_chat_custom --datasets gsm8k_gen_0_shot_cot_chat_prompt --debug > output_accuracy.txt 2>&1 &",
+      "2026-09-09T17:58:08.2178460Z [2026-09-09 17:58:04,091] [ais_bench] [INFO] Task vllm-api-general-chat/gsm8k: {'accuracy': 95.83017437452615}",
+      "2026-09-09T17:58:08.2256565Z gsm8k      50861a     accuracy  gen                       95.83",
+      "2026-09-09T17:58:08.2316263Z | gsm8k | 50861a | accuracy | gen | 95.83 |"
+    ],
+    "ref": "63a9e329068902c7f4121887d7f9a4acea8c221f",
+    "request_id": ""
+  },
+  {
+    "run": {
+      "id": 34497673764,
+      "name": "Nightly-A3",
+      "created_at": "2026-09-10T15:45:03Z",
+      "html_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/34497673764"
+    },
+    "job": {
+      "id": 102987563234,
+      "name": "multi-node (main, QWEN3_235B_PD, QWEN3_235B_PD.yaml, tests/e2e/nightly/multi_node/external_dp/con... / QWEN3_235B_PD.yaml",
+      "started_at": "2026-09-10T18:32:53Z",
+      "conclusion": "success",
+      "html_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/34497673764/job/102987563234"
+    },
+    "scores": [
+      "96.28506444275966"
+    ],
+    "score_lines": [
+      "2026-09-10T19:19:37.4337697Z running aisbench cmd: ais_bench --models vllm_api_general_chat_custom --datasets gsm8k_gen_0_shot_cot_chat_prompt --debug > output_accuracy.txt 2>&1 &",
+      "2026-09-10T19:19:37.5108145Z [2026-09-10 19:19:35,751] [ais_bench] [INFO] Task vllm-api-general-chat/gsm8k: {'accuracy': 96.28506444275966}",
+      "2026-09-10T19:19:37.5198614Z gsm8k      50861a     accuracy  gen                       96.29",
+      "2026-09-10T19:19:37.5262751Z | gsm8k | 50861a | accuracy | gen | 96.29 |"
+    ],
+    "ref": "c5055c8086d56ea1b2714b0f555ba67edd05e945",
+    "request_id": ""
+  },
+  {
+    "run": {
+      "id": 34617973934,
+      "name": "Nightly-A3",
+      "created_at": "2026-09-11T15:45:04Z",
+      "html_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/34617973934"
+    },
+    "job": {
+      "id": 103329219873,
+      "name": "multi-node (main, QWEN3_235B_PD, QWEN3_235B_PD.yaml, tests/e2e/nightly/multi_node/external_dp/con... / QWEN3_235B_PD.yaml",
+      "started_at": "2026-09-11T16:00:03Z",
+      "conclusion": "failure",
+      "html_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/34617973934/job/103329219873"
+    },
+    "scores": [],
+    "score_lines": [],
+    "ref": "c843f75aff45050fd4958dc4f24ac7e54a472df4",
+    "request_id": ""
+  },
+  {
+    "run": {
+      "id": 34703786018,
+      "name": "Nightly-A3",
+      "created_at": "2026-09-12T15:57:41Z",
+      "html_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/34703786018"
+    },
+    "job": {
+      "id": 103603496855,
+      "name": "multi-node (main, QWEN3_235B_PD, QWEN3_235B_PD.yaml, tests/e2e/nightly/multi_node/external_dp/con... / QWEN3_235B_PD.yaml",
+      "started_at": "2026-09-12T18:51:34Z",
+      "conclusion": "success",
+      "html_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/34703786018/job/103603496855"
+    },
+    "scores": [
+      "96.43669446550417"
+    ],
+    "score_lines": [
+      "2026-09-12T19:35:43.7859139Z running aisbench cmd: ais_bench --models vllm_api_general_chat_custom --datasets gsm8k_gen_0_shot_cot_chat_prompt --debug > output_accuracy.txt 2>&1 &",
+      "2026-09-12T19:35:43.8587329Z [2026-09-12 19:35:37,706] [ais_bench] [INFO] Task vllm-api-general-chat/gsm8k: {'accuracy': 96.43669446550417}",
+      "2026-09-12T19:35:43.8663337Z gsm8k      50861a     accuracy  gen                       96.44",
+      "2026-09-12T19:35:43.8722184Z | gsm8k | 50861a | accuracy | gen | 96.44 |"
+    ],
+    "ref": "d4d2957e5208c2f464d4625c05920bd29ea233cb",
+    "request_id": ""
+  },
+  {
+    "run": {
+      "id": 34766527833,
+      "name": "Nightly-A3",
+      "created_at": "2026-09-13T15:45:03Z",
+      "html_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/34766527833"
+    },
+    "job": {
+      "id": 103760995019,
+      "name": "multi-node (main, QWEN3_235B_PD, QWEN3_235B_PD.yaml, tests/e2e/nightly/multi_node/external_dp/con... / QWEN3_235B_PD.yaml",
+      "started_at": "2026-09-13T17:19:01Z",
+      "conclusion": "success",
+      "html_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/34766527833/job/103760995019"
+    },
+    "scores": [
+      "96.13343442001516"
+    ],
+    "score_lines": [
+      "2026-09-13T17:50:26.4540059Z running aisbench cmd: ais_bench --models vllm_api_general_chat_custom --datasets gsm8k_gen_0_shot_cot_chat_prompt --debug > output_accuracy.txt 2>&1 &",
+      "2026-09-13T17:50:26.5255114Z [2026-09-13 17:50:23,634] [ais_bench] [INFO] Task vllm-api-general-chat/gsm8k: {'accuracy': 96.13343442001516}",
+      "2026-09-13T17:50:26.5330512Z gsm8k      50861a     accuracy  gen                       96.13",
+      "2026-09-13T17:50:26.5387907Z | gsm8k | 50861a | accuracy | gen | 96.13 |"
+    ],
+    "ref": "660c4582aa580ce98edc9b681bb6ff6d03153575",
+    "request_id": ""
+  },
+  {
+    "run": {
+      "id": 34867803763,
+      "name": "Nightly-A3",
+      "created_at": "2026-09-14T16:18:45Z",
+      "html_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/34867803763"
+    },
+    "job": {
+      "id": 104057677643,
+      "name": "multi-node (main, QWEN3_235B_PD, QWEN3_235B_PD.yaml, tests/e2e/nightly/multi_node/external_dp/con... / QWEN3_235B_PD.yaml",
+      "started_at": "2026-09-14T16:24:15Z",
+      "conclusion": "success",
+      "html_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/34867803763/job/104057677643"
+    },
+    "scores": [
+      "96.0576194086429"
+    ],
+    "score_lines": [
+      "2026-09-14T16:57:28.2648918Z running aisbench cmd: ais_bench --models vllm_api_general_chat_custom --datasets gsm8k_gen_0_shot_cot_chat_prompt --debug > output_accuracy.txt 2>&1 &",
+      "2026-09-14T16:57:28.3382569Z [2026-09-14 16:57:25,242] [ais_bench] [INFO] Task vllm-api-general-chat/gsm8k: {'accuracy': 96.0576194086429}",
+      "2026-09-14T16:57:28.3460275Z gsm8k      50861a     accuracy  gen                       96.06",
+      "2026-09-14T16:57:28.3519232Z | gsm8k | 50861a | accuracy | gen | 96.06 |"
+    ],
+    "ref": "26f1363f7180dfcbeac1230679976cede6010fc8",
+    "request_id": ""
+  },
+  {
+    "run": {
+      "id": 34990521835,
+      "name": "Nightly-A3",
+      "created_at": "2026-09-15T15:45:03Z",
+      "html_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/34990521835"
+    },
+    "job": {
+      "id": 104455637570,
+      "name": "multi-node (main, QWEN3_235B_PD, QWEN3_235B_PD.yaml, tests/e2e/nightly/multi_node/external_dp/con... / QWEN3_235B_PD.yaml",
+      "started_at": "2026-09-15T15:50:43Z",
+      "conclusion": "success",
+      "html_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/34990521835/job/104455637570"
+    },
+    "scores": [
+      "95.98180439727066"
+    ],
+    "score_lines": [
+      "2026-09-15T16:27:02.0861570Z running aisbench cmd: ais_bench --models vllm_api_general_chat_custom --datasets gsm8k_gen_0_shot_cot_chat_prompt --debug > output_accuracy.txt 2>&1 &",
+      "2026-09-15T16:27:02.1686131Z [2026-09-15 16:26:56,603] [ais_bench] [INFO] Task vllm-api-general-chat/gsm8k: {'accuracy': 95.98180439727066}",
+      "2026-09-15T16:27:02.1759185Z gsm8k      50861a     accuracy  gen                       95.98",
+      "2026-09-15T16:27:02.1824334Z | gsm8k | 50861a | accuracy | gen | 95.98 |"
+    ],
+    "ref": "b49962987e89b850586f1819ce8f85daa85a0f81",
+    "request_id": ""
+  },
+  {
+    "run": {
+      "id": 35102423958,
+      "name": "Nightly-A3",
+      "created_at": "2026-09-16T13:31:05Z",
+      "html_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/35102423958"
+    },
+    "job": {
+      "id": 104818320953,
+      "name": "multi-node (main, QWEN3_235B_PD, QWEN3_235B_PD.yaml, tests/e2e/nightly/multi_node/external_dp/con... / QWEN3_235B_PD.yaml",
+      "started_at": "2026-09-16T13:40:41Z",
+      "conclusion": "failure",
+      "html_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/35102423958/job/104818320953"
+    },
+    "scores": [],
+    "score_lines": [],
+    "ref": "ae0186ac97ab5589dc92925306f00fd3bde19c78",
+    "request_id": "35101882415"
+  },
+  {
+    "run": {
+      "id": 35105630080,
+      "name": "Nightly-A3",
+      "created_at": "2026-09-16T14:00:41Z",
+      "html_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/35105630080"
+    },
+    "job": {
+      "id": 104827850294,
+      "name": "multi-node (main, QWEN3_235B_PD, QWEN3_235B_PD.yaml, tests/e2e/nightly/multi_node/external_dp/con... / QWEN3_235B_PD.yaml",
+      "started_at": "2026-09-16T14:06:06Z",
+      "conclusion": "failure",
+      "html_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/35105630080/job/104827850294"
+    },
+    "scores": [],
+    "score_lines": [],
+    "ref": "0ce574607e689262622a8cdb10169c670d3c3f9a",
+    "request_id": "35105412937"
+  },
+  {
+    "run": {
+      "id": 35140918669,
+      "name": "Nightly-A3",
+      "created_at": "2026-09-16T19:30:03Z",
+      "html_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/35140918669"
+    },
+    "job": {
+      "id": 104947087614,
+      "name": "multi-node (main, QWEN3_235B_PD, QWEN3_235B_PD.yaml, tests/e2e/nightly/multi_node/external_dp/con... / QWEN3_235B_PD.yaml",
+      "started_at": "2026-09-16T19:36:50Z",
+      "conclusion": "success",
+      "html_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/35140918669/job/104947087614"
+    },
+    "scores": [
+      "96.28506444275966"
+    ],
+    "score_lines": [
+      "2026-09-16T20:30:20.1669306Z running aisbench cmd: ais_bench --models vllm_api_general_chat_custom --datasets gsm8k_gen_0_shot_cot_chat_prompt --debug > output_accuracy.txt 2>&1 &",
+      "2026-09-16T20:30:20.2399815Z [2026-09-16 20:30:17,377] [ais_bench] [INFO] Task vllm-api-general-chat/gsm8k: {'accuracy': 96.28506444275966}",
+      "2026-09-16T20:30:20.2477226Z gsm8k      50861a     accuracy  gen                       96.29",
+      "2026-09-16T20:30:20.2538358Z | gsm8k | 50861a | accuracy | gen | 96.29 |"
+    ],
+    "ref": "e1d1490314eeb5baec2e77b27a9610e5358aa153",
+    "request_id": ""
+  },
+  {
+    "run": {
+      "id": 35173444654,
+      "name": "Nightly-A3",
+      "created_at": "2026-09-17T02:11:19Z",
+      "html_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/35173444654"
+    },
+    "job": {
+      "id": 105050823133,
+      "name": "multi-node (main, QWEN3_235B_PD, QWEN3_235B_PD.yaml, tests/e2e/nightly/multi_node/external_dp/con... / QWEN3_235B_PD.yaml",
+      "started_at": "2026-09-17T02:16:31Z",
+      "conclusion": "failure",
+      "html_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/35173444654/job/105050823133"
+    },
+    "scores": [
+      "95.52691432903715"
+    ],
+    "score_lines": [
+      "2026-09-17T02:52:58.5077187Z running aisbench cmd: ais_bench --models vllm_api_general_chat_custom --datasets gsm8k_gen_0_shot_cot_chat_prompt --debug > output_accuracy.txt 2>&1 &",
+      "2026-09-17T02:52:58.5818497Z [2026-09-17 02:52:56,185] [ais_bench] [INFO] Task vllm-api-general-chat/gsm8k: {'accuracy': 95.52691432903715}",
+      "2026-09-17T02:52:58.5900864Z gsm8k      50861a     accuracy  gen                       95.53",
+      "2026-09-17T02:52:58.5958864Z | gsm8k | 50861a | accuracy | gen | 95.53 |",
+      "2026-09-17T02:52:58.5976535Z [2026-09-17 02:52:58] [ERROR] [1/1] Benchmark failed: acc, reason: Accuracy verification failed. The accuracy of /root/.cache/modelscope/hub/datasets/vllm-ascend/gsm8k is 95.53, which is not within 1 relative to baseline 96.74.",
+      "2026-09-17T02:52:58.5987256Z [2026-09-17 02:52:58] [ERROR] The following aisbench case failed: {'case_type': 'accuracy', 'dataset_path': 'vllm-ascend/gsm8k', 'request_conf': 'vllm_api_general_chat', 'dataset_conf': 'gsm8k/gsm8k_gen_0_shot_cot_chat_prompt', 'max_out_len': 32768, 'batch_size': 64, 'baseline': 96.74, 'threshold': 1, 'temperature': 0.6, 'top_p': 0.95, 'ignore_eos': False, 'thinking': True, 'case_name': 'acc'}, reason is Accuracy verification failed. The accuracy of /root/.cache/modelscope/hub/datasets/vllm-ascend/gsm8k is 95.53, which is not within 1 relative to baseline 96.74.",
+      "2026-09-17T02:53:00.3737812Z Accuracy verification failed. The accuracy of /root/.cache/modelscope/hub/datasets/vllm-ascend/gsm8k is 95.53, which is not within 1 relative to baseline 96.74."
+    ],
+    "ref": "7a0aaebca6919cf2302c77b52eb82bf312b6c1da",
+    "request_id": ""
+  },
+  {
+    "run": {
+      "id": 35242257526,
+      "name": "Nightly-A3",
+      "created_at": "2026-09-17T15:45:04Z",
+      "html_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/35242257526"
+    },
+    "job": {
+      "id": 105275634556,
+      "name": "multi-node (main, QWEN3_235B_PD, QWEN3_235B_PD.yaml, tests/e2e/nightly/multi_node/external_dp/con... / QWEN3_235B_PD.yaml",
+      "started_at": "2026-09-17T15:51:49Z",
+      "conclusion": "cancelled",
+      "html_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/35242257526/job/105275634556"
+    },
+    "scores": [],
+    "score_lines": [],
+    "ref": "993782efc842308f646dcf80a562d45288f265d3",
+    "request_id": ""
+  },
+  {
+    "run": {
+      "id": 35253856165,
+      "name": "Nightly-A3",
+      "created_at": "2026-09-17T17:37:22Z",
+      "html_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/35253856165"
+    },
+    "job": {
+      "id": 105314153314,
+      "name": "multi-node (main, QWEN3_235B_PD, QWEN3_235B_PD.yaml, tests/e2e/nightly/multi_node/external_dp/con... / QWEN3_235B_PD.yaml",
+      "started_at": "2026-09-17T17:42:51Z",
+      "conclusion": "failure",
+      "html_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/35253856165/job/105314153314"
+    },
+    "scores": [],
+    "score_lines": [
+      "2026-09-17T17:59:07.4966385Z [2026-09-17 17:59:07] [ERROR] The following aisbench case failed: {'case_type': 'accuracy', 'dataset_path': 'vllm-ascend/gsm8k', 'request_conf': 'vllm_api_general_chat', 'dataset_conf': 'gsm8k/gsm8k_gen_0_shot_cot_chat_prompt', 'max_out_len': 32768, 'batch_size': 64, 'baseline': 96.74, 'threshold': 1, 'temperature': 0.6, 'top_p': 0.95, 'ignore_eos': False, 'thinking': True, 'case_name': 'acc'}, reason is Some errors happened to Aisbench runtime",
+      "2026-09-17T17:59:09.5096810Z running aisbench cmd: ais_bench --models vllm_api_general_chat_custom --datasets gsm8k_gen_0_shot_cot_chat_prompt --debug > output_accuracy.txt 2>&1 &"
+    ],
+    "ref": "c7ca0b676b9668535f467b78cff1274a4ddb63b2",
+    "request_id": ""
+  },
+  {
+    "run": {
+      "id": 35305011715,
+      "name": "Nightly-A3",
+      "created_at": "2026-09-18T03:55:27Z",
+      "html_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/35305011715"
+    },
+    "job": {
+      "id": 105476130347,
+      "name": "multi-node (main, QWEN3_235B_PD, QWEN3_235B_PD.yaml, tests/e2e/nightly/multi_node/external_dp/con... / QWEN3_235B_PD.yaml",
+      "started_at": "2026-09-18T04:01:06Z",
+      "conclusion": "success",
+      "html_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/35305011715/job/105476130347"
+    },
+    "scores": [
+      "96.28506444275966"
+    ],
+    "score_lines": [
+      "2026-09-18T05:08:45.2829191Z running aisbench cmd: ais_bench --models vllm_api_general_chat_custom --datasets gsm8k_gen_0_shot_cot_chat_prompt --debug > output_accuracy.txt 2>&1 &",
+      "2026-09-18T05:08:45.3582625Z [2026-09-18 05:08:40,819] [ais_bench] [INFO] Task vllm-api-general-chat/gsm8k: {'accuracy': 96.28506444275966}",
+      "2026-09-18T05:08:45.3661737Z gsm8k      50861a     accuracy  gen                       96.29",
+      "2026-09-18T05:08:45.3720382Z | gsm8k | 50861a | accuracy | gen | 96.29 |"
+    ],
+    "ref": "8f3976a7e70b4d57617c0f45d96fd82053bd04c0",
+    "request_id": "35304877859"
+  },
+  {
+    "run": {
+      "id": 35313847282,
+      "name": "Nightly-A3",
+      "created_at": "2026-09-18T06:11:45Z",
+      "html_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/35313847282"
+    },
+    "job": {
+      "id": 105502185402,
+      "name": "multi-node (main, QWEN3_235B_PD, QWEN3_235B_PD.yaml, tests/e2e/nightly/multi_node/external_dp/con... / QWEN3_235B_PD.yaml",
+      "started_at": "2026-09-18T06:17:16Z",
+      "conclusion": "success",
+      "html_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/35313847282/job/105502185402"
+    },
+    "scores": [
+      "96.58832448824867"
+    ],
+    "score_lines": [
+      "2026-09-18T07:11:03.5121493Z running aisbench cmd: ais_bench --models vllm_api_general_chat_custom --datasets gsm8k_gen_0_shot_cot_chat_prompt --debug > output_accuracy.txt 2>&1 &",
+      "2026-09-18T07:11:03.5851951Z [2026-09-18 07:10:58,286] [ais_bench] [INFO] Task vllm-api-general-chat/gsm8k: {'accuracy': 96.58832448824867}",
+      "2026-09-18T07:11:03.5930264Z gsm8k      50861a     accuracy  gen                       96.59",
+      "2026-09-18T07:11:03.5989567Z | gsm8k | 50861a | accuracy | gen | 96.59 |"
+    ],
+    "ref": "bc057b1fdcc6aac2fde53979d0726deb0be2a14c",
+    "request_id": "35313714721"
+  },
+  {
+    "run": {
+      "id": 35315269182,
+      "name": "Nightly-A3",
+      "created_at": "2026-09-18T06:31:45Z",
+      "html_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/35315269182"
+    },
+    "job": {
+      "id": 105506552052,
+      "name": "multi-node (main, QWEN3_235B_PD, QWEN3_235B_PD.yaml, tests/e2e/nightly/multi_node/external_dp/con... / QWEN3_235B_PD.yaml",
+      "started_at": "2026-09-18T06:37:09Z",
+      "conclusion": "failure",
+      "html_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/35315269182/job/105506552052"
+    },
+    "scores": [],
+    "score_lines": [],
+    "ref": "ff7ff67c4da3496349669d54c66b64dbfac29422",
+    "request_id": "35315130231"
+  },
+  {
+    "run": {
+      "id": 35318196417,
+      "name": "Nightly-A3",
+      "created_at": "2026-09-18T07:10:48Z",
+      "html_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/35318196417"
+    },
+    "job": {
+      "id": 105515605423,
+      "name": "multi-node (main, QWEN3_235B_PD, QWEN3_235B_PD.yaml, tests/e2e/nightly/multi_node/external_dp/con... / QWEN3_235B_PD.yaml",
+      "started_at": "2026-09-18T07:16:37Z",
+      "conclusion": "failure",
+      "html_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/35318196417/job/105515605423"
+    },
+    "scores": [],
+    "score_lines": [],
+    "ref": "c5c8406fd76a400a4d00ce098899ce26cef2dddb",
+    "request_id": "35318051499"
+  },
+  {
+    "run": {
+      "id": 35376647863,
+      "name": "Nightly-A3",
+      "created_at": "2026-09-18T17:49:59Z",
+      "html_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/35376647863"
+    },
+    "job": {
+      "id": 105704758372,
+      "name": "multi-node (main, QWEN3_235B_PD, QWEN3_235B_PD.yaml, tests/e2e/nightly/multi_node/external_dp/con... / QWEN3_235B_PD.yaml",
+      "started_at": "2026-09-18T17:57:13Z",
+      "conclusion": "success",
+      "html_url": "https://github.com/vllm-project/vllm-ascend/actions/runs/35376647863/job/105704758372"
+    },
+    "scores": [
+      "96.28506444275966"
+    ],
+    "score_lines": [
+      "2026-09-18T18:33:54.3758330Z running aisbench cmd: ais_bench --models vllm_api_general_chat_custom --datasets gsm8k_gen_0_shot_cot_chat_prompt --debug > output_accuracy.txt 2>&1 &",
+      "2026-09-18T18:33:54.4576456Z [2026-09-18 18:33:48,924] [ais_bench] [INFO] Task vllm-api-general-chat/gsm8k: {'accuracy': 96.28506444275966}",
+      "2026-09-18T18:33:54.4658595Z gsm8k      50861a     accuracy  gen                       96.29",
+      "2026-09-18T18:33:54.4720522Z | gsm8k | 50861a | accuracy | gen | 96.29 |"
+    ],
+    "ref": "c8addbb24fe8fa820bb79685c116e43ba89b77e9",
+    "request_id": ""
+  }
+]
