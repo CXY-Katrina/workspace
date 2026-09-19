@@ -48,3 +48,7 @@
 | 09-19 01:57 | Nightly-A3 | 96.29 | 通过 | `c8addbb24fe8` | [job 105704758372](https://github.com/vllm-project/vllm-ascend/actions/runs/35376647863/job/105704758372) |
 
 数据： [evidence.json](evidence.json)；绘图脚本：[plot_accuracy.py](plot_accuracy.py)。
+
+## 本地复测
+
+[2026-09-19 本地源码安装轮次：临时精度 94.6728% 与输出异常](local-20260919/README.md)。该轮按用户要求提前停止，非全量最终分数。

@@ -1,0 +1,53 @@
+{
+  "source": "/workspace/run01/partial-final/partial-eval-details.json",
+  "source_sha256": "7eecdfd74c2f874dbfd70259110949dc66bc709539d66ed4d5a1a8d7ad1c2b32",
+  "samples": 1314,
+  "correct": 1244,
+  "incorrect": 70,
+  "reported_accuracy": 94.67275494672755,
+  "recomputed_accuracy": 94.67275494672755,
+  "utf8_decode": "strict_success",
+  "flag_counts": {
+    "replacement_characters": 497,
+    "repeated_phrase": 11,
+    "repeated_thinking_close_tag": 18,
+    "answer_extraction_failed": 6,
+    "repeated_line": 1,
+    "unclosed_thinking": 7
+  },
+  "flagged_samples": 517,
+  "flag_correctness": {
+    "replacement_characters": {
+      "correct": 478,
+      "incorrect": 19
+    },
+    "repeated_phrase": {
+      "correct": 5,
+      "incorrect": 6
+    },
+    "repeated_thinking_close_tag": {
+      "correct": 12,
+      "incorrect": 6
+    },
+    "answer_extraction_failed": {
+      "correct": 0,
+      "incorrect": 6
+    },
+    "repeated_line": {
+      "correct": 0,
+      "incorrect": 1
+    },
+    "unclosed_thinking": {
+      "correct": 3,
+      "incorrect": 4
+    }
+  },
+  "duplicate_full_outputs": [],
+  "duplicate_prompts": [],
+  "characters": {
+    "min": 57,
+    "median": 1788.5,
+    "max": 41355
+  },
+  "limits": "Repetition/mojibake flags are heuristics requiring inspection. This is not a proof of semantic correctness. Numeric final-answer equality is not a duplicate-output flag."
+}

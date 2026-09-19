@@ -1,0 +1,200 @@
+[
+  {
+    "rank_log": "run01/rank-logs/node-0/rank-0.log",
+    "sampling_default_log": [
+      "(APIServer pid=68736) WARNING 09-19 08:27:50 [model.py:1713] Default vLLM sampling parameters have been overridden by the model's `generation_config.json`: `{'temperature': 0.6, 'top_k': 20, 'top_p': 0.95}`. If this is not intended, please relaunch vLLM instance with `--generation-config vllm`."
+    ]
+  },
+  {
+    "rank_log": "run01/rank-logs/node-1/rank-0.log",
+    "sampling_default_log": [
+      "(APIServer pid=78569) WARNING 09-19 08:29:52 [model.py:1713] Default vLLM sampling parameters have been overridden by the model's `generation_config.json`: `{'temperature': 0.6, 'top_k': 20, 'top_p': 0.95}`. If this is not intended, please relaunch vLLM instance with `--generation-config vllm`."
+    ]
+  },
+  {
+    "rank_log": "run01/rank-logs/node-1/rank-1.log",
+    "sampling_default_log": [
+      "(APIServer pid=78570) WARNING 09-19 08:29:52 [model.py:1713] Default vLLM sampling parameters have been overridden by the model's `generation_config.json`: `{'temperature': 0.6, 'top_k': 20, 'top_p': 0.95}`. If this is not intended, please relaunch vLLM instance with `--generation-config vllm`."
+    ]
+  },
+  {
+    "rank_log": "run01/rank-logs/node-1/rank-10.log",
+    "sampling_default_log": [
+      "(APIServer pid=78579) WARNING 09-19 08:29:52 [model.py:1713] Default vLLM sampling parameters have been overridden by the model's `generation_config.json`: `{'temperature': 0.6, 'top_k': 20, 'top_p': 0.95}`. If this is not intended, please relaunch vLLM instance with `--generation-config vllm`."
+    ]
+  },
+  {
+    "rank_log": "run01/rank-logs/node-1/rank-11.log",
+    "sampling_default_log": [
+      "(APIServer pid=78580) WARNING 09-19 08:29:52 [model.py:1713] Default vLLM sampling parameters have been overridden by the model's `generation_config.json`: `{'temperature': 0.6, 'top_k': 20, 'top_p': 0.95}`. If this is not intended, please relaunch vLLM instance with `--generation-config vllm`."
+    ]
+  },
+  {
+    "rank_log": "run01/rank-logs/node-1/rank-12.log",
+    "sampling_default_log": [
+      "(APIServer pid=78581) WARNING 09-19 08:29:52 [model.py:1713] Default vLLM sampling parameters have been overridden by the model's `generation_config.json`: `{'temperature': 0.6, 'top_k': 20, 'top_p': 0.95}`. If this is not intended, please relaunch vLLM instance with `--generation-config vllm`."
+    ]
+  },
+  {
+    "rank_log": "run01/rank-logs/node-1/rank-13.log",
+    "sampling_default_log": [
+      "(APIServer pid=78582) WARNING 09-19 08:29:52 [model.py:1713] Default vLLM sampling parameters have been overridden by the model's `generation_config.json`: `{'temperature': 0.6, 'top_k': 20, 'top_p': 0.95}`. If this is not intended, please relaunch vLLM instance with `--generation-config vllm`."
+    ]
+  },
+  {
+    "rank_log": "run01/rank-logs/node-1/rank-14.log",
+    "sampling_default_log": [
+      "(APIServer pid=78583) WARNING 09-19 08:29:53 [model.py:1713] Default vLLM sampling parameters have been overridden by the model's `generation_config.json`: `{'temperature': 0.6, 'top_k': 20, 'top_p': 0.95}`. If this is not intended, please relaunch vLLM instance with `--generation-config vllm`."
+    ]
+  },
+  {
+    "rank_log": "run01/rank-logs/node-1/rank-15.log",
+    "sampling_default_log": [
+      "(APIServer pid=78584) WARNING 09-19 08:29:52 [model.py:1713] Default vLLM sampling parameters have been overridden by the model's `generation_config.json`: `{'temperature': 0.6, 'top_k': 20, 'top_p': 0.95}`. If this is not intended, please relaunch vLLM instance with `--generation-config vllm`."
+    ]
+  },
+  {
+    "rank_log": "run01/rank-logs/node-1/rank-2.log",
+    "sampling_default_log": [
+      "(APIServer pid=78571) WARNING 09-19 08:29:52 [model.py:1713] Default vLLM sampling parameters have been overridden by the model's `generation_config.json`: `{'temperature': 0.6, 'top_k': 20, 'top_p': 0.95}`. If this is not intended, please relaunch vLLM instance with `--generation-config vllm`."
+    ]
+  },
+  {
+    "rank_log": "run01/rank-logs/node-1/rank-3.log",
+    "sampling_default_log": [
+      "(APIServer pid=78572) WARNING 09-19 08:29:52 [model.py:1713] Default vLLM sampling parameters have been overridden by the model's `generation_config.json`: `{'temperature': 0.6, 'top_k': 20, 'top_p': 0.95}`. If this is not intended, please relaunch vLLM instance with `--generation-config vllm`."
+    ]
+  },
+  {
+    "rank_log": "run01/rank-logs/node-1/rank-4.log",
+    "sampling_default_log": [
+      "(APIServer pid=78573) WARNING 09-19 08:29:52 [model.py:1713] Default vLLM sampling parameters have been overridden by the model's `generation_config.json`: `{'temperature': 0.6, 'top_k': 20, 'top_p': 0.95}`. If this is not intended, please relaunch vLLM instance with `--generation-config vllm`."
+    ]
+  },
+  {
+    "rank_log": "run01/rank-logs/node-1/rank-5.log",
+    "sampling_default_log": [
+      "(APIServer pid=78574) WARNING 09-19 08:29:52 [model.py:1713] Default vLLM sampling parameters have been overridden by the model's `generation_config.json`: `{'temperature': 0.6, 'top_k': 20, 'top_p': 0.95}`. If this is not intended, please relaunch vLLM instance with `--generation-config vllm`."
+    ]
+  },
+  {
+    "rank_log": "run01/rank-logs/node-1/rank-6.log",
+    "sampling_default_log": [
+      "(APIServer pid=78575) WARNING 09-19 08:29:52 [model.py:1713] Default vLLM sampling parameters have been overridden by the model's `generation_config.json`: `{'temperature': 0.6, 'top_k': 20, 'top_p': 0.95}`. If this is not intended, please relaunch vLLM instance with `--generation-config vllm`."
+    ]
+  },
+  {
+    "rank_log": "run01/rank-logs/node-1/rank-7.log",
+    "sampling_default_log": [
+      "(APIServer pid=78576) WARNING 09-19 08:29:52 [model.py:1713] Default vLLM sampling parameters have been overridden by the model's `generation_config.json`: `{'temperature': 0.6, 'top_k': 20, 'top_p': 0.95}`. If this is not intended, please relaunch vLLM instance with `--generation-config vllm`."
+    ]
+  },
+  {
+    "rank_log": "run01/rank-logs/node-1/rank-8.log",
+    "sampling_default_log": [
+      "(APIServer pid=78577) WARNING 09-19 08:29:52 [model.py:1713] Default vLLM sampling parameters have been overridden by the model's `generation_config.json`: `{'temperature': 0.6, 'top_k': 20, 'top_p': 0.95}`. If this is not intended, please relaunch vLLM instance with `--generation-config vllm`."
+    ]
+  },
+  {
+    "rank_log": "run01/rank-logs/node-1/rank-9.log",
+    "sampling_default_log": [
+      "(APIServer pid=78578) WARNING 09-19 08:29:52 [model.py:1713] Default vLLM sampling parameters have been overridden by the model's `generation_config.json`: `{'temperature': 0.6, 'top_k': 20, 'top_p': 0.95}`. If this is not intended, please relaunch vLLM instance with `--generation-config vllm`."
+    ]
+  },
+  {
+    "rank_log": "run01/rank-logs/node-2/rank-0.log",
+    "sampling_default_log": [
+      "(APIServer pid=79504) WARNING 09-19 08:29:56 [model.py:1713] Default vLLM sampling parameters have been overridden by the model's `generation_config.json`: `{'temperature': 0.6, 'top_k': 20, 'top_p': 0.95}`. If this is not intended, please relaunch vLLM instance with `--generation-config vllm`."
+    ]
+  },
+  {
+    "rank_log": "run01/rank-logs/node-2/rank-1.log",
+    "sampling_default_log": [
+      "(APIServer pid=79505) WARNING 09-19 08:29:56 [model.py:1713] Default vLLM sampling parameters have been overridden by the model's `generation_config.json`: `{'temperature': 0.6, 'top_k': 20, 'top_p': 0.95}`. If this is not intended, please relaunch vLLM instance with `--generation-config vllm`."
+    ]
+  },
+  {
+    "rank_log": "run01/rank-logs/node-2/rank-10.log",
+    "sampling_default_log": [
+      "(APIServer pid=79514) WARNING 09-19 08:29:55 [model.py:1713] Default vLLM sampling parameters have been overridden by the model's `generation_config.json`: `{'temperature': 0.6, 'top_k': 20, 'top_p': 0.95}`. If this is not intended, please relaunch vLLM instance with `--generation-config vllm`."
+    ]
+  },
+  {
+    "rank_log": "run01/rank-logs/node-2/rank-11.log",
+    "sampling_default_log": [
+      "(APIServer pid=79515) WARNING 09-19 08:29:55 [model.py:1713] Default vLLM sampling parameters have been overridden by the model's `generation_config.json`: `{'temperature': 0.6, 'top_k': 20, 'top_p': 0.95}`. If this is not intended, please relaunch vLLM instance with `--generation-config vllm`."
+    ]
+  },
+  {
+    "rank_log": "run01/rank-logs/node-2/rank-12.log",
+    "sampling_default_log": [
+      "(APIServer pid=79516) WARNING 09-19 08:29:55 [model.py:1713] Default vLLM sampling parameters have been overridden by the model's `generation_config.json`: `{'temperature': 0.6, 'top_k': 20, 'top_p': 0.95}`. If this is not intended, please relaunch vLLM instance with `--generation-config vllm`."
+    ]
+  },
+  {
+    "rank_log": "run01/rank-logs/node-2/rank-13.log",
+    "sampling_default_log": [
+      "(APIServer pid=79517) WARNING 09-19 08:29:55 [model.py:1713] Default vLLM sampling parameters have been overridden by the model's `generation_config.json`: `{'temperature': 0.6, 'top_k': 20, 'top_p': 0.95}`. If this is not intended, please relaunch vLLM instance with `--generation-config vllm`."
+    ]
+  },
+  {
+    "rank_log": "run01/rank-logs/node-2/rank-14.log",
+    "sampling_default_log": [
+      "(APIServer pid=79518) WARNING 09-19 08:29:55 [model.py:1713] Default vLLM sampling parameters have been overridden by the model's `generation_config.json`: `{'temperature': 0.6, 'top_k': 20, 'top_p': 0.95}`. If this is not intended, please relaunch vLLM instance with `--generation-config vllm`."
+    ]
+  },
+  {
+    "rank_log": "run01/rank-logs/node-2/rank-15.log",
+    "sampling_default_log": [
+      "(APIServer pid=79519) WARNING 09-19 08:29:56 [model.py:1713] Default vLLM sampling parameters have been overridden by the model's `generation_config.json`: `{'temperature': 0.6, 'top_k': 20, 'top_p': 0.95}`. If this is not intended, please relaunch vLLM instance with `--generation-config vllm`."
+    ]
+  },
+  {
+    "rank_log": "run01/rank-logs/node-2/rank-2.log",
+    "sampling_default_log": [
+      "(APIServer pid=79506) WARNING 09-19 08:29:56 [model.py:1713] Default vLLM sampling parameters have been overridden by the model's `generation_config.json`: `{'temperature': 0.6, 'top_k': 20, 'top_p': 0.95}`. If this is not intended, please relaunch vLLM instance with `--generation-config vllm`."
+    ]
+  },
+  {
+    "rank_log": "run01/rank-logs/node-2/rank-3.log",
+    "sampling_default_log": [
+      "(APIServer pid=79507) WARNING 09-19 08:29:55 [model.py:1713] Default vLLM sampling parameters have been overridden by the model's `generation_config.json`: `{'temperature': 0.6, 'top_k': 20, 'top_p': 0.95}`. If this is not intended, please relaunch vLLM instance with `--generation-config vllm`."
+    ]
+  },
+  {
+    "rank_log": "run01/rank-logs/node-2/rank-4.log",
+    "sampling_default_log": [
+      "(APIServer pid=79508) WARNING 09-19 08:29:56 [model.py:1713] Default vLLM sampling parameters have been overridden by the model's `generation_config.json`: `{'temperature': 0.6, 'top_k': 20, 'top_p': 0.95}`. If this is not intended, please relaunch vLLM instance with `--generation-config vllm`."
+    ]
+  },
+  {
+    "rank_log": "run01/rank-logs/node-2/rank-5.log",
+    "sampling_default_log": [
+      "(APIServer pid=79509) WARNING 09-19 08:29:55 [model.py:1713] Default vLLM sampling parameters have been overridden by the model's `generation_config.json`: `{'temperature': 0.6, 'top_k': 20, 'top_p': 0.95}`. If this is not intended, please relaunch vLLM instance with `--generation-config vllm`."
+    ]
+  },
+  {
+    "rank_log": "run01/rank-logs/node-2/rank-6.log",
+    "sampling_default_log": [
+      "(APIServer pid=79510) WARNING 09-19 08:29:55 [model.py:1713] Default vLLM sampling parameters have been overridden by the model's `generation_config.json`: `{'temperature': 0.6, 'top_k': 20, 'top_p': 0.95}`. If this is not intended, please relaunch vLLM instance with `--generation-config vllm`."
+    ]
+  },
+  {
+    "rank_log": "run01/rank-logs/node-2/rank-7.log",
+    "sampling_default_log": [
+      "(APIServer pid=79511) WARNING 09-19 08:29:56 [model.py:1713] Default vLLM sampling parameters have been overridden by the model's `generation_config.json`: `{'temperature': 0.6, 'top_k': 20, 'top_p': 0.95}`. If this is not intended, please relaunch vLLM instance with `--generation-config vllm`."
+    ]
+  },
+  {
+    "rank_log": "run01/rank-logs/node-2/rank-8.log",
+    "sampling_default_log": [
+      "(APIServer pid=79512) WARNING 09-19 08:29:56 [model.py:1713] Default vLLM sampling parameters have been overridden by the model's `generation_config.json`: `{'temperature': 0.6, 'top_k': 20, 'top_p': 0.95}`. If this is not intended, please relaunch vLLM instance with `--generation-config vllm`."
+    ]
+  },
+  {
+    "rank_log": "run01/rank-logs/node-2/rank-9.log",
+    "sampling_default_log": [
+      "(APIServer pid=79513) WARNING 09-19 08:29:56 [model.py:1713] Default vLLM sampling parameters have been overridden by the model's `generation_config.json`: `{'temperature': 0.6, 'top_k': 20, 'top_p': 0.95}`. If this is not intended, please relaunch vLLM instance with `--generation-config vllm`."
+    ]
+  }
+]
