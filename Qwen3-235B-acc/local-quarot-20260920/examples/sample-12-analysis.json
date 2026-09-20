@@ -1,0 +1,18 @@
+{
+  "id": 12,
+  "keys": [
+    "data_abbr",
+    "id",
+    "success",
+    "uuid",
+    "origin_prompt",
+    "prediction",
+    "gold"
+  ],
+  "chars": 42040,
+  "reencoded_token_count": 7390,
+  "longest_exclamation_run": 29004,
+  "transition": "us all costs. So total profit over n years would be total revenue minus total costs.\n\nTotal revenue = 10.5n\n\nTotal costs = 90 + 3n\n\nProfit = 10.5n -90 -3n =7.5n -90. As before.\n\nHe starts earning money when profit >0, which is when n>12.\n\nThus, answer is 13.\n\nTherefore, the correct answer should be 13. However, depending on the interpretation, some might say 12. But according to strict calculation!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!",
+  "closing_think_count": 0,
+  "ufffd_count": 0
+}
