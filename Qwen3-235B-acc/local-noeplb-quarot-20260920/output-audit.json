@@ -1,0 +1,33 @@
+{
+  "source": "C:\\Users\\Katrina\\AppData\\Local\\Temp\\qwen235-history\\full-noeplb-evidence\\client\\outputs\\default\\20260920_102723\\results\\vllm-api-general-chat\\gsm8k.json",
+  "source_sha256": "b1d3077de4f69326b30bd787d37007f90d6c4fd0ac3485ba47825a2c12da43e1",
+  "samples": 1319,
+  "correct": 1273,
+  "incorrect": 46,
+  "reported_accuracy": 96.51250947687642,
+  "recomputed_accuracy": 96.51250947687642,
+  "utf8_decode": "strict_success",
+  "flag_counts": {
+    "repeated_phrase": 13,
+    "unclosed_thinking": 2
+  },
+  "flagged_samples": 13,
+  "flag_correctness": {
+    "repeated_phrase": {
+      "correct": 10,
+      "incorrect": 3
+    },
+    "unclosed_thinking": {
+      "correct": 0,
+      "incorrect": 2
+    }
+  },
+  "duplicate_full_outputs": [],
+  "duplicate_prompts": [],
+  "characters": {
+    "min": 423,
+    "median": 2017,
+    "max": 82001
+  },
+  "limits": "Repetition/mojibake flags are heuristics requiring inspection. This is not a proof of semantic correctness. Numeric final-answer equality is not a duplicate-output flag."
+}

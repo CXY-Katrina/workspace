@@ -1,0 +1,42 @@
+{
+  "common_samples": 1314,
+  "baseline_correct": 1271,
+  "noeplb_correct": 1269,
+  "baseline_only_correct": [
+    73,
+    163,
+    234,
+    241,
+    306,
+    406,
+    552,
+    809,
+    854,
+    1052,
+    1059,
+    1078,
+    1161
+  ],
+  "noeplb_only_correct": [
+    12,
+    161,
+    187,
+    288,
+    353,
+    371,
+    652,
+    857,
+    951,
+    1016,
+    1183
+  ],
+  "missing_from_baseline": [
+    1039,
+    1187,
+    1254,
+    1288,
+    1303
+  ],
+  "baseline_accuracy": 96.7275494672755,
+  "noeplb_accuracy": 96.57534246575342
+}
