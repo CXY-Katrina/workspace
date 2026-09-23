@@ -1,0 +1,38 @@
+{
+  "source": "/mnt/share/qwen235-acc-20260919/run03-quarot-20260920/partial-snapshot/partial-eval-details.json",
+  "source_sha256": "f8e74ee0488730353a0422acc44ec4279bb94f9c01eb3a092841e35d5b562ef8",
+  "samples": 294,
+  "correct": 241,
+  "incorrect": 53,
+  "reported_accuracy": 81.97278911564626,
+  "recomputed_accuracy": 81.97278911564626,
+  "utf8_decode": "strict_success",
+  "flag_counts": {
+    "long_character_run": 60,
+    "unclosed_thinking": 56,
+    "repeated_phrase": 1
+  },
+  "flagged_samples": 61,
+  "flag_correctness": {
+    "long_character_run": {
+      "correct": 9,
+      "incorrect": 51
+    },
+    "unclosed_thinking": {
+      "correct": 8,
+      "incorrect": 48
+    },
+    "repeated_phrase": {
+      "correct": 1,
+      "incorrect": 0
+    }
+  },
+  "duplicate_full_outputs": [],
+  "duplicate_prompts": [],
+  "characters": {
+    "min": 649,
+    "median": 2153.5,
+    "max": 42040
+  },
+  "limits": "Repetition/mojibake flags are heuristics requiring inspection. This is not a proof of semantic correctness. Numeric final-answer equality is not a duplicate-output flag."
+}

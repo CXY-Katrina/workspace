@@ -1,0 +1,61 @@
+{
+  "samples": 1319,
+  "all_requests_success": true,
+  "decode_finish_reasons": {
+    "stop": 1318,
+    "length": 2,
+    "abort": 0,
+    "error": 0,
+    "repetition": 0
+  },
+  "prompt_and_gold_identical_on_common_1314": true,
+  "abnormal_samples": [
+    {
+      "id": 1052,
+      "current_chars": 47751,
+      "baseline_chars": 20484,
+      "current_correct": false,
+      "prediction": "190",
+      "reference": "110",
+      "hmm_count": 0,
+      "equation_loop_count": 1746,
+      "baseline_thinking_closed": true,
+      "baseline_tail": "120 people\" when he boards, and we just track the changes from there, ignoring him as part of the count. Which is confusing.\n\nGiven that the problem is presented in this way, and to get an answer, I'll proceed with the interpretation that the initial number is 120 people, including Romeo. Or perhaps not. Hmm.\n\nWait, another angle. If the problem had said \"Romeo is on a train with 120 people\", then total would be 120 (including him). If it says \"Romeo boards a train with 120 people\", then after boarding, total is 120 (so he replaced others?), which doesn't make sense.\n\nAlternatively, \"boards a train with 120 people\" could mean that he is one of a group of 120 people boarding. But again, unclear.\n\nAt this point, I think the problem is expecting the following steps:\n\nStart at 120.\n\nAdd 20: 140.\n\nSubtract 50, add 100: 190.\n\nSubtract 80: 110.\n\nSo answer is 110.\n\nPossibly ignoring Romeo as part of the initial count. Maybe the first line should be interpreted as the initial number is 120, and Romeo's boarding is just flavor text. That's possible. So I think the answer expected is 110.\n\nBut I'm still a bit unsure. However, given the problem structure, I'll go with 110.\n</think>\n\nanswer:110"
+    },
+    {
+      "id": 1078,
+      "current_chars": 82001,
+      "baseline_chars": 981,
+      "current_correct": false,
+      "prediction": "120",
+      "reference": "8",
+      "hmm_count": 16309,
+      "equation_loop_count": 0,
+      "baseline_thinking_closed": true,
+      "baseline_tail": "<think>\nOkay, let's see. Melanie needs 200 toothpicks for her sculpture. She's been saving 10 toothpicks each week for the past 12 weeks. So first, I should figure out how many she's already saved. If she saves 10 every week for 12 weeks, that's 10 multiplied by 12. Let me do that math: 10 * 12 equals 120. So she has 120 toothpicks already.\n\nNow, the total needed is 200. Subtract the ones she already has: 200 minus 120. That gives 80 toothpicks left to collect. Since she continues saving 10 each week, we need to find out how many weeks it'll take to get 80 more. Dividing 80 by 10 gives 8 weeks. \n\nWait, let me double-check. If she has 120 after 12 weeks, adding 8 more weeks at 10 per week would be 80. 120 + 80 = 200. Yep, that adds up. So the answer should be 8 weeks.\n</think>\n\nMelanie has saved 10 toothpicks/week × 12 weeks = 120 toothpicks so far. She needs 200 − 120 = 80 more toothpicks. At 10 toothpicks per week, it will take her 80 ÷ 10 = 8 more weeks. \n\nanswer:8"
+    }
+  ],
+  "benign_phrase_flags": [
+    87,
+    94,
+    119,
+    330,
+    353,
+    434,
+    754,
+    852,
+    942,
+    1074,
+    1088
+  ],
+  "previous_bad_cases": {
+    "samples": 60,
+    "correct": 54,
+    "long_character_runs": 0
+  },
+  "decode_metrics_scope": "Whole service lifetime, includes readiness request; use 1319 prediction records as dataset denominator.",
+  "retokenized_lengths": {
+    "1052": 32768,
+    "1078": 32768
+  }
+}
