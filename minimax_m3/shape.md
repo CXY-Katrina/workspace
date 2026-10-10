@@ -1,0 +1,10 @@
+aclnnAdds_AddAiCore_Add	"128;"	1.62
+aclnnAdds_AddAiCore_Add	"128;"	1.66
+split_qkv_rmsnorm_rope_kernel	N/A	12.52
+aclnnContiguous_SliceAiCore_Slice	"192,256;2;2"	3.38
+GemmaRmsNorm	"192,128;128"	11.82
+aclnnContiguous_SliceAiCore_Slice	"192,256;2;2"	2.6
+GemmaRmsNorm	"192,128;128"	8.22
+_triton_rope	N/A	15.58
+aclnnScatterPaKvCache_ScatterPaKvCache_ScatterPaKvCache	"192,1,128;5392,128,1,128;192;192,1,128;5392,128,1,128;;;"	12.46
+aclnnScatterNdUpdateSk_ScatterNdUpdateSkAiCore_ScatterNdUpdateSk	"690176,128;192,1;192,128"	13.86
