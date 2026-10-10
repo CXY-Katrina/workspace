@@ -1,0 +1,70 @@
+#!/usr/bin/env bash
+set -eo pipefail
+ulimit -c 0
+unset http_proxy https_proxy ftp_proxy HTTP_PROXY HTTPS_PROXY FTP_PROXY ALL_PROXY all_proxy
+source /usr/local/Ascend/ascend-toolkit/set_env.sh
+source /usr/local/Ascend/nnal/atb/set_env.sh --cxx_abi=1
+source /opt/ycl-operators/megamoe/vendors/custom_transformer/bin/set_env.bash
+source /opt/ycl-operators/msa/vendors/custom_transformer/bin/set_env.bash
+export LD_LIBRARY_PATH=/opt/ycl-operators/msa/vendors/custom_transformer/op_api/lib:/opt/ycl-operators/megamoe/vendors/custom_transformer/op_api/lib:/usr/local/python3.11.10/lib/python3.11/site-packages/mooncake:${LD_LIBRARY_PATH:-}
+export TORCH_EXTENSIONS_DIR=/opt/ycl-torch-extensions
+export VLLM_USE_V2_MODEL_RUNNER=1
+export VLLM_USE_V1=1
+export VLLM_ENGINE_READY_TIMEOUT_S=1800
+export LD_PRELOAD=/usr/lib64/libjemalloc.so.2
+export VLLM_HOST_IP=172.27.2.109
+export TP_SOCKET_IFNAME=data0.172
+export OMP_NUM_THREADS=1
+export PYTHONUNBUFFERED=1
+cd /mnt/share/y00976694/m3-d16k-no-megamoe-topologies-20261009/single109-dp2tp8-20261010-1032/deployment/decode
+unset http_proxy https_proxy ftp_proxy
+
+nic_name="data0.172"                 # NIC corresponding to local_ip
+local_ip="172.27.2.109"                 # Decode node IP
+model_path="/mnt/share/weight/MiniMax-M3-w8a8-0626"               # MiniMax-M3 model path
+EAGLE3_WEIGHT_PATH="/mnt/share/weight/MiniMax-M3-EAGLE3-GQA"       # MiniMax-M3-EAGLE3-GQA path
+
+export HCCL_BUFFSIZE=2048
+export HCCL_IF_IP=$local_ip
+export HCCL_OP_EXPANSION_MODE="AIV"
+export ASCEND_RT_VISIBLE_DEVICES=$1
+export HCCL_SOCKET_IFNAME=$nic_name
+export GLOO_SOCKET_IFNAME=$nic_name
+export PYTORCH_NPU_ALLOC_CONF=expandable_segments:True
+export PYTHONHASHSEED=0
+
+# Pooling extras on top of Section 5.3 (kv_pool.md §5.1, A3 HCCS)
+export ACL_OP_INIT_MODE=1
+export ASCEND_ENABLE_USE_FABRIC_MEM=1
+unset MOONCAKE_CONFIG_PATH
+if [ -n "${MOONCAKE_LIB_DIRS:-}" ]; then
+    export LD_LIBRARY_PATH="${MOONCAKE_LIB_DIRS}:${LD_LIBRARY_PATH:-}"
+fi
+
+exec vllm serve "$model_path" \
+    --host 0.0.0.0 \
+    --port $2 \
+    --data-parallel-size $3 \
+    --data-parallel-rank $4 \
+    --data-parallel-address $5 \
+    --data-parallel-rpc-port $6 \
+    --tensor-parallel-size $7 \
+    --pipeline-parallel-size $8 \
+    --enable-expert-parallel \
+    --enable-prefix-caching \
+    --seed 1024 \
+    --served-model-name minimax-m3 \
+    --reasoning-parser minimax_m3 \
+    --distributed-executor-backend mp \
+    --max-model-len 263000 \
+    --max-num-batched-tokens 2048 \
+    --trust-remote-code \
+    --language-model-only \
+    --quantization ascend \
+    --max-num-seqs 128 \
+    --max-cudagraph-capture-size 1024 \
+    --compilation-config '{"cudagraph_capture_sizes":[4,8,16,24,32,40,48,56,64,72,80,88,96,104,112,120,128,136,144,152,160,168,176,184,192,200,208,216,224,232,240,248,256,272,288,304,320,336,352,368,384,400,416,432,448,464,480,496,512,1024]}' \
+    --gpu-memory-utilization 0.88 \
+    --additional-config '{"enable_fused_mc2":0,"enable_cpu_binding":true,"ascend_compilation_config":{"fuse_norm_quant":false},"multistream_overlap_shared_expert":true,"weight_nz_mode":2,"enable_shared_expert_dp":true,"enable_flashcomm1":true}' \
+    --speculative-config '{"method":"eagle3","model":"/mnt/share/weight/MiniMax-M3-EAGLE3-GQA","num_speculative_tokens":3}' \
+    --profiler-config '{"profiler": "torch", "torch_profiler_dir": "/mnt/share/y00976694/m3-d16k-no-megamoe-topologies-20261009/single109-dp2tp8-20261010-1032/traces/decode", "torch_profiler_with_stack": false, "torch_profiler_with_memory": false, "torch_profiler_record_shapes": false, "ignore_frontend": true}'
