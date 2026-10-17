@@ -1,1 +1,1 @@
-ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJuSb0eIgdL+ane7pxVBr6CFEF8Im3jdcAsZPqD3dZ1f ed25519 256-20260921
+swr.cn-north-12.myhuaweicloud.com/atlas_inference/vllm-ascend:daily-releases-v0.30.0-a3-cann9.2.0_20261014151900-20261016
