@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MiniMax M3.1 Flash · A5 PD + DSpark 启动与交接</title>
+<style>
+:root{color-scheme:light;--ink:#172b40;--muted:#526577;--line:#dce4eb;--accent:#136b63;--pale:#e8f4f0}
+*{box-sizing:border-box}body{margin:0;background:#f5f7fa;color:var(--ink);font:15px/1.8 -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif}
+main{max-width:1060px;margin:28px auto;padding:36px 44px;background:#fff;border:1px solid var(--line);border-radius:16px}h1{font-size:29px;line-height:1.35;margin:8px 0 16px}h2{font-size:21px;margin-top:36px;padding-top:12px;border-top:1px solid var(--line)}h3{font-size:17px;margin-top:24px}p{margin:10px 0}a{color:#12635b}nav{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}nav a,.badge{padding:5px 10px;background:var(--pale);border-radius:7px;text-decoration:none;font-size:13px}.muted{color:var(--muted)}.note{padding:12px 16px;border-left:4px solid var(--accent);background:#f0f7f5;margin:18px 0}table{border-collapse:collapse;width:100%;margin:15px 0;font-size:14px}th,td{border:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top}th{background:#edf2f6}code{font:12.5px/1.65 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}p code,td code,li code{padding:2px 4px;border-radius:4px;background:#eef2f6}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#132537;color:#e3edf5;border-radius:9px;padding:17px 20px;line-height:1.65}li{margin:7px 0}.prompt{border:1px solid var(--line);border-radius:10px;padding:16px 20px;margin:18px 0;white-space:pre-wrap;overflow-wrap:anywhere}.status{font-weight:600;color:var(--accent)}@media(max-width:700px){main{margin:0;padding:22px 18px;border-radius:0}h1{font-size:24px}table{display:block;overflow-x:auto}pre{padding:13px}}@media print{body{background:white}main{border:0;margin:0;padding:0}pre{background:#f2f4f6;color:black}h2{break-before:auto}.prompt,table{break-inside:avoid}}
+</style></head><body><main>
+<span class="badge">交接说明 · 2026-10-23 · Asia/Shanghai</span>
+<h1>MiniMax M3.1 Flash<br>A5 PD + DSpark 启动与交接</h1>
+<p>本说明对应两台 A5 的隔离容器：26 做 Prefill 和代理，27 做 Decode。DSpark 每轮提出 7 个草稿 token；Decode 已恢复 QK-Norm／RoPE 融合。PR #9 已合入，A5 融合修复 <a href="https://github.com/ycl-ai-infra/vllm-ascend-private/pull/11">PR #11</a> 仍为 Draft。</p>
+<p class="muted">这是本地交接文件，包含用户明确要求记录的登录凭据；不属于仓库提交内容。GPQA 最新进度以服务器结果文件为准。</p>
+<nav><a href="#access">0. 机器与启动</a><a href="#gpqa">1. GPQA 进度</a><a href="#dspark">2. DSpark 采信率</a><a href="#first">首次部署</a><a href="#prompts">交接 Prompts</a></nav>
+
+<h2 id="access">0. 机器、容器和启动方式</h2>
+<table><thead><tr><th>项目</th><th>26：Prefill + Proxy</th><th>27：Decode</th></tr></thead><tbody>
+<tr><td>SSH 管理 IP</td><td><code>177.11.26.1</code></td><td><code>177.11.27.1</code></td></tr>
+<tr><td>账号 / 密码</td><td><code>root</code> / <code>DCauto12#$</code></td><td><code>root</code> / <code>DCauto12#$</code></td></tr>
+<tr><td>计算网络 IP</td><td><code>197.13.50.1</code></td><td><code>197.13.51.1</code></td></tr>
+<tr><td>容器名称</td><td><code>x00939195-m31-pd-prefill-release</code></td><td><code>x00939195-m31-pd-decode-release</code></td></tr>
+<tr><td>宿主机工作目录</td><td colspan="2"><code>/home/x00939195/minimax-pd-release-20261023</code>，容器内映射为 <code>/work</code></td></tr>
+<tr><td>角色启动脚本（容器内）</td><td><code>/work/prefill/start.sh</code></td><td><code>/work/decode/start.sh</code></td></tr>
+<tr><td>实际服务参数脚本</td><td><code>/work/prefill/run_dp_template.sh</code></td><td><code>/work/decode/run_dp_template.sh</code></td></tr>
+<tr><td>后端端口 / 健康检查</td><td><code>31050</code> / <code>/health</code></td><td><code>31060</code> / <code>/health</code></td></tr>
+<tr><td>运行日志（容器内）</td><td><code>/work/logs/prefill-rank0.log</code></td><td><code>/work/logs/decode-rank0.log</code></td></tr>
+<tr><td>vllm-ascend 版本</td><td><code>8627ba952</code>，含 PR #9</td><td><code>8627ba952</code> + PR #11 <code>03114943f</code></td></tr>
+</tbody></table>
+<p>统一入口：<code>http://177.11.26.1:8009/v1/chat/completions</code>；模型名 <code>minimax-m3</code>。代理脚本位于 26 的 <code>/work/start_proxy.sh</code>。</p>
+<p>权重目录挂载 <code>/home/t00932610</code> 为只读；工作目录 <code>/work</code> 为可写。当前镜像 ID 前缀 <code>6d0b1dd97cba</code>（CANN 9.2）。两台各使用全部 8 张 NPU，拓扑均为 DP2 × TP4 × PP1、EP8；每台一个服务入口，由框架管理两个 DP rank。不能按 DP rank 分成两个仅可见 4 卡的独立服务。</p>
+
+<h3>先确认现状，避免重复启动</h3>
+<p>在本地分别登录，密码在交互提示中输入：</p>
+<pre><code>ssh root@177.11.26.1
+ssh root@177.11.27.1</code></pre>
+<p>在对应宿主机检查容器及健康状态：</p>
+<pre><code># 26 宿主机
+docker inspect -f &#x27;{{.State.Running}}&#x27; x00939195-m31-pd-prefill-release
+docker top x00939195-m31-pd-prefill-release
+curl --noproxy &#x27;*&#x27; -fsS http://127.0.0.1:31050/health
+ss -lntp | rg &#x27;:8009&#x27;
+
+# 27 宿主机
+docker inspect -f &#x27;{{.State.Running}}&#x27; x00939195-m31-pd-decode-release
+docker top x00939195-m31-pd-decode-release
+curl --noproxy &#x27;*&#x27; -fsS http://127.0.0.1:31060/health</code></pre>
+<p><code>/health</code> 成功时可能没有响应正文，以 curl 退出码 0 / HTTP 200 判断。容器运行不等于模型服务就绪；容器本体以 sleep infinity 驻留，服务通过 <code>docker exec</code> 启动。</p><h3>现有环境如何启动</h3><p>仅在对应服务没有运行、没有重复实例时执行；容器若已停止，先 <code>docker start 容器名</code>。无需重新安装框架、重新准备 draft 或修改权重。</p>
+<pre><code># 26 宿主机：启动 Prefill
+docker exec -d x00939195-m31-pd-prefill-release bash /work/prefill/start.sh
+
+# 27 宿主机：启动 Decode
+docker exec -d x00939195-m31-pd-decode-release bash /work/decode/start.sh
+
+# 两端 /health 均返回 200 后，在 26 启动代理；先确认 8009 没有现存代理
+docker exec -d x00939195-m31-pd-prefill-release bash /work/start_proxy.sh</code></pre>
+<p>模板脚本自行写入上述 rank0 日志，代理日志是 <code>/work/logs/proxy.log</code>。P / D 的 <code>/health</code> 均可使用；代理没有 <code>/health</code>（返回 404），用进程和实际短请求确认。P 主模型为 eager，D 主模型为 <code>FULL_DECODE_ONLY</code>。</p>
+<pre><code># 在 26 看 P 日志；在 27 改为 decode-rank0.log
+tail -n 100 /home/x00939195/minimax-pd-release-20261023/logs/prefill-rank0.log
+
+# 26：经 PD 代理做短请求
+curl --noproxy &#x27;*&#x27; -fsS http://127.0.0.1:8009/v1/chat/completions   -H &#x27;Content-Type: application/json&#x27;   -d &#x27;{&quot;model&quot;:&quot;minimax-m3&quot;,&quot;messages&quot;:[{&quot;role&quot;:&quot;user&quot;,&quot;content&quot;:&quot;计算 12 × 13，简短回答。&quot;}],&quot;temperature&quot;:0,&quot;max_tokens&quot;:512}&#x27;</code></pre>
+<h3>当前关键配置</h3><table><tr><th>配置</th><th>当前值 / 原因</th></tr>
+<tr><td>主模型权重</td><td><code>/home/t00932610/minimax_m3dot1_mxfp8</code>，两台均需可见</td></tr>
+<tr><td>草稿目录</td><td><code>/work/pr9-8627ba952/draft-prepared</code>，不是 draft-native</td></tr>
+<tr><td>投机配置</td><td><code>method=dspark</code>；<code>num_speculative_tokens=7</code>；draft KV 为 BF16，draft <code>enforce_eager=true</code>。使用这一条多 token 投机路径，不叠加第二个 <code>method=mtp</code> 配置。</td></tr>
+<tr><td>长度 / 批处理</td><td><code>max_model_len=133000</code>；<code>max_num_batched_tokens=32768</code>；GPQA 单请求输出上限 <code>131072</code></td></tr>
+<tr><td>KV 管理</td><td><code>--disable-hybrid-kv-cache-manager</code>，保留实际 KV cache 和 SWA 计算；解决 128K 上下文预算问题</td></tr>
+<tr><td>HCCL</td><td>P <code>HCCL_BUFFSIZE=1024</code>；D <code>2048</code> MB；P 旧值 256 MB 无法满足 MoE 窗口需求</td></tr>
+<tr><td>Decode 图融合</td><td><code>fuse_qknorm_rope=true</code>，依赖已部署的 PR #11 修复；不要退回旧源码却保持这个配置</td></tr>
+<tr><td>运行环境</td><td><code>/work/runtime_env.sh</code>；Python <code>/work/.venv/bin/python</code>；CANN 9.2，Torch 2.10.0，Triton / Triton-Ascend 3.6.0；Ascend 950DT9582</td></tr>
+<tr><td>配套 vLLM</td><td><code>ced6857afa0ea7b2e3f0846a62e1394e90f15607</code>，另应用 PR #9 自带的核心 guard；不能随意换成最新 main</td></tr>
+</table>
+
+<div class="note" id="gpqa-current-state"><strong>本轮状态快照：</strong>2026-10-23 08:40:36（北京时间）已启动 4 题 pilot，宿主机 PID <code>3382125</code>。正式 198 题将在检查 pilot 后启动；最新进度以服务器文件为准。输出上限 <code>131072</code>，不创建定时任务。</div>
+<h2 id="gpqa">1. 如何查 GPQA 进度</h2>
+<p>本轮使用 GPQA Diamond 198 题，先做独立 4 题 pilot（并发 4），通过后全量 198 题（并发 8）。每题一次请求，输出上限 131072；确认长段重复则取消该题并计失败，不重试、不翻倍 token。pilot 不混入正式成绩。</p>
+<p>结果在 <strong>26 宿主机</strong>，新一轮使用如下目录；只有对应 phase 的 <code>config.json</code> 已产生，才表示该阶段实际开始：</p>
+<pre><code>GPQA_DIR=/home/x00939195/minimax-pd-release-20261023/gpqa-pr11-dspark-128k-20261023
+
+# 推荐：只读汇总进度、正在生成的题及失败信息；pilot 阶段把 full 替换为 pilot
+python3 &quot;$GPQA_DIR/status_gpqa.py&quot; &quot;$GPQA_DIR&quot; --phase full
+
+# 原始进度文件
+python3 -m json.tool &quot;$GPQA_DIR/full/progress.json&quot;
+
+# 完成标记与最终统计
+ls -l &quot;$GPQA_DIR/full/DONE&quot; &quot;$GPQA_DIR/full/summary.json&quot;
+python3 -m json.tool &quot;$GPQA_DIR/full/summary.json&quot;
+
+# 最近请求事件；这个命令本身不会发起新请求
+tail -n 12 &quot;$GPQA_DIR/full/events.jsonl&quot;</code></pre>
+<p><code>completed / total</code> 是已结束题数；<code>correct</code> 是正确数；<code>accuracy_completed</code> 是已结束题目的当前正确率，未完成时不能当最终成绩；<code>repetition_failures</code>、<code>transport_failures</code> 分别记录重复失败与请求错误。<code>truncated</code> 记录达到输出上限。<code>accuracy_total</code> / <code>correct_over_total_so_far</code> 在中途只是正确数除以全部 198 题的下限，并非当前精度。正式结果看 <code>full/summary.json</code> 与 <code>full/DONE</code>。如果出现非重复的 HTTP、网络或协议错误，runner 停止提交新题，保存 <code>INCOMPLETE</code>，不能当成全量已完成；重复请求则取消计失败并继续后续题目。</p><p>第一题尚未结束时可能还没有 <code>progress.json</code>，可读流式心跳判断是否仍在生成：</p>
+<pre><code>python3 - &lt;&lt;&#x27;PY&#x27;
+import json
+from pathlib import Path
+phase = Path(&#x27;/home/x00939195/minimax-pd-release-20261023/gpqa-pr11-dspark-128k-20261023/full&#x27;)
+for p in sorted((phase / &#x27;live&#x27;).glob(&#x27;q*.json&#x27;)):
+    r = json.loads(p.read_text())
+    if r.get(&#x27;status&#x27;) != &#x27;finished&#x27;:
+        print(p.name, json.dumps(r, ensure_ascii=False))
+PY</code></pre>
+<p>每题完整输出保存在 <code>full/results.jsonl</code>。读取时按换行符 <code>"\n"</code> 分割；不要使用 <code>str.splitlines()</code>，生成内容中的 Unicode 分隔符可能被误认为记录边界。本次持续看护在当前会话内进行，不创建定时任务。</p>
+<p>在 26 宿主机检查评测进程和日志（pilot 阶段把 full 换成 pilot）：</p><pre><code>GPQA_DIR=/home/x00939195/minimax-pd-release-20261023/gpqa-pr11-dspark-128k-20261023
+ps -p "$(cat "$GPQA_DIR/full.pid")" -o pid,etime,args
+tail -n 5 "$GPQA_DIR/full.log"</code></pre>
+<h2 id="dspark">2. 如何查 DSpark 采信率</h2>
+<p>从两个后端的 Prometheus <code>/metrics</code> 读取累计计数。可使用本轮目录内的只读解析器 <code>dspark_metrics.py</code>。P 和 D 的所有 DP 标签都要汇总；代理 8009 不是这些推理指标的来源。</p>
+<pre><code># 在 26 宿主机查看原始指标
+curl --noproxy &#x27;*&#x27; -fsS http://197.13.50.1:31050/metrics |   rg &#x27;^vllm:spec_decode_num_(drafts|draft_tokens|accepted_tokens)_total&#x27;
+curl --noproxy &#x27;*&#x27; -fsS http://197.13.51.1:31060/metrics |   rg &#x27;^vllm:spec_decode_num_(drafts|draft_tokens|accepted_tokens)_total&#x27;</code></pre>
+<table><tr><th>指标</th><th>含义</th></tr>
+<tr><td><code>spec_decode_num_drafts_total</code></td><td>草稿验证轮次</td></tr>
+<tr><td><code>spec_decode_num_draft_tokens_total</code></td><td>草稿模型提出的 token 总数</td></tr>
+<tr><td><code>spec_decode_num_accepted_tokens_total</code></td><td>被主模型接受的草稿 token 总数</td></tr></table>
+<p><strong>Token 采信率 = 接受的草稿 token / 提出的草稿 token。</strong>一段时间的采信率应使用两次快照之差：<code>Δaccepted / Δdraft_tokens</code>。不要直接平均不同 DP 的百分比。服务重启会重置计数，跨重启的差值无效。</p>
+<p>下面命令在 26 取 30 秒窗口，汇总两台各 DP 指标，不会提交推理请求：</p>
+<pre><code>python3 - &lt;&lt;&#x27;PY&#x27;
+import json, time, urllib.request
+opener = urllib.request.build_opener(urllib.request.ProxyHandler({}))
+names = [&#x27;spec_decode_num_drafts_total&#x27;, &#x27;spec_decode_num_draft_tokens_total&#x27;,
+         &#x27;spec_decode_num_accepted_tokens_total&#x27;]
+def snapshot():
+    out = dict.fromkeys(names, 0.0)
+    for url in [&#x27;http://197.13.50.1:31050/metrics&#x27;, &#x27;http://197.13.51.1:31060/metrics&#x27;]:
+        with opener.open(url, timeout=10) as response:
+            text = response.read().decode()
+        for row in text.split(&#x27;
+&#x27;):
+            if not row or row.startswith(&#x27;#&#x27;):
+                continue
+            metric = row.split(&#x27;{&#x27;, 1)[0].split(&#x27; &#x27;, 1)[0]
+            for name in names:
+                if metric.endswith(name):
+                    out[name] += float(row.split()[-1])
+    return out
+before = snapshot()
+time.sleep(30)
+after = snapshot()
+delta = {name: after[name] - before[name] for name in names}
+if any(value &lt; 0 for value in delta.values()):
+    raise SystemExit(&#x27;计数出现重置；检查服务是否重启，本窗口不能计算采信率。&#x27;)
+draft = delta[&#x27;spec_decode_num_draft_tokens_total&#x27;]
+accepted = delta[&#x27;spec_decode_num_accepted_tokens_total&#x27;]
+rounds = delta[&#x27;spec_decode_num_drafts_total&#x27;]
+print(json.dumps({&#x27;window_seconds&#x27;: 30, &#x27;deltas&#x27;: delta,
+                  &#x27;token_acceptance_rate&#x27;: accepted / draft if draft else None,
+                  &#x27;accepted_draft_tokens_per_round&#x27;: accepted / rounds if rounds else None},
+                 ensure_ascii=False, indent=2))
+PY</code></pre>
+<h3>推荐：直接查本轮 GPQA 的采信率</h3><p>pilot 与 full 各自在开始前保存基线，因此不会混入旧冒烟或前一阶段的计数。下面读取 full 开始至今的区间；pilot 阶段把路径中的 full 换成 pilot。抓取指标与解析不会发推理请求。</p>
+<pre><code>GPQA_DIR=/home/x00939195/minimax-pd-release-20261023/gpqa-pr11-dspark-128k-20261023
+python3 &quot;$GPQA_DIR/capture_dspark.py&quot;   --baseline &quot;$GPQA_DIR/full/dspark-baseline.json&quot;   --output &quot;$GPQA_DIR/full/dspark-current.json&quot;</code></pre>
+<p>查看 <code>interval_valid</code>，有效时以 <code>interval.totals.token_acceptance_percent</code> 为本轮窗口采信率；<code>cumulative</code> 是服务累计值，包含此前流量。若服务重启、指标标签变化或窗口中混入其他请求，需要重新解释样本范围；即使计数未下降，也不能保证跨重启比较有效。</p>
+<p>分母为 0 表示本窗口没有草稿 token，不能计算采信率。采信率不是 GPQA 正确率，也不能单独证明性能加速；性能还需要同负载的吞吐 / 延迟对照。此前融合修复冒烟中 <code>869 / 3591 ≈ 24.20%</code> 仅是那批请求的采信率，不代表 GPQA 全量值。</p>
+<h2 id="first">首次部署：插件、guard、draft view</h2>
+<p>当前两台已全部完成；普通重启跳过本节。以下仅说明已有 CANN / 框架 / 原生算子构建环境中的 DSpark 准备步骤，不是从空机器开始安装。</p>
+<p>在对应容器内执行。插件先安装；guard 与 prepare 无强制先后，但都必须在启动前完成。</p>
+<pre><code># docker exec -it 对应容器名 bash 后执行
+set -e
+source /work/runtime_env.sh
+adapter=/work/src/vllm-ascend/examples/spec_decode/minimax_m3_flash_dspark
+
+# 1. 安装适配插件；使用这个目录的 setup.py，不是仓库根目录的 setup.py
+/work/.venv/bin/python -m pip install --no-build-isolation --no-deps -e &quot;$adapter&quot;
+
+# 2. 查看差异并应用已有核心 guard；脚本拼写为 guard，参数是两个横杠 --apply
+/work/.venv/bin/python &quot;$adapter/patch_core_guard.py&quot; /work/src/vllm/vllm/config/speculative.py
+/work/.venv/bin/python &quot;$adapter/patch_core_guard.py&quot; /work/src/vllm/vllm/config/speculative.py --apply
+
+# 3. 仅首次创建；当前 draft-prepared 已存在，不要重新执行这段
+/work/.venv/bin/python &quot;$adapter/prepare_draft_view.py&quot;   --source /work/pr9-8627ba952/draft-native   --destination /work/pr9-8627ba952/draft-prepared   --hidden-norm gemma --final-norm gemma</code></pre>
+<p><code>prepare_draft_view.py</code> 创建适配 config 并链接原始 checkpoint，不修改原始权重、不做离线权重反量化；源权重必须持续可访问。生成的架构别名 <code>MiniMaxM31FlashA3DSparkModel</code> 中的 A3 是隔离命名，不表示禁止 A5。</p>
+<p>更新或替换 vLLM 后重新检查 guard；换 draft 权重、配置或路径时另建新 view。脚本会拒绝覆盖非空目标目录。PR #11 当前未合入，更新 release 时不能丢失 27 上已验证的修复。</p>
+
+<h2 id="prompts">可直接交给新会话的 Prompts</h2>
+<p>以下可以整段复制。除明确启动任务外，查询 prompt 均要求只读，不重启服务、不重复发评测请求。</p>
+<h3>Prompt A：接管当前任务</h3><div class="prompt">接管 MiniMax M3.1 Flash A5 PD + DSpark 任务。机器 177.11.26.1、177.11.27.1，均 root，密码 DCauto12#$。26 容器 x00939195-m31-pd-prefill-release，27 容器 x00939195-m31-pd-decode-release；宿主机 /home/x00939195/minimax-pd-release-20261023 映射容器 /work。26 做 P+Proxy，27 做 D，各 DP2×TP4、EP8，服务端口分别 31050/31060，代理 26:8009，模型名 minimax-m3。
+先只读核验健康、实际启动参数、源码版本和本轮 GPQA 进度，报告后继续当前评测看护，不重启正常服务。P 为 vllm-ascend 8627ba952，D 为 8627ba952 加 A5 融合修复 03114943f（PR #11 Draft，未合入）；配套 vLLM ced6857，已应用 PR #9 的 patch_core_guard.py。DSpark 插件已安装，draft=/work/pr9-8627ba952/draft-prepared，7 个 speculative token，D fuse_qknorm_rope=true。A3 机器没有修改，不要操作 A3。
+本轮 GPQA 目录 /home/x00939195/minimax-pd-release-20261023/gpqa-pr11-dspark-128k-20261023，先核实真正运行目录和 PID，pilot 4 题与正式 198 题分开，max_tokens=131072，每题一次，重复按失败，不混入旧结果、不重试、不加倍。持续监控在当前会话进行，不创建定时任务。</div>
+<h3>Prompt B：只查 GPQA</h3><div class="prompt">只读查询本轮 GPQA，不能重复发题或重启服务。SSH 177.11.26.1，root，密码 DCauto12#$。结果目录 /home/x00939195/minimax-pd-release-20261023/gpqa-pr11-dspark-128k-20261023，优先执行 python3 该目录/status_gpqa.py 该目录 --phase full，读取 full/progress.json、full/config.json、full/events.jsonl、full/live 和进程；若全量未开始，再检查 pilot。最终以 full/summary.json 和 full/DONE 判断完成；INCOMPLETE 表示本轮未正常跑完，不能当最终成绩。
+报告已完成/总数、正确数、已完成题正确率、重复失败、请求错误、未解析答案、截断、正在生成的题号及持续时间；区分已完成题当前正确率和最终 198 题正确率。max_tokens 应为 131072。若无 progress.json，先检查 live 心跳与 PID，不能直接断言卡住。需要查看 JSONL 时用字面换行 
+ 分割，不用 splitlines()。不得把旧轮次或 pilot 算入正式成绩。</div>
+<h3>Prompt C：只查 DSpark 采信率</h3><div class="prompt">只读检查 A5 PD 的 DSpark 是否实际生效及当前 token 采信率，不发新请求、不重启。SSH 177.11.26.1，root，密码 DCauto12#$。P metrics=http://197.13.50.1:31050/metrics，D metrics=http://197.13.51.1:31060/metrics。
+读取 spec_decode_num_drafts_total、spec_decode_num_draft_tokens_total、spec_decode_num_accepted_tokens_total，汇总所有 DP 标签，取两次快照（间隔 30 秒）。报告窗口 Δdrafts、Δdraft_tokens、Δaccepted_tokens，采信率=Δaccepted_tokens/Δdraft_tokens，另报每轮平均接受草稿 token=Δaccepted_tokens/Δdrafts。检查计数是否重置，分母为 0 则报告无可计算样本。不要平均各 rank 的百分比，不把 token 采信率称作 GPQA 正确率，也不凭采信率断言加速。</div>
+<h3>Prompt D：恢复已有服务</h3><div class="prompt">恢复现有 A5 MiniMax M3.1 Flash PD + DSpark 服务。SSH 177.11.26.1/177.11.27.1，均 root，密码 DCauto12#$。26 容器 x00939195-m31-pd-prefill-release，27 容器 x00939195-m31-pd-decode-release；宿主机 /home/x00939195/minimax-pd-release-20261023 映射 /work。先检查容器、进程、端口、NPU 占用和正在运行的 GPQA，健康服务不重复启动，不影响其他服务及 A3。
+现有脚本为 26:/work/prefill/start.sh、27:/work/decode/start.sh，代理 26:/work/start_proxy.sh。各主服务 /health（31050/31060）都返回 200 后启动不存在的 8009 代理，并用代理做一个短请求确认 PD。
+保持 DP2TP4EP8、全 8 卡可见、max_model_len=133000、max_num_batched_tokens=32768、disable-hybrid-kv-cache-manager、P HCCL_BUFFSIZE=1024、D=2048，draft=/work/pr9-8627ba952/draft-prepared，method=dspark，7 token，draft enforce_eager=true。D 必须保留已部署的 PR #11 修复 03114943f 和 fuse_qknorm_rope=true；PR #11 仍 Draft。不要自行更新配套 vLLM，不重做已经存在的 draft view。报告实际执行命令、源码版本、健康状态和日志路径。</div>
+<h3>Prompt E：首次部署 / 新环境准备</h3><div class="prompt">参考当前 A5 已验证配置准备 MiniMax Flash DSpark。机器 177.11.26.1/177.11.27.1，root，密码 DCauto12#$。现有部署根目录 /home/x00939195/minimax-pd-release-20261023，容器内 /work；P 容器 x00939195-m31-pd-prefill-release，D 容器 x00939195-m31-pd-decode-release。先审计已有环境；不覆盖运行目录或停止现存服务，不操作 A3。
+参考版本 vllm-ascend releases/v0.30.0rc2 的 8627ba952（已含 PR #9），配套 vLLM ced6857，D 另需 PR #11 的 A5 融合修复 03114943f，目前未合入。原生算子已经针对 Ascend950DT9582/CANN9.2 构建；换环境需核实不能只拷 Python。
+按 PR #9 适配器路径 examples/spec_decode/minimax_m3_flash_dspark：先 python -m pip install --no-build-isolation --no-deps -e 插件目录，再用 patch_core_guard.py 实际vLLM/speculative.py --apply 应用已有 guard，并手动执行一次 prepare_draft_view.py --source 原始draft目录 --destination 新的独立prepared目录 --hidden-norm gemma --final-norm gemma。已有非空 view 不覆盖，原始权重保持可访问。架构别名中的 A3 不是硬件限制。
+启动必须指向 prepared 目录，method=dspark、7 个 speculative token；复用当前 P/D 脚本及拓扑，健康检查后再短请求验证真实 KV 传输和采信计数。若需要新增源码修改，先报告具体错误和最小修复，不直接改动 A3 路径。</div>
+<p class="muted">记录基于当前部署与本地证据。未经过新一轮全量 GPQA 前，不给出 PR #11 的最终精度结论。</p></main></body></html>
