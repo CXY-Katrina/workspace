@@ -1,0 +1,9 @@
+{
+  "accuracy": 83.33333333333333,
+  "type": "GEN",
+  "extract_rate": 100.0,
+  "provenance": {
+    "original_server_path": "/home/j00893003/minimax-dspark/cxy-pd-pr19723-nonspec-gpqa2-20261025/runs/gpqa-0001/aisbench/20261025_043537/results/minimax-pd-dspark/GPQA_diamond.json",
+    "original_file_sha256": "a221ebe6778d2ea4f8977093ff44e1428600c71bac40ec86bf69892499467279"
+  }
+}

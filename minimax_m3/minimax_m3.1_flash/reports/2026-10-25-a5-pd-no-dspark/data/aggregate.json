@@ -1,11 +1,11 @@
 {
   "speculative_decoding": false,
-  "completed_rounds": 0,
+  "completed_rounds": 1,
   "planned_rounds": 2,
-  "correct_for_completed_rounds": 0,
-  "completed_round_sample_count": 0,
+  "correct_for_completed_rounds": 165,
+  "completed_round_sample_count": 198,
   "planned_total": 396,
-  "accuracy_completed_rounds": null,
+  "accuracy_completed_rounds": 83.33333333333333,
   "draft_acceptance_percent": null,
-  "snapshot_utc": "2026-10-25T04:48:50.249750+00:00"
+  "snapshot_utc": "2026-10-25T05:52:18.388145+00:00"
 }

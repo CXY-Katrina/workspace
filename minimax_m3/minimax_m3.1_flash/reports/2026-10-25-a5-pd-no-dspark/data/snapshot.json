@@ -1,28 +1,92 @@
 {
-  "snapshot_utc": "2026-10-25T04:48:50.249750+00:00",
+  "snapshot_utc": "2026-10-25T05:52:18.388145+00:00",
   "status": {
-    "time": 1792903728.0336983,
+    "time": 1792907534.518226,
     "phase": "infer",
     "dataset": "gpqa",
-    "round": 1,
-    "directory": "/home/j00893003/minimax-dspark/cxy-pd-pr19723-nonspec-gpqa2-20261025/runs/gpqa-0001",
-    "completed": 64,
+    "round": 2,
+    "directory": "/home/j00893003/minimax-dspark/cxy-pd-pr19723-nonspec-gpqa2-20261025/runs/gpqa-0002",
+    "completed": 0,
     "total": 198,
     "pending_sample_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
       8,
+      9,
       10,
+      11,
       12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
       27,
+      28,
+      29,
+      30,
+      31,
       32,
+      33,
+      34,
       35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
       48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
       61,
+      62,
       63,
+      64,
+      65,
+      66,
+      67,
+      68,
       69,
+      70,
       71,
+      72,
+      73,
       74,
       75,
       76,
+      77,
       78,
       79,
       80,
@@ -144,465 +208,150 @@
       196,
       197
     ],
-    "elapsed_seconds": 790.5394790172577
+    "elapsed_seconds": 10.061730861663818
   },
-  "official_rounds": [],
+  "official_rounds": [
+    {
+      "speculative_decoding": false,
+      "dataset": "gpqa",
+      "round": 1,
+      "planned_requests": 198,
+      "returned_requests": 198,
+      "successful_returns": 198,
+      "unexpected_failures": 0,
+      "cancelled_by_policy": 0,
+      "correct": 165,
+      "accuracy_percent": 83.33333333333333,
+      "wrong_question_ids": [
+        4,
+        11,
+        18,
+        28,
+        31,
+        33,
+        36,
+        49,
+        72,
+        77,
+        80,
+        82,
+        93,
+        99,
+        103,
+        107,
+        114,
+        119,
+        122,
+        128,
+        132,
+        143,
+        146,
+        148,
+        152,
+        158,
+        161,
+        163,
+        164,
+        168,
+        175,
+        183,
+        187
+      ],
+      "elapsed_seconds": 4568.462104797363,
+      "sampling": {
+        "dataset": "gpqa",
+        "round": 1,
+        "seed": 1042,
+        "temperature": 1,
+        "top_p": 0.95,
+        "chat_template_kwargs": {
+          "reasoning_effort": "max",
+          "thinking_mode": "enabled"
+        },
+        "concurrency": 16,
+        "max_out_len": 81920,
+        "service_context": 133000,
+        "proxy": "http://177.11.26.1:8009",
+        "model": "minimax-m3.1-flash",
+        "speculative_decoding": false,
+        "cancel_policy": "No automatic cancellation for GPQA; both full rounds contain 198 questions."
+      },
+      "dspark": {
+        "prefill": {
+          "rounds": 0,
+          "proposed_draft_tokens": 0,
+          "accepted_draft_tokens": 0,
+          "acceptance_percent": null,
+          "accepted_draft_per_round": null,
+          "mean_including_target_token": null,
+          "accepted_per_position": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "scope": "Speculative decoding disabled. Acceptance and per-draft-step averages are not applicable."
+        },
+        "decode": {
+          "rounds": 0,
+          "proposed_draft_tokens": 0,
+          "accepted_draft_tokens": 0,
+          "acceptance_percent": null,
+          "accepted_draft_per_round": null,
+          "mean_including_target_token": null,
+          "accepted_per_position": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "scope": "Speculative decoding disabled. Acceptance and per-draft-step averages are not applicable."
+        }
+      },
+      "output_quality": {
+        "responses_checked": 198,
+        "characters_checked": 7425656,
+        "nul_count": 0,
+        "replacement_characters": 0,
+        "unexpected_control_count": 0,
+        "reasoning_unclosed_sample_indices": [
+          8,
+          48,
+          79,
+          81,
+          118,
+          127,
+          145,
+          147
+        ],
+        "mixed_language_sample_indices": [
+          21,
+          55,
+          10,
+          80,
+          100,
+          164,
+          197,
+          145
+        ]
+      },
+      "raw_score": "/home/j00893003/minimax-dspark/cxy-pd-pr19723-nonspec-gpqa2-20261025/runs/gpqa-0001/aisbench/20261025_043537/results/minimax-pd-dspark/GPQA_diamond.json",
+      "directory": "/home/j00893003/minimax-dspark/cxy-pd-pr19723-nonspec-gpqa2-20261025/runs/gpqa-0001"
+    }
+  ],
   "partial": {
-    "round": 1,
-    "received": 64,
+    "round": 2,
+    "received": 0,
     "planned": 198,
-    "correct": 61,
+    "correct": 0,
     "formal_complete_round": false,
     "extraction_rule": "AISBench extract_non_reasoning_content followed by GPQA_Simple_Eval_postprocess; compared to returned gold label.",
-    "per_question": [
-      {
-        "question_id": 1,
-        "prediction": "D",
-        "reference": "D",
-        "correct": true,
-        "request_success": true
-      },
-      {
-        "question_id": 2,
-        "prediction": "C",
-        "reference": "C",
-        "correct": true,
-        "request_success": true
-      },
-      {
-        "question_id": 3,
-        "prediction": "B",
-        "reference": "B",
-        "correct": true,
-        "request_success": true
-      },
-      {
-        "question_id": 4,
-        "prediction": "C",
-        "reference": "A",
-        "correct": false,
-        "request_success": true
-      },
-      {
-        "question_id": 5,
-        "prediction": "D",
-        "reference": "D",
-        "correct": true,
-        "request_success": true
-      },
-      {
-        "question_id": 6,
-        "prediction": "C",
-        "reference": "C",
-        "correct": true,
-        "request_success": true
-      },
-      {
-        "question_id": 7,
-        "prediction": "B",
-        "reference": "B",
-        "correct": true,
-        "request_success": true
-      },
-      {
-        "question_id": 8,
-        "prediction": "A",
-        "reference": "A",
-        "correct": true,
-        "request_success": true
-      },
-      {
-        "question_id": 10,
-        "prediction": "C",
-        "reference": "C",
-        "correct": true,
-        "request_success": true
-      },
-      {
-        "question_id": 12,
-        "prediction": "A",
-        "reference": "A",
-        "correct": true,
-        "request_success": true
-      },
-      {
-        "question_id": 14,
-        "prediction": "C",
-        "reference": "C",
-        "correct": true,
-        "request_success": true
-      },
-      {
-        "question_id": 15,
-        "prediction": "B",
-        "reference": "B",
-        "correct": true,
-        "request_success": true
-      },
-      {
-        "question_id": 16,
-        "prediction": "A",
-        "reference": "A",
-        "correct": true,
-        "request_success": true
-      },
-      {
-        "question_id": 17,
-        "prediction": "D",
-        "reference": "D",
-        "correct": true,
-        "request_success": true
-      },
-      {
-        "question_id": 18,
-        "prediction": "D",
-        "reference": "C",
-        "correct": false,
-        "request_success": true
-      },
-      {
-        "question_id": 19,
-        "prediction": "B",
-        "reference": "B",
-        "correct": true,
-        "request_success": true
-      },
-      {
-        "question_id": 20,
-        "prediction": "A",
-        "reference": "A",
-        "correct": true,
-        "request_success": true
-      },
-      {
-        "question_id": 21,
-        "prediction": "D",
-        "reference": "D",
-        "correct": true,
-        "request_success": true
-      },
-      {
-        "question_id": 22,
-        "prediction": "C",
-        "reference": "C",
-        "correct": true,
-        "request_success": true
-      },
-      {
-        "question_id": 23,
-        "prediction": "B",
-        "reference": "B",
-        "correct": true,
-        "request_success": true
-      },
-      {
-        "question_id": 24,
-        "prediction": "A",
-        "reference": "A",
-        "correct": true,
-        "request_success": true
-      },
-      {
-        "question_id": 25,
-        "prediction": "D",
-        "reference": "D",
-        "correct": true,
-        "request_success": true
-      },
-      {
-        "question_id": 26,
-        "prediction": "C",
-        "reference": "C",
-        "correct": true,
-        "request_success": true
-      },
-      {
-        "question_id": 27,
-        "prediction": "B",
-        "reference": "B",
-        "correct": true,
-        "request_success": true
-      },
-      {
-        "question_id": 29,
-        "prediction": "D",
-        "reference": "D",
-        "correct": true,
-        "request_success": true
-      },
-      {
-        "question_id": 30,
-        "prediction": "C",
-        "reference": "C",
-        "correct": true,
-        "request_success": true
-      },
-      {
-        "question_id": 31,
-        "prediction": "C",
-        "reference": "B",
-        "correct": false,
-        "request_success": true
-      },
-      {
-        "question_id": 32,
-        "prediction": "A",
-        "reference": "A",
-        "correct": true,
-        "request_success": true
-      },
-      {
-        "question_id": 34,
-        "prediction": "C",
-        "reference": "C",
-        "correct": true,
-        "request_success": true
-      },
-      {
-        "question_id": 35,
-        "prediction": "B",
-        "reference": "B",
-        "correct": true,
-        "request_success": true
-      },
-      {
-        "question_id": 37,
-        "prediction": "D",
-        "reference": "D",
-        "correct": true,
-        "request_success": true
-      },
-      {
-        "question_id": 38,
-        "prediction": "C",
-        "reference": "C",
-        "correct": true,
-        "request_success": true
-      },
-      {
-        "question_id": 39,
-        "prediction": "B",
-        "reference": "B",
-        "correct": true,
-        "request_success": true
-      },
-      {
-        "question_id": 40,
-        "prediction": "A",
-        "reference": "A",
-        "correct": true,
-        "request_success": true
-      },
-      {
-        "question_id": 41,
-        "prediction": "D",
-        "reference": "D",
-        "correct": true,
-        "request_success": true
-      },
-      {
-        "question_id": 42,
-        "prediction": "C",
-        "reference": "C",
-        "correct": true,
-        "request_success": true
-      },
-      {
-        "question_id": 43,
-        "prediction": "B",
-        "reference": "B",
-        "correct": true,
-        "request_success": true
-      },
-      {
-        "question_id": 44,
-        "prediction": "A",
-        "reference": "A",
-        "correct": true,
-        "request_success": true
-      },
-      {
-        "question_id": 45,
-        "prediction": "D",
-        "reference": "D",
-        "correct": true,
-        "request_success": true
-      },
-      {
-        "question_id": 46,
-        "prediction": "C",
-        "reference": "C",
-        "correct": true,
-        "request_success": true
-      },
-      {
-        "question_id": 47,
-        "prediction": "B",
-        "reference": "B",
-        "correct": true,
-        "request_success": true
-      },
-      {
-        "question_id": 48,
-        "prediction": "A",
-        "reference": "A",
-        "correct": true,
-        "request_success": true
-      },
-      {
-        "question_id": 50,
-        "prediction": "C",
-        "reference": "C",
-        "correct": true,
-        "request_success": true
-      },
-      {
-        "question_id": 51,
-        "prediction": "B",
-        "reference": "B",
-        "correct": true,
-        "request_success": true
-      },
-      {
-        "question_id": 52,
-        "prediction": "A",
-        "reference": "A",
-        "correct": true,
-        "request_success": true
-      },
-      {
-        "question_id": 53,
-        "prediction": "D",
-        "reference": "D",
-        "correct": true,
-        "request_success": true
-      },
-      {
-        "question_id": 54,
-        "prediction": "C",
-        "reference": "C",
-        "correct": true,
-        "request_success": true
-      },
-      {
-        "question_id": 55,
-        "prediction": "B",
-        "reference": "B",
-        "correct": true,
-        "request_success": true
-      },
-      {
-        "question_id": 56,
-        "prediction": "A",
-        "reference": "A",
-        "correct": true,
-        "request_success": true
-      },
-      {
-        "question_id": 57,
-        "prediction": "D",
-        "reference": "D",
-        "correct": true,
-        "request_success": true
-      },
-      {
-        "question_id": 58,
-        "prediction": "C",
-        "reference": "C",
-        "correct": true,
-        "request_success": true
-      },
-      {
-        "question_id": 59,
-        "prediction": "B",
-        "reference": "B",
-        "correct": true,
-        "request_success": true
-      },
-      {
-        "question_id": 60,
-        "prediction": "A",
-        "reference": "A",
-        "correct": true,
-        "request_success": true
-      },
-      {
-        "question_id": 61,
-        "prediction": "D",
-        "reference": "D",
-        "correct": true,
-        "request_success": true
-      },
-      {
-        "question_id": 63,
-        "prediction": "B",
-        "reference": "B",
-        "correct": true,
-        "request_success": true
-      },
-      {
-        "question_id": 65,
-        "prediction": "D",
-        "reference": "D",
-        "correct": true,
-        "request_success": true
-      },
-      {
-        "question_id": 66,
-        "prediction": "C",
-        "reference": "C",
-        "correct": true,
-        "request_success": true
-      },
-      {
-        "question_id": 67,
-        "prediction": "B",
-        "reference": "B",
-        "correct": true,
-        "request_success": true
-      },
-      {
-        "question_id": 68,
-        "prediction": "A",
-        "reference": "A",
-        "correct": true,
-        "request_success": true
-      },
-      {
-        "question_id": 69,
-        "prediction": "D",
-        "reference": "D",
-        "correct": true,
-        "request_success": true
-      },
-      {
-        "question_id": 71,
-        "prediction": "B",
-        "reference": "B",
-        "correct": true,
-        "request_success": true
-      },
-      {
-        "question_id": 73,
-        "prediction": "D",
-        "reference": "D",
-        "correct": true,
-        "request_success": true
-      },
-      {
-        "question_id": 74,
-        "prediction": "C",
-        "reference": "C",
-        "correct": true,
-        "request_success": true
-      },
-      {
-        "question_id": 78,
-        "prediction": "C",
-        "reference": "C",
-        "correct": true,
-        "request_success": true
-      }
-    ]
+    "per_question": []
   }
 }
