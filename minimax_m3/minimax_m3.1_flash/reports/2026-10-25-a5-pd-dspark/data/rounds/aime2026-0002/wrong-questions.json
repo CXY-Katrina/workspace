@@ -1,0 +1,36 @@
+[
+  {
+    "sample_index": 13,
+    "question_id": 14,
+    "record_id": null,
+    "correct": false,
+    "prediction": "determined",
+    "reference": 681,
+    "received": true,
+    "request_success": true,
+    "cancelled_by_user_policy": false,
+    "dataset": "aime2026",
+    "round": 2,
+    "raw_request_uuid": "523315c176864991bf6fd6a462a08d29",
+    "answer_file": "wrong_answers/aime2026-0002/ID014.md",
+    "raw_response_sha256": "4b90d4d68582b4e2a586fbc0299bf471799dc53271e42a0a4dcd34ae98c22e39",
+    "raw_response_characters": 195753
+  },
+  {
+    "sample_index": 14,
+    "question_id": 15,
+    "record_id": null,
+    "correct": false,
+    "prediction": "",
+    "reference": 83,
+    "received": false,
+    "request_success": false,
+    "cancelled_by_user_policy": true,
+    "dataset": "aime2026",
+    "round": 2,
+    "raw_request_uuid": null,
+    "answer_file": "wrong_answers/aime2026-0002/ID015.md",
+    "raw_response_sha256": null,
+    "raw_response_characters": 0
+  }
+]

@@ -1,0 +1,10 @@
+{
+  "scope": "two real startup validation requests before AIME baseline",
+  "decode_prompt_tokens_by_source_external_kv_transfer": {
+    "0": 696.0,
+    "1": 218.0
+  },
+  "sum": 914.0,
+  "request_cancel_verified": true,
+  "all_backends_idle_before_accuracy_run": true
+}

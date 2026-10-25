@@ -1,0 +1,133 @@
+{
+  "snapshot_utc": "2026-10-25T04:26:56.274797+00:00",
+  "host": "177.11.27.1",
+  "container": "cxy-minimax-pd-decode-20261025",
+  "container_id": "1d97280dcb4008e0e442d1037b2d200b33af5563cb13e1962c7e92febd780a2a",
+  "image": "cxy-minimax-pd:decode-existing-20261025",
+  "image_id": "sha256:012590893629d4e89056700bfd80844d51cf10ec88161fadad78c7a38f099929",
+  "created": "2026-10-24T21:08:31.266676979Z",
+  "state": {
+    "Status": "running",
+    "Running": true,
+    "StartedAt": "2026-10-24T21:23:09.775762649Z"
+  },
+  "host_config": {
+    "NetworkMode": "host",
+    "IpcMode": "host",
+    "Privileged": true,
+    "PidMode": ""
+  },
+  "mounts": [
+    {
+      "Type": "bind",
+      "Source": "/usr/local/sbin/npu-smi",
+      "Destination": "/usr/local/sbin/npu-smi",
+      "Mode": "ro",
+      "RW": false,
+      "Propagation": "rprivate"
+    },
+    {
+      "Type": "bind",
+      "Source": "/home/x00939195/cxy-pd-pr19723-20261025",
+      "Destination": "/workspace",
+      "Mode": "rw",
+      "RW": true,
+      "Propagation": "rprivate"
+    },
+    {
+      "Type": "bind",
+      "Source": "/mnt/weight/minimax_m3dot1_flash_w8a8_mxfp8_quarot_l32",
+      "Destination": "/mnt/weight/minimax_m3dot1_flash_w8a8_mxfp8_quarot_l32",
+      "Mode": "ro",
+      "RW": false,
+      "Propagation": "rprivate"
+    },
+    {
+      "Type": "bind",
+      "Source": "/usr/local/Ascend/driver",
+      "Destination": "/usr/local/Ascend/driver",
+      "Mode": "ro",
+      "RW": false,
+      "Propagation": "rprivate"
+    },
+    {
+      "Type": "bind",
+      "Source": "/usr/local/dcmi",
+      "Destination": "/usr/local/dcmi",
+      "Mode": "ro",
+      "RW": false,
+      "Propagation": "rprivate"
+    },
+    {
+      "Type": "bind",
+      "Source": "/etc/hixlep",
+      "Destination": "/etc/hixlep",
+      "Mode": "ro",
+      "RW": false,
+      "Propagation": "rprivate"
+    }
+  ],
+  "model_path": "/mnt/weight/minimax_m3dot1_flash_w8a8_mxfp8_quarot_l32",
+  "source_path": "/vllm-workspace/vllm-ascend",
+  "source": {
+    "code": 0,
+    "stdout": "accf5d0fc6005fe89dd909e656848b696bbc18f5\n1ee636adf349e6cd6cba147713cc2225c521e6b8\nMerge pull request #19 from ycl-ai-infra/fix/dspark-native-bf16-auto-guard\n",
+    "stderr": ""
+  },
+  "source_status": {
+    "code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "vllm_source": {
+    "code": 0,
+    "stdout": "ced6857afa0ea7b2e3f0846a62e1394e90f15607\n22fe534b15542997d37f97a9079b4a1ac7961a18\n[CI][Build] Harden triton-cpu sleef submodule fetch in CPU image build (#57871)\n",
+    "stderr": ""
+  },
+  "vllm_status": {
+    "code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "mount_source": {
+    "code": 0,
+    "stdout": "{\n   \"filesystems\": [\n      {\n         \"target\": \"/mnt/weight/minimax_m3dot1_flash_w8a8_mxfp8_quarot_l32\",\n         \"source\": \"197.13.50.1:/data/l00845740/minimax_m3dot1_flash_w8a8_mxfp8_quarot_l32\",\n         \"fstype\": \"nfs4\",\n         \"options\": \"ro,relatime,vers=4.1,rsize=1048576,wsize=1048576,namlen=255,hard,proto=tcp,nconnect=8,timeo=600,retrans=2,sec=sys,clientaddr=197.13.51.1,local_lock=none,addr=197.13.50.1\"\n      }\n   ]\n}\n",
+    "stderr": ""
+  },
+  "package_versions": {
+    "code": 0,
+    "stdout": "{\"vllm\": \"0.30.0+empty\", \"vllm-ascend\": \"0.30.0rc2\", \"torch\": \"2.10.0+cpu\", \"torch-npu\": \"2.10.0.post7\", \"transformers\": \"5.14.1\"}\n",
+    "stderr": ""
+  },
+  "npu_info": {
+    "code": 0,
+    "stdout": "+------------------------------------------------------------------------------------------------------------------+\n| npu-smi 26.2.0.b020                              Version: 26.2.0.b020                                            |\n+--------+------------------+---------------+----------------------------------------------------------------------+\n| NPU ID | Name             | Health        | Power(W)              Temp(C)                  Hugepages-Usage(page) |\n|        |                  | Bus-Id        | NPU Util(%)           Memory-Usage(MB)         HBM-Usage(MB)         |\n+========+==================+===============+======================================================================+\n| 0      | Ascend950DT      | OK            | 591.1                 52                       0     / 0             |\n|        |                  | NA            | 74                    0     / 0                92084 / 98304         |\n+===========================+===============+======================================================================+\n| 1      | Ascend950DT      | OK            | 587.8                 54                       0     / 0             |\n|        |                  | NA            | 81                    0     / 0                91263 / 98304         |\n+===========================+===============+======================================================================+\n| 2      | Ascend950DT      | OK            | 564.7                 55                       0     / 0             |\n|        |                  | NA            | 86                    0     / 0                91256 / 98304         |\n+===========================+===============+======================================================================+\n| 3      | Ascend950DT      | OK            | 570.4                 54                       0     / 0             |\n|        |                  | NA            | 74                    0     / 0                91256 / 98304         |\n+===========================+===============+======================================================================+\n| 4      | Ascend950DT      | OK            | 604.5                 51                       0     / 0             |\n|        |                  | NA            | 75                    0     / 0                91256 / 98304         |\n+===========================+===============+======================================================================+\n| 5      | Ascend950DT      | OK            | 602.0                 51                       0     / 0             |\n|        |                  | NA            | 83                    0     / 0                91254 / 98304         |\n+===========================+===============+======================================================================+\n| 6      | Ascend950DT      | OK            | 592.1                 51                       0     / 0             |\n|        |                  | NA            | 79                    0     / 0                91256 / 98304         |\n+===========================+===============+======================================================================+\n| 7      | Ascend950DT      | OK            | 593.4                 54                       0     / 0             |\n|        |                  | NA            | 93                    0     / 0                91258 / 98304         |\n+===========================+===============+======================================================================+\n+---------------------------+---------------+----------------------------------------------------------------------+\n| NPU ID                    | Process id    | Process name       | Process memory(MB)    | Process id in container |\n+===========================+===============+======================================================================+\n| 0                         | 2273978       | vllm               | 302                   | NA                      |\n| 0                         | 2284147       | VLLMWorker_DP      | 86360                 | NA                      |\n| 0                         | 2280461       | VLLMAPIServer      | 302                   | NA                      |\n| 0                         | 2280462       | VLLMAPIServer      | 302                   | NA                      |\n+===========================+===============+======================================================================+\n| 1                         | 2285226       | VLLMWorker_DP      | 86360                 | NA                      |\n+===========================+===============+======================================================================+\n| 2                         | 2286747       | VLLMWorker_DP      | 86360                 | NA                      |\n+===========================+===============+======================================================================+\n| 3                         | 2288374       | VLLMWorker_DP      | 86360                 | NA                      |\n+===========================+===============+======================================================================+\n| 4                         | 2284146       | VLLMWorker_DP      | 86360                 | NA                      |\n+===========================+===============+======================================================================+\n| 5                         | 2285227       | VLLMWorker_DP      | 86358                 | NA                      |\n+===========================+===============+======================================================================+\n| 6                         | 2286748       | VLLMWorker_DP      | 86360                 | NA                      |\n+===========================+===============+======================================================================+\n| 7                         | 2288484       | VLLMWorker_DP      | 86360                 | NA                      |\n+===========================+===============+======================================================================+\n",
+    "stderr": ""
+  },
+  "model_files": {
+    "config.json": {
+      "bytes": 5223,
+      "mtime_ns": 1792807948573326630,
+      "sha256": "8885810548f09f7970c282af732ab8456479bd41961ea65274e25d8309d234ee"
+    },
+    "quant_model_description.json": {
+      "bytes": 4152831,
+      "mtime_ns": 1792851812769326630,
+      "sha256": "9ef9bf62c5c861b0f97040925faee3c4136dcbac02859f3d37a69ee3cadd8cb6"
+    },
+    "optional/quarot.safetensors": {
+      "bytes": 150995040,
+      "mtime_ns": 1792809116141326630
+    },
+    "dspark/model-dspark-00001.safetensors": {
+      "bytes": 2301867426,
+      "mtime_ns": 1792679812289326630
+    }
+  },
+  "rotation_config": {},
+  "health": {
+    "31060": {
+      "status": 200
+    }
+  }
+}

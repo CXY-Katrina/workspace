@@ -1,0 +1,10 @@
+{
+  "accuracy": 93.33333333333333,
+  "type": "GEN",
+  "extract_rate": 100.0,
+  "provenance": {
+    "original_server_path": "/home/j00893003/minimax-dspark/cxy-pd-pr19723-20261025/runs/aime2026-0002/aisbench/20261024_214513/results/minimax-pd-dspark/aime2026.json",
+    "original_file_sha256": "687cd7ca61f01e244df988033b5d6411b8e2c72abeb44a5ffcf04cf1630937b3",
+    "detail_policy": "完整逐题评分见 per-question.json；仅在 wrong_answers 中发布错题的原始回答。"
+  }
+}

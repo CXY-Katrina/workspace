@@ -1,0 +1,24 @@
+{
+  "ascend_branch": "releases/v0.30.0rc2",
+  "ascend_commit": "accf5d0fc6005fe89dd909e656848b696bbc18f5",
+  "pr19723_commit": "bd26c28e34cb925c2b27565b0f4e2ca86d12d685",
+  "proxy_commit": "0058d5512cfb7d26668284fc392fb5a5ca1520e8",
+  "gpqa_per_round": 198,
+  "gpqa_loop": false,
+  "client_concurrency": 16,
+  "output_limit": 81920,
+  "server_context": 133000,
+  "temperature": 1,
+  "top_p": 0.95,
+  "reasoning_effort": "max",
+  "thinking_mode": "enabled",
+  "request_seed_policy": "AIME42..45, GPQA1042+round-1; every round is logged",
+  "main_kv_cache_dtype": "fp8",
+  "speculative_decoding": false,
+  "gpqa_repeats": 2,
+  "gpqa_total": 396,
+  "request_seeds": [
+    1042,
+    1043
+  ]
+}

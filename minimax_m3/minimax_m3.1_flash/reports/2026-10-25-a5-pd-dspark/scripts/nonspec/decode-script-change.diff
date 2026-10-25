@@ -1,0 +1,16 @@
+--- dspark
++++ nonspec
+@@ -50,13 +50,6 @@
+     --safetensors-load-strategy prefetch \
+     --seed 1024 \
+     --compilation-config '{"cudagraph_mode":"FULL_DECODE_ONLY"}' \
+-    --speculative-config '{
+-        "method":"dspark",
+-        "num_speculative_tokens":7,
+-        "enforce_eager":true,
+-        "kv_cache_dtype":"bfloat16",
+-        "draft_sample_method":"probabilistic"
+-    }' \
+     --additional-config '{
+         "enable_cpu_binding": true,
+         "ascend_compilation_config": {

@@ -1,0 +1,45 @@
+{
+  "time": 1792902937.3946645,
+  "status": "passed",
+  "response_content": "2",
+  "speculative_decoding": false,
+  "acceptance": {
+    "prefill": {
+      "rounds": 0,
+      "proposed_draft_tokens": 0,
+      "accepted_draft_tokens": 0,
+      "acceptance_percent": null,
+      "accepted_draft_per_round": null,
+      "mean_including_target_token": null,
+      "accepted_per_position": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "scope": "Speculative decoding disabled. Acceptance and per-draft-step averages are not applicable."
+    },
+    "decode": {
+      "rounds": 0,
+      "proposed_draft_tokens": 0,
+      "accepted_draft_tokens": 0,
+      "acceptance_percent": null,
+      "accepted_draft_per_round": null,
+      "mean_including_target_token": null,
+      "accepted_per_position": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "scope": "Speculative decoding disabled. Acceptance and per-draft-step averages are not applicable."
+    }
+  },
+  "external_kv_transfer_prompt_tokens": 696.0
+}

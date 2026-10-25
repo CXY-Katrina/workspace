@@ -1,0 +1,141 @@
+{
+  "snapshot_utc": "2026-10-25T04:26:52.110036+00:00",
+  "host": "177.11.26.1",
+  "container": "cxy-vllm-ascend-0.30.0rc2-20261024",
+  "container_id": "dd2011d761a0933352818c03211e54803f182b56535cbc730461a2c7e555a1f8",
+  "image": "cxy-vllm-ascend:handoff-current-20261024-235017",
+  "image_id": "sha256:341050b710c3b981493827b8c48ce677a48e96f3c95b6c87132abc048555e8a8",
+  "created": "2026-10-24T15:50:40.9299126Z",
+  "state": {
+    "Status": "running",
+    "Running": true,
+    "StartedAt": "2026-10-24T21:23:01.20943294Z"
+  },
+  "host_config": {
+    "NetworkMode": "host",
+    "IpcMode": "host",
+    "Privileged": true,
+    "PidMode": ""
+  },
+  "mounts": [
+    {
+      "Type": "bind",
+      "Source": "/etc/hixlep",
+      "Destination": "/etc/hixlep",
+      "Mode": "ro",
+      "RW": false,
+      "Propagation": "rprivate"
+    },
+    {
+      "Type": "bind",
+      "Source": "/usr/local/Ascend/driver",
+      "Destination": "/usr/local/Ascend/driver",
+      "Mode": "ro",
+      "RW": false,
+      "Propagation": "rprivate"
+    },
+    {
+      "Type": "bind",
+      "Source": "/data/cxy/vllm-ascend-0.30.0rc2-20261024",
+      "Destination": "/workspace",
+      "Mode": "",
+      "RW": true,
+      "Propagation": "rprivate"
+    },
+    {
+      "Type": "bind",
+      "Source": "/data/l00845740/minimax_m3dot1_flash_w8a8_mxfp8_quarot_l32",
+      "Destination": "/data/l00845740/minimax_m3dot1_flash_w8a8_mxfp8_quarot_l32",
+      "Mode": "ro",
+      "RW": false,
+      "Propagation": "rprivate"
+    },
+    {
+      "Type": "bind",
+      "Source": "/home/t00932610/minimax_m3dot1_mxfp8",
+      "Destination": "/home/t00932610/minimax_m3dot1_mxfp8",
+      "Mode": "ro",
+      "RW": false,
+      "Propagation": "rprivate"
+    },
+    {
+      "Type": "bind",
+      "Source": "/home/x00939195/minimax-pd-release-20261023/pr9-8627ba952/draft-native",
+      "Destination": "/home/x00939195/minimax-pd-release-20261023/pr9-8627ba952/draft-native",
+      "Mode": "ro",
+      "RW": false,
+      "Propagation": "rprivate"
+    },
+    {
+      "Type": "bind",
+      "Source": "/usr/local/dcmi",
+      "Destination": "/usr/local/dcmi",
+      "Mode": "ro",
+      "RW": false,
+      "Propagation": "rprivate"
+    }
+  ],
+  "model_path": "/data/l00845740/minimax_m3dot1_flash_w8a8_mxfp8_quarot_l32",
+  "source_path": "/workspace/vllm-ascend",
+  "source": {
+    "code": 0,
+    "stdout": "accf5d0fc6005fe89dd909e656848b696bbc18f5\n1ee636adf349e6cd6cba147713cc2225c521e6b8\nMerge pull request #19 from ycl-ai-infra/fix/dspark-native-bf16-auto-guard\n",
+    "stderr": ""
+  },
+  "source_status": {
+    "code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "vllm_source": {
+    "code": 0,
+    "stdout": "ced6857afa0ea7b2e3f0846a62e1394e90f15607\n22fe534b15542997d37f97a9079b4a1ac7961a18\n[CI][Build] Harden triton-cpu sleef submodule fetch in CPU image build (#57871)\n",
+    "stderr": ""
+  },
+  "vllm_status": {
+    "code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "mount_source": {
+    "code": 0,
+    "stdout": "{\n   \"filesystems\": [\n      {\n         \"target\": \"/data\",\n         \"source\": \"/dev/nvme1n1p1\",\n         \"fstype\": \"ext4\",\n         \"options\": \"rw,relatime,seclabel,stripe=32\"\n      }\n   ]\n}\n",
+    "stderr": ""
+  },
+  "package_versions": {
+    "code": 0,
+    "stdout": "{\"vllm\": \"0.30.0+empty\", \"vllm-ascend\": \"0.30.0rc2+pr19.dsparkfix\", \"torch\": \"2.10.0+cpu\", \"torch-npu\": \"2.10.0.post7\", \"transformers\": \"5.14.1\"}\n",
+    "stderr": ""
+  },
+  "npu_info": {
+    "code": 0,
+    "stdout": "+------------------------------------------------------------------------------------------------------------------+\n| npu-smi 26.2.0.b020                              Version: 26.2.0.b020                                            |\n+--------+------------------+---------------+----------------------------------------------------------------------+\n| NPU ID | Name             | Health        | Power(W)              Temp(C)                  Hugepages-Usage(page) |\n|        |                  | Bus-Id        | NPU Util(%)           Memory-Usage(MB)         HBM-Usage(MB)         |\n+========+==================+===============+======================================================================+\n| 0      | Ascend950DT      | OK            | 395.8                 51                       0     / 0             |\n|        |                  | NA            | 0                     0     / 0                78987 / 98304         |\n+===========================+===============+======================================================================+\n| 1      | Ascend950DT      | OK            | 390.3                 50                       0     / 0             |\n|        |                  | NA            | 0                     0     / 0                78580 / 98304         |\n+===========================+===============+======================================================================+\n| 2      | Ascend950DT      | OK            | 397.3                 49                       0     / 0             |\n|        |                  | NA            | 0                     0     / 0                78606 / 98304         |\n+===========================+===============+======================================================================+\n| 3      | Ascend950DT      | OK            | 389.0                 50                       0     / 0             |\n|        |                  | NA            | 0                     0     / 0                78637 / 98304         |\n+===========================+===============+======================================================================+\n| 4      | Ascend950DT      | OK            | 401.4                 51                       0     / 0             |\n|        |                  | NA            | 0                     0     / 0                93256 / 98304         |\n+===========================+===============+======================================================================+\n| 5      | Ascend950DT      | OK            | 393.3                 50                       0     / 0             |\n|        |                  | NA            | 0                     0     / 0                93241 / 98304         |\n+===========================+===============+======================================================================+\n| 6      | Ascend950DT      | OK            | 385.8                 49                       0     / 0             |\n|        |                  | NA            | 0                     0     / 0                93239 / 98304         |\n+===========================+===============+======================================================================+\n| 7      | Ascend950DT      | OK            | 394.6                 48                       0     / 0             |\n|        |                  | NA            | 0                     0     / 0                93267 / 98304         |\n+===========================+===============+======================================================================+\n+---------------------------+---------------+----------------------------------------------------------------------+\n| NPU ID                    | Process id    | Process name       | Process memory(MB)    | Process id in container |\n+===========================+===============+======================================================================+\n| 0                         | 1697995       | vllm               | 302                   | NA                      |\n| 0                         | 1702842       | VLLMWorker_PP      | 73803                 | NA                      |\n+===========================+===============+======================================================================+\n| 1                         | 1703732       | VLLMWorker_PP      | 73683                 | NA                      |\n+===========================+===============+======================================================================+\n| 2                         | 1705186       | VLLMWorker_PP      | 73703                 | NA                      |\n+===========================+===============+======================================================================+\n| 3                         | 1706633       | VLLMWorker_PP      | 73743                 | NA                      |\n+===========================+===============+======================================================================+\n| 4                         | 1707749       | VLLMWorker_PP      | 88363                 | NA                      |\n+===========================+===============+======================================================================+\n| 5                         | 1709032       | VLLMWorker_PP      | 88343                 | NA                      |\n+===========================+===============+======================================================================+\n| 6                         | 1710149       | VLLMWorker_PP      | 88343                 | NA                      |\n+===========================+===============+======================================================================+\n| 7                         | 1712405       | VLLMWorker_PP      | 88363                 | NA                      |\n+===========================+===============+======================================================================+\n",
+    "stderr": ""
+  },
+  "model_files": {
+    "config.json": {
+      "bytes": 5223,
+      "mtime_ns": 1792807948573326630,
+      "sha256": "8885810548f09f7970c282af732ab8456479bd41961ea65274e25d8309d234ee"
+    },
+    "quant_model_description.json": {
+      "bytes": 4152831,
+      "mtime_ns": 1792851812769326630,
+      "sha256": "9ef9bf62c5c861b0f97040925faee3c4136dcbac02859f3d37a69ee3cadd8cb6"
+    },
+    "optional/quarot.safetensors": {
+      "bytes": 150995040,
+      "mtime_ns": 1792809116141326630
+    },
+    "dspark/model-dspark-00001.safetensors": {
+      "bytes": 2301867426,
+      "mtime_ns": 1792679812289326630
+    }
+  },
+  "rotation_config": {},
+  "health": {
+    "31050": {
+      "status": 200
+    }
+  }
+}

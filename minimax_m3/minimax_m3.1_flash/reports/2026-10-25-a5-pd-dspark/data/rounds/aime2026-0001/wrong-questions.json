@@ -1,0 +1,53 @@
+[
+  {
+    "sample_index": 3,
+    "question_id": 4,
+    "record_id": null,
+    "correct": false,
+    "prediction": "65",
+    "reference": 70,
+    "received": true,
+    "request_success": true,
+    "cancelled_by_user_policy": false,
+    "dataset": "aime2026",
+    "round": 1,
+    "raw_request_uuid": "4b99a5b04a5c45b6be0bbd31218fe42b",
+    "answer_file": "wrong_answers/aime2026-0001/ID004.md",
+    "raw_response_sha256": "464bd6504895fbd28be16f439219e99a9c05abb24fc54d348c7b16212a5a7bdf",
+    "raw_response_characters": 5221
+  },
+  {
+    "sample_index": 13,
+    "question_id": 14,
+    "record_id": null,
+    "correct": false,
+    "prediction": "676",
+    "reference": 681,
+    "received": true,
+    "request_success": true,
+    "cancelled_by_user_policy": false,
+    "dataset": "aime2026",
+    "round": 1,
+    "raw_request_uuid": "c7279976f02c4e2dbb07e0878bd1c665",
+    "answer_file": "wrong_answers/aime2026-0001/ID014.md",
+    "raw_response_sha256": "6c072b67da7521d89bdc7e42b1b6ac32a28cf340251ca89f5f46171dbe29ec91",
+    "raw_response_characters": 74061
+  },
+  {
+    "sample_index": 14,
+    "question_id": 15,
+    "record_id": null,
+    "correct": false,
+    "prediction": "",
+    "reference": 83,
+    "received": false,
+    "request_success": false,
+    "cancelled_by_user_policy": true,
+    "dataset": "aime2026",
+    "round": 1,
+    "raw_request_uuid": null,
+    "answer_file": "wrong_answers/aime2026-0001/ID015.md",
+    "raw_response_sha256": null,
+    "raw_response_characters": 0
+  }
+]

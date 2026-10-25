@@ -1,0 +1,10 @@
+{
+  "accuracy": 85.35353535353535,
+  "type": "GEN",
+  "extract_rate": 100.0,
+  "provenance": {
+    "original_server_path": "/home/j00893003/minimax-dspark/cxy-pd-pr19723-20261025/runs/gpqa-0001/aisbench/20261024_225656/results/minimax-pd-dspark/GPQA_diamond.json",
+    "original_file_sha256": "c855a90a54d5e3a3f2fd7ad98153ad9c84a75aa09571e0f64d5eb57c9b153f43",
+    "detail_policy": "完整逐题评分见 per-question.json；仅在 wrong_answers 中发布错题的原始回答。"
+  }
+}
