@@ -1,25 +1,25 @@
 {
-  "snapshot_utc": "2026-10-25T05:52:18.388145+00:00",
+  "snapshot_utc": "2026-10-25T06:27:46.619232+00:00",
   "files": {
     "README.md": {
-      "bytes": 3298,
-      "sha256": "a5416a83932f36289cac89aad6ca76ebcfc9310adf71f8c32b28a9c3b4cea323"
+      "bytes": 3777,
+      "sha256": "377d1019c697b31689545e5a65afeddef86541a0a805557efba9543f1a2b7db9"
     },
     "wrong_answers.md": {
       "bytes": 2633,
       "sha256": "55f2e3c433863d8ee25611dec4c5c9f427b331771c815b589ada12948d891582"
     },
     "data/aggregate.json": {
-      "bytes": 326,
-      "sha256": "99533a6989c91a2cecdbfb6e0267b61c97c2664e616719ece3df64764e8e6b8a"
+      "bytes": 447,
+      "sha256": "8918777f91b61c1938307a97a9b01af8da9a9bb984027b0830cafc7d87570faf"
     },
     "data/session.json": {
       "bytes": 689,
       "sha256": "54a637a3cbc60c0bbd03a541e984bc2ba7262424da59aaa7adccf921936406d1"
     },
     "data/snapshot.json": {
-      "bytes": 6079,
-      "sha256": "70308ff270e7a570a8ca6f103eeb10c763d629890a32dd3bd04364a97132475b"
+      "bytes": 3692,
+      "sha256": "7708a08b574afbadf16481cb9271d99d7f446d4cb2d0478a2410b0d15544a202"
     },
     "data/wrong-question-index.json": {
       "bytes": 15794,
@@ -156,6 +156,22 @@
     "wrong_answers/gpqa-0001/ID187.md": {
       "bytes": 98908,
       "sha256": "9569c726e7f3a0921dcbd7debc1d3cd1cf75a2b27a394b379c5a3c413c1f95d0"
+    },
+    "data/stopped/decode-user-stop.json": {
+      "bytes": 221,
+      "sha256": "6927a5e935353605801d03ab3f150fadf7e07ca39daa8a8b69817a2be36815c8"
+    },
+    "data/stopped/partial-stop.json": {
+      "bytes": 1299,
+      "sha256": "7b013cc652f855ee995d376508d69c9cfe6dc1f79ba9a8cf370fb36af598ac9a"
+    },
+    "data/stopped/prefill-npu-final-after-stop.txt": {
+      "bytes": 5733,
+      "sha256": "8404c2a3a4cb16c5e0d3130ff101b1346cac1db7bc4f9e9a38fd7189a03d6089"
+    },
+    "data/stopped/prefill-user-stop.json": {
+      "bytes": 271,
+      "sha256": "d67779da8d10b938a694118ad443b167afa132275e09b5a6d54f443860564f19"
     },
     "data/rounds/gpqa-0001/after-decode.metrics.txt": {
       "bytes": 81300,

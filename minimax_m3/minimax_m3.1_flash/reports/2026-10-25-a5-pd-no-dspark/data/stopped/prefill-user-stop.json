@@ -1,0 +1,15 @@
+{
+  "time": 1792909700.7288516,
+  "host": "177.11.26.1",
+  "container": "cxy-vllm-ascend-0.30.0rc2-20261024",
+  "container_state": "exited",
+  "running": false,
+  "ports": {
+    "31050": {
+      "listening": false
+    },
+    "8009": {
+      "listening": false
+    }
+  }
+}

@@ -7,5 +7,9 @@
   "planned_total": 396,
   "accuracy_completed_rounds": 83.33333333333333,
   "draft_acceptance_percent": null,
-  "snapshot_utc": "2026-10-25T05:52:18.388145+00:00"
+  "snapshot_utc": "2026-10-25T06:27:46.619232+00:00",
+  "status": "user_stopped",
+  "stopped_round": 2,
+  "stopped_round_returned_requests": 130,
+  "services_running": false
 }
