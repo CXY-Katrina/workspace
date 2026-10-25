@@ -19,6 +19,10 @@
 
 第二轮在130/198个请求返回时中止，未做完整轮次正式评分，不合并到第一轮165/198的正式成绩。已返回的原始输出和停止前指标保存在服务器原测试目录。见 [中止记录](data/stopped/partial-stop.json)、[Prefill停止核验](data/stopped/prefill-user-stop.json)、[Decode停止核验](data/stopped/decode-user-stop.json) 和 [NPU释放证据](data/stopped/prefill-npu-final-after-stop.txt)。容器、代码与权重均保留，未删除权重。
 
+## 第二轮130条已返回记录
+
+第二轮已返回子集临时核对为 **114/130，87.69%**；16题未匹配，另68题未获得返回。完整原始回答、实际请求题目与选项、Record ID、临时提取答案和参考选项已逐条保存至 [第二轮130条记录](partial_round2/README.md)，并提供原始JSONL压缩包。该子集结果不作为完整轮次正式成绩，不与第一轮合并总分。
+
 ## 与 DSpark 相同请求 seed 的对照
 
 | seed | DSpark 正确 / 总数 | 无 DSpark 正确 / 总数 | 精度差值，无 DSpark减DSpark |

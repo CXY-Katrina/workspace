@@ -2,8 +2,8 @@
   "snapshot_utc": "2026-10-25T06:27:46.619232+00:00",
   "files": {
     "README.md": {
-      "bytes": 3777,
-      "sha256": "377d1019c697b31689545e5a65afeddef86541a0a805557efba9543f1a2b7db9"
+      "bytes": 4200,
+      "sha256": "04a22975164000a39d9a0a1e4c5fd8a6cec98d62c856a6253e6a0f0432ea4c80"
     },
     "wrong_answers.md": {
       "bytes": 2633,
@@ -24,6 +24,30 @@
     "data/wrong-question-index.json": {
       "bytes": 15794,
       "sha256": "53ac89d9219d8574bb8c25e257e420a4cb0fb3318d0887df0ecdc6b684d4b85b"
+    },
+    "partial_round2/per-question.json": {
+      "bytes": 55524,
+      "sha256": "4e8e838e2a4d83848977a4ce14660ec3c2bf162d2a538d6d537f4bbba5009a92"
+    },
+    "partial_round2/README.md": {
+      "bytes": 9325,
+      "sha256": "b31a1a439c50149c61dc51d1b3f69853062f61541df489ab454484c54ffdab77"
+    },
+    "partial_round2/returned-records.jsonl.gz": {
+      "bytes": 887636,
+      "sha256": "f84690a4ec3b3a549e3085813cd484884736206c6ff8fd9264eacd2834c7e079"
+    },
+    "partial_round2/settings.json": {
+      "bytes": 461,
+      "sha256": "b99ee624fe252f8b03fcceac0199038416403f8764613be328d24e17efbfcacd"
+    },
+    "partial_round2/summary.json": {
+      "bytes": 1016,
+      "sha256": "79e5014aceca7aed75d6c6128db4375c5e41f034684f40667abbd11fa9313b06"
+    },
+    "partial_round2/user-stopped-partial-round.json": {
+      "bytes": 1299,
+      "sha256": "7b013cc652f855ee995d376508d69c9cfe6dc1f79ba9a8cf370fb36af598ac9a"
     },
     "wrong_answers/gpqa-0001/ID004.md": {
       "bytes": 4304,
@@ -156,6 +180,526 @@
     "wrong_answers/gpqa-0001/ID187.md": {
       "bytes": 98908,
       "sha256": "9569c726e7f3a0921dcbd7debc1d3cd1cf75a2b27a394b379c5a3c413c1f95d0"
+    },
+    "partial_round2/answers/ID001.md": {
+      "bytes": 3057,
+      "sha256": "43f309b988c93fce2b164566b5208f23b3e9b35145d7a25b695daa23facc4de5"
+    },
+    "partial_round2/answers/ID002.md": {
+      "bytes": 59153,
+      "sha256": "df5e2d3fc05880627f866cdb25ab1d11bd40b90e5b4fd658447f1d0455b9506b"
+    },
+    "partial_round2/answers/ID003.md": {
+      "bytes": 2237,
+      "sha256": "214957e254e1a3937e56d4bc8e014917591161ca2e4743246342ad7aa37bf05b"
+    },
+    "partial_round2/answers/ID004.md": {
+      "bytes": 22742,
+      "sha256": "d05a4ad5d6d30f1c951eb39127eac9202576b5381f6dc496ee4f506b31735297"
+    },
+    "partial_round2/answers/ID005.md": {
+      "bytes": 5012,
+      "sha256": "52a6f812ba804e71c8869d69df0fa25f9356d954410515569455c3967f557513"
+    },
+    "partial_round2/answers/ID006.md": {
+      "bytes": 15277,
+      "sha256": "aec9f7d1a679c49935243a0396b6c00980bd2fc2043e1c4b763917026aa63719"
+    },
+    "partial_round2/answers/ID007.md": {
+      "bytes": 4865,
+      "sha256": "d4a7e894cfa8d10039fb71fca0ca687927908291e746079877fa4aa55900ce36"
+    },
+    "partial_round2/answers/ID008.md": {
+      "bytes": 34497,
+      "sha256": "dd5cec48df96d70ebe94dc92de4f5a48ce14760ac5dfa6af22ecb0e662a3cf62"
+    },
+    "partial_round2/answers/ID009.md": {
+      "bytes": 180591,
+      "sha256": "3b67be9dffaf3093e1a25a91a53103920c328534131543d3cee10e7694886bd8"
+    },
+    "partial_round2/answers/ID010.md": {
+      "bytes": 18378,
+      "sha256": "004efb2d59a7b317808aba3882e78e92fdf02a7efc4d6118e9d26117c2048d2c"
+    },
+    "partial_round2/answers/ID011.md": {
+      "bytes": 60299,
+      "sha256": "0d3056ae95ca7e182d94e4fb520b84899ce74e3edef7b9307e3a4223ec6d1bce"
+    },
+    "partial_round2/answers/ID012.md": {
+      "bytes": 3024,
+      "sha256": "b01cefcac7326e5b08041fa3f1a6a2088c113e7a911a5af15bcd39d54e621eeb"
+    },
+    "partial_round2/answers/ID013.md": {
+      "bytes": 85909,
+      "sha256": "120b1db9c0b75487fb72a76dca3075b15864941ab5cda6ec4504f26959a88289"
+    },
+    "partial_round2/answers/ID014.md": {
+      "bytes": 25453,
+      "sha256": "9f508adcad3ffe138c2e813c121184c2124b5e39555e7cfb9de22f233e20b779"
+    },
+    "partial_round2/answers/ID015.md": {
+      "bytes": 7962,
+      "sha256": "3d942b787c5f6a142636cd6aa0bdebcabd75c61c480f0285159c19e33180d78a"
+    },
+    "partial_round2/answers/ID016.md": {
+      "bytes": 43638,
+      "sha256": "3786ad71ad7184b9c7655bcd15445f9d0506143935abc9334d143c2eb5588d69"
+    },
+    "partial_round2/answers/ID017.md": {
+      "bytes": 7955,
+      "sha256": "aa6688348f24260907da831736e8d093556eb067bfeb1d7ff48a4834afb44630"
+    },
+    "partial_round2/answers/ID018.md": {
+      "bytes": 5307,
+      "sha256": "f2d813e9f32c8fa72e5a6f88c72b1ed79ae11abb500c5bbeb62f1907453f9176"
+    },
+    "partial_round2/answers/ID019.md": {
+      "bytes": 40049,
+      "sha256": "e66284fea3ef3cffdf85d3ecbae59e1a0ddca1a86a114826a0c250b932a79111"
+    },
+    "partial_round2/answers/ID020.md": {
+      "bytes": 5470,
+      "sha256": "7a131920762427659d5a50fc63c5ae2fd3137cef47a59ba26a19a62999852180"
+    },
+    "partial_round2/answers/ID021.md": {
+      "bytes": 4570,
+      "sha256": "ee6042df9a1e25dbe0c36fe68f11ebeddbbf29bb97f3514d54f6d3d00e61e1e9"
+    },
+    "partial_round2/answers/ID022.md": {
+      "bytes": 29134,
+      "sha256": "444f79e195ced4571ed8c7bd13b2b52e14846f314b80060f07ec5194bc23dfaf"
+    },
+    "partial_round2/answers/ID023.md": {
+      "bytes": 21496,
+      "sha256": "9a4fa68297e6ca9d2ad8aaa7e0fe49c654136fd5ff2f26434082545d9569dd68"
+    },
+    "partial_round2/answers/ID024.md": {
+      "bytes": 60312,
+      "sha256": "8db850982c9541ad707680560db01ddcda587c4bf6352a56872f6ee4e5398f80"
+    },
+    "partial_round2/answers/ID025.md": {
+      "bytes": 10144,
+      "sha256": "7dd90bbc4ea92bd09d5e6726b69946f8bd0e3a8fa0c84b3ee5e68fd5ee97bdf0"
+    },
+    "partial_round2/answers/ID026.md": {
+      "bytes": 15117,
+      "sha256": "aaf92250fb7be9db3cd1555be857f656bf6ed18b94499fa4943fa68db1e6c702"
+    },
+    "partial_round2/answers/ID027.md": {
+      "bytes": 10937,
+      "sha256": "080ecb8d2ca42060f10a2ce5282d2769dbf856883d190be9b69bce3b28b50f14"
+    },
+    "partial_round2/answers/ID028.md": {
+      "bytes": 99126,
+      "sha256": "7727fd70a6a0c2bb792765451973e6182cecc3dd671dce0b1a833faf3ae45c46"
+    },
+    "partial_round2/answers/ID029.md": {
+      "bytes": 11799,
+      "sha256": "25c4a3660af40f037a07dcf84d870b8dd9743523a5db2877a255fae8e1d1ff13"
+    },
+    "partial_round2/answers/ID030.md": {
+      "bytes": 7569,
+      "sha256": "0697e964332c5aa3594d0c9b5d60ea7dc8856544967438613703e93c7bddc4ff"
+    },
+    "partial_round2/answers/ID031.md": {
+      "bytes": 88858,
+      "sha256": "fff3065f4ca400287a230f6de395fc207ccc21d4b28c1f927f8758d6bcf5ac01"
+    },
+    "partial_round2/answers/ID032.md": {
+      "bytes": 25832,
+      "sha256": "a3884872ba96e7b5180e58812294cc080ae2a3a7a7c4786db3df2e0318d6c0b6"
+    },
+    "partial_round2/answers/ID033.md": {
+      "bytes": 54185,
+      "sha256": "ce8fb27169a9916c10d6fd84d92a784790a30b9e6b622ce94431f44ea52c5293"
+    },
+    "partial_round2/answers/ID034.md": {
+      "bytes": 26916,
+      "sha256": "dbb8c5f594b6485f0982aa9b9615e07b9d6c2a1981a5e2e68676f0efa661d99e"
+    },
+    "partial_round2/answers/ID035.md": {
+      "bytes": 10822,
+      "sha256": "3360fa2da7b026e6c0a521c6dfc2dbbdf6875564c33ba125280d30e7e1c42202"
+    },
+    "partial_round2/answers/ID036.md": {
+      "bytes": 49701,
+      "sha256": "7c3dec4fbbf7c9a90b0c685df3ddd1855ff89ce5b43fa3b482757d5a4ba99e71"
+    },
+    "partial_round2/answers/ID037.md": {
+      "bytes": 68550,
+      "sha256": "618c229a04ea645afef624dc77104e74b3e203494259192e57fe7e7827dbfa05"
+    },
+    "partial_round2/answers/ID038.md": {
+      "bytes": 21562,
+      "sha256": "208ede0ee73aa349cb0a10b58d82511d12af428d6fb6d35a445279012d5f04b9"
+    },
+    "partial_round2/answers/ID039.md": {
+      "bytes": 3020,
+      "sha256": "5315f673887cf981730710aa954c8b289bbb9ee29144255caf93a818f902e842"
+    },
+    "partial_round2/answers/ID040.md": {
+      "bytes": 5763,
+      "sha256": "890b3f178101142c3d8a3b192dd5859a2b99f6fc9e49ca0a8adbcf56656c2238"
+    },
+    "partial_round2/answers/ID041.md": {
+      "bytes": 2834,
+      "sha256": "98596aa7ba1f6a2e3d9b9d8c2013a146cd257ee57e3c875da416bcc7f88811c6"
+    },
+    "partial_round2/answers/ID042.md": {
+      "bytes": 3754,
+      "sha256": "d8660d0eaf40cd4e9b6401d2bdae3cf9a84b1408cc7ea01c698746a1820a6e8d"
+    },
+    "partial_round2/answers/ID043.md": {
+      "bytes": 18376,
+      "sha256": "d8205d824554068ee8c57cb276b3002f7ff40e1e23f310db350c4a1f697150ef"
+    },
+    "partial_round2/answers/ID044.md": {
+      "bytes": 9691,
+      "sha256": "bdcf7ab9883f6f25aadce4b6ae245d611903e45aae62e67a55762b0af3ea2a6a"
+    },
+    "partial_round2/answers/ID045.md": {
+      "bytes": 3622,
+      "sha256": "cdde0e57fb514d8e05990aef5d60ff19e3852ff0ac819c16f02fb74e4ba06bf6"
+    },
+    "partial_round2/answers/ID046.md": {
+      "bytes": 12150,
+      "sha256": "9b24fddbd89007b0011266333f85a8e8eca67dfa0716049b443038923af001b0"
+    },
+    "partial_round2/answers/ID047.md": {
+      "bytes": 3896,
+      "sha256": "592735a4c7337269255414a6388f3510c79a01d9ac201f02c355195a4d599d0b"
+    },
+    "partial_round2/answers/ID048.md": {
+      "bytes": 23183,
+      "sha256": "65cec760a4cc03d7e6d4b76fa765f766295e8d1735ed0388310f4e7bb7779a81"
+    },
+    "partial_round2/answers/ID050.md": {
+      "bytes": 60346,
+      "sha256": "bd8236e1b7fdbda9f1d0b05b2e59e208a23bfbd26d2d7b578cfc47a2d0305a95"
+    },
+    "partial_round2/answers/ID051.md": {
+      "bytes": 3549,
+      "sha256": "815774c0de9953ce32cf5cea92ca0fb225b3868be26cbd2e051817dde46d2dec"
+    },
+    "partial_round2/answers/ID052.md": {
+      "bytes": 15125,
+      "sha256": "2aaa1d49225fc3c6f355d79af2db9b369bb6f36cc88d66516319a89deecb10b1"
+    },
+    "partial_round2/answers/ID053.md": {
+      "bytes": 14336,
+      "sha256": "45164d145588a60fb7bd4db7106f3a74bd9771c535cec8cc471ffa2fc704b83d"
+    },
+    "partial_round2/answers/ID054.md": {
+      "bytes": 11495,
+      "sha256": "1f07b58b0a554183ddecaa77d920732ac1225c9e47d0e0cb05b6d929f7868a2d"
+    },
+    "partial_round2/answers/ID055.md": {
+      "bytes": 5407,
+      "sha256": "b3935d7284cab9036d98827698411673c677ba7eae178616c725b7d01a5fe04b"
+    },
+    "partial_round2/answers/ID056.md": {
+      "bytes": 16762,
+      "sha256": "5ba8e2191c89f39b2ffb01edd228cbc67297c7ac544d6be7f62664ccac47bb17"
+    },
+    "partial_round2/answers/ID057.md": {
+      "bytes": 17202,
+      "sha256": "4ad40c536e019d50cf0315f9247e9f162a96ebbc636baef513f389b8fbf31d97"
+    },
+    "partial_round2/answers/ID058.md": {
+      "bytes": 9298,
+      "sha256": "fd91258295c5c41b1e58807ee69abcc6adb1d9c02dd7c847792f1c201f9645e6"
+    },
+    "partial_round2/answers/ID059.md": {
+      "bytes": 3072,
+      "sha256": "d20d027d4230cc7be7ce2d1dae7cc8cfc4cd040d02a9d03c41517725399dbef5"
+    },
+    "partial_round2/answers/ID060.md": {
+      "bytes": 74752,
+      "sha256": "c8da6515d13f0dff4c7d6d04aa14645f6352955c70bbaa1a051fb1257bbbb9fb"
+    },
+    "partial_round2/answers/ID061.md": {
+      "bytes": 4957,
+      "sha256": "9b9113f38563cee0fc9c5d7df82bd136decca7322ff96b648e72b707aa9c3be3"
+    },
+    "partial_round2/answers/ID062.md": {
+      "bytes": 109277,
+      "sha256": "1aff26bc61232dbabdf2ac83e8486c694e9a71e8a93f1dabc8c39500643503e4"
+    },
+    "partial_round2/answers/ID063.md": {
+      "bytes": 20152,
+      "sha256": "2b82514f4168cf1d90ff184083ba4a3796f1d047c2e62bf9594786a09dc1a56e"
+    },
+    "partial_round2/answers/ID064.md": {
+      "bytes": 17599,
+      "sha256": "1ad1defa33a0f658e20e8f6986a534d837b3b7bac974720e9e066a79e251e49c"
+    },
+    "partial_round2/answers/ID065.md": {
+      "bytes": 54115,
+      "sha256": "4519bf33c924bdaf2c62d556ac45566397a34a7dd0134f86107f5c7d1b73de6f"
+    },
+    "partial_round2/answers/ID066.md": {
+      "bytes": 3621,
+      "sha256": "1a3922cac845c76b17bd11b9b764a08cedc8446c5b78fd04d8461c31315a26e0"
+    },
+    "partial_round2/answers/ID067.md": {
+      "bytes": 4233,
+      "sha256": "35f1c29dfd73761eb124eae4b65bd732eb3cb0890cab6a8df4f6dd788d2761f2"
+    },
+    "partial_round2/answers/ID068.md": {
+      "bytes": 6169,
+      "sha256": "c7cfe88eced115ca45e587ae6c90db999f75aa0142d92ce22d7d539b5367355f"
+    },
+    "partial_round2/answers/ID069.md": {
+      "bytes": 38569,
+      "sha256": "c75c625b1d44dfbafb384739bd95ddf273cb499d2fff36caef75ebfb5203e747"
+    },
+    "partial_round2/answers/ID070.md": {
+      "bytes": 68687,
+      "sha256": "9e33cf8366fbc7710090e8f09b39d88d7b9fc23fce4ae7d56457071d8b98a006"
+    },
+    "partial_round2/answers/ID071.md": {
+      "bytes": 3133,
+      "sha256": "6d8cbeb9f262c8f3a7e8350f126c03ef41e7619688a85b788bdf4102c93d9824"
+    },
+    "partial_round2/answers/ID073.md": {
+      "bytes": 2150,
+      "sha256": "33478119ac39ff5d04c6846cb1f8ca73815f08a530d83adc89c7bfde5db8d0c2"
+    },
+    "partial_round2/answers/ID074.md": {
+      "bytes": 3184,
+      "sha256": "2243c53216510e4059256217c8ec46e1843273a348c45f9ab1cb04e8e6d9437e"
+    },
+    "partial_round2/answers/ID075.md": {
+      "bytes": 28332,
+      "sha256": "cf4e3e4ab3e99904faaaf81d56d1ceeb7da975f0e795d39c448683a3e7085157"
+    },
+    "partial_round2/answers/ID076.md": {
+      "bytes": 17842,
+      "sha256": "a56e530faade3ac40be534948d7cfd8ebad406801999ae834dfaa2936f0e51a5"
+    },
+    "partial_round2/answers/ID078.md": {
+      "bytes": 5597,
+      "sha256": "b6ff6c50693513525a07dac99101cb0dc0d85e841f9619fc554fcc8a8b6ca136"
+    },
+    "partial_round2/answers/ID079.md": {
+      "bytes": 24267,
+      "sha256": "4840b8115b23ffd0b8aad95cc374980cc063d6426c3fb1fef899e3d1825f5b74"
+    },
+    "partial_round2/answers/ID081.md": {
+      "bytes": 10253,
+      "sha256": "885d2718913c92dfcbca61ce0ea7cc319a4d6bb371bc8470ce2461aeb8ca2924"
+    },
+    "partial_round2/answers/ID083.md": {
+      "bytes": 2636,
+      "sha256": "5e4e0987dd29158bdb2a61379c79e4ef813efb61a6076bdbc58845d224b736ff"
+    },
+    "partial_round2/answers/ID084.md": {
+      "bytes": 14687,
+      "sha256": "548d67c9d09929c2d254764f88002a164b7391d4eeea2ac9f54bdad623c936d1"
+    },
+    "partial_round2/answers/ID085.md": {
+      "bytes": 13004,
+      "sha256": "33fed5ae271d435f5a28c9af94c7bb083ce07b0de544918db75cf6816dd70ee0"
+    },
+    "partial_round2/answers/ID086.md": {
+      "bytes": 19146,
+      "sha256": "5ef3b7144ab2ba37d6ced73147a4f71e4e75b7c013ab4a9ee4f32a473d6ee5b3"
+    },
+    "partial_round2/answers/ID087.md": {
+      "bytes": 5856,
+      "sha256": "626995fcfb5b7b53f783803f5e396012366b3fdd509d1bae86c86413121453d4"
+    },
+    "partial_round2/answers/ID088.md": {
+      "bytes": 7448,
+      "sha256": "58bde1e6e847c4c9fc1a09f5c04ebb3e6817697bdbbe3ea9d2435fc66a87f28f"
+    },
+    "partial_round2/answers/ID090.md": {
+      "bytes": 48355,
+      "sha256": "4da14aa56615f77e1fe71f5c200d2fc744ae4c66a5296c76bc130aed9f37bc2c"
+    },
+    "partial_round2/answers/ID092.md": {
+      "bytes": 7101,
+      "sha256": "5347d9788adab378b6d43d58de29914466254a291c01c7713db68dc1f569c2c5"
+    },
+    "partial_round2/answers/ID093.md": {
+      "bytes": 35453,
+      "sha256": "f0d88b15fe992f19fc6cce975748389ba3f63b6c55532ee81330d4389d0a17a1"
+    },
+    "partial_round2/answers/ID094.md": {
+      "bytes": 79745,
+      "sha256": "9b48e77bf3acd0a34c0894c96266eaca339393986982b85f95788d6dfebbd5d3"
+    },
+    "partial_round2/answers/ID095.md": {
+      "bytes": 79477,
+      "sha256": "8b977adde60c4d3ab1dd19d8c754b90c509b3b71d3692eb15b0c651ac121c608"
+    },
+    "partial_round2/answers/ID096.md": {
+      "bytes": 10679,
+      "sha256": "254d5074e9be55efedd2ce63eaffb0985b1f6b185e1cdaa0670d00db6cbce64e"
+    },
+    "partial_round2/answers/ID097.md": {
+      "bytes": 4691,
+      "sha256": "c6f13bfded69cff9f333d8ae7030c5130af549d39fe69ac335aa869b718acca5"
+    },
+    "partial_round2/answers/ID098.md": {
+      "bytes": 10438,
+      "sha256": "20056b50afdae8655d971c63618f7da96c9472d07ccba4faa5eca6d74effe44b"
+    },
+    "partial_round2/answers/ID099.md": {
+      "bytes": 11828,
+      "sha256": "17588856a70a1cf2b8a4bbdfe9e88b62a10100818f7079ad15be5968680d1872"
+    },
+    "partial_round2/answers/ID100.md": {
+      "bytes": 94139,
+      "sha256": "bb6c622ac12b6118425004f826423399a2add3465bbaf2c5b7086595d0818ee4"
+    },
+    "partial_round2/answers/ID101.md": {
+      "bytes": 60458,
+      "sha256": "3553936aa127bd9be9c3966472d388dcb2e0d38a75890214b8b21020e1c3bae2"
+    },
+    "partial_round2/answers/ID102.md": {
+      "bytes": 109178,
+      "sha256": "fb6189af492bf364bf02a5e53a6266af0a4e451276ee20e38f14222a6c06f8d9"
+    },
+    "partial_round2/answers/ID103.md": {
+      "bytes": 54847,
+      "sha256": "5e651d705a4643747ee0df99bf07f65e5a77d08d3b0c335737a3a4937c647ae7"
+    },
+    "partial_round2/answers/ID104.md": {
+      "bytes": 7285,
+      "sha256": "279c0c0907e3562adfdc8a47f4cf9308663ff6034eb3aceeca4a9d0fc2cbaed1"
+    },
+    "partial_round2/answers/ID105.md": {
+      "bytes": 11029,
+      "sha256": "10189b0fcd0f26f3090b94dba828aef8fefc979f0accd322f7859b481609a51e"
+    },
+    "partial_round2/answers/ID106.md": {
+      "bytes": 5616,
+      "sha256": "268b529013a8cdd36e67e19d0c45257ab738fe86d45e2e9287427289803d9b68"
+    },
+    "partial_round2/answers/ID107.md": {
+      "bytes": 6603,
+      "sha256": "fc3714180a33b11449cb6aee9eab319b83338a1b46f82f493b396a4f18bd6bea"
+    },
+    "partial_round2/answers/ID108.md": {
+      "bytes": 7188,
+      "sha256": "9cb59bcd07810137ae4b6c5d5014f0fdf20f8e72733b6bb9d675bb0951f2dd61"
+    },
+    "partial_round2/answers/ID109.md": {
+      "bytes": 57980,
+      "sha256": "a5e7441426d5ee500eb3915788b53f515292181f5de9d8e7f5c2846c06e35591"
+    },
+    "partial_round2/answers/ID110.md": {
+      "bytes": 16372,
+      "sha256": "1f3c0f9cf87dd3adf1a15e3008c44978b2274052fb3221e29a71110b9bce18bc"
+    },
+    "partial_round2/answers/ID111.md": {
+      "bytes": 45066,
+      "sha256": "3436e3428371bc0321035e79bf5602f02036bad7db85f05dc37b8dae397ae5f2"
+    },
+    "partial_round2/answers/ID112.md": {
+      "bytes": 4036,
+      "sha256": "bdfe69e311e7def221178536fa1019e42cd876fd8767e04351c0e7e41e41fe9e"
+    },
+    "partial_round2/answers/ID113.md": {
+      "bytes": 3606,
+      "sha256": "89e8f240eb91e2b4c093e3b4c1d64f656f2e3359fabf18f8e4302bcf47587116"
+    },
+    "partial_round2/answers/ID114.md": {
+      "bytes": 5706,
+      "sha256": "e42b0e115be0c5e13b3f7eedb2ad45060e3d40c844ad92ca274c5c579c39c2f0"
+    },
+    "partial_round2/answers/ID115.md": {
+      "bytes": 6980,
+      "sha256": "6dc31fee96974f56a387a22d9d80c633a0ff9ca23889627a26763702b8f50c1b"
+    },
+    "partial_round2/answers/ID117.md": {
+      "bytes": 3798,
+      "sha256": "5d68a1388d29f11b70be70619cc6040a3dda6891b5eabd0c46eeea01b5b56ee5"
+    },
+    "partial_round2/answers/ID118.md": {
+      "bytes": 12015,
+      "sha256": "d994c416346608b07f4c3c43c7facf5731c610b86a574ea4fd6fe5e54b448549"
+    },
+    "partial_round2/answers/ID120.md": {
+      "bytes": 6636,
+      "sha256": "3b4a180785c8dc28c0a5e55167c3aade4e9370f34bc64c630b93a3dce0743e6d"
+    },
+    "partial_round2/answers/ID121.md": {
+      "bytes": 48986,
+      "sha256": "7ce229ca0d94ca955fd8ecde12a5bacbdd7734f4117a036edb1a7acd896f69eb"
+    },
+    "partial_round2/answers/ID122.md": {
+      "bytes": 44581,
+      "sha256": "1c92439173d8c7a4eea656b1a2b648f5c3d475c936712b4d435ee173d523acba"
+    },
+    "partial_round2/answers/ID123.md": {
+      "bytes": 3292,
+      "sha256": "749b74c1cc9ba39fce5ddbb7e94dea7c8843be3368e1b3153b2fd7751a3e9722"
+    },
+    "partial_round2/answers/ID124.md": {
+      "bytes": 16520,
+      "sha256": "02a373a549e89b6136e243958a2a85d39ebc516ef0a1e46f249b5dfe254478dd"
+    },
+    "partial_round2/answers/ID125.md": {
+      "bytes": 4363,
+      "sha256": "21e4f5860072cb2e03d983d9e7a819788b48189a5810ecb2f9cc855ec09fb87e"
+    },
+    "partial_round2/answers/ID126.md": {
+      "bytes": 11411,
+      "sha256": "551ac85ee5934080104e3e7351c64dd1caa1f3c5cc6829c705148c4cc9e15e98"
+    },
+    "partial_round2/answers/ID127.md": {
+      "bytes": 17364,
+      "sha256": "b1e396be6336f6867f8bae1f58f5e356121a820f0b12d31abc6bcfbf1ccbab66"
+    },
+    "partial_round2/answers/ID129.md": {
+      "bytes": 21071,
+      "sha256": "0746c23b9182ea2446c75039689c72c2e779769e4f6cea499364fe9ba00f008d"
+    },
+    "partial_round2/answers/ID130.md": {
+      "bytes": 18900,
+      "sha256": "3d1f37ee18c27318a65ad56b1fe44d43deef43fb94d26ea5459bcdd2b8b38647"
+    },
+    "partial_round2/answers/ID132.md": {
+      "bytes": 10521,
+      "sha256": "756f2609b1a1666823bb01153283b9aa5025ed5ddcc4d5876f044f1902eb25a1"
+    },
+    "partial_round2/answers/ID133.md": {
+      "bytes": 7131,
+      "sha256": "9c5b536d474b5cca75d57991195d786ca9cdc07ddf723a091fe5f87753b77dc7"
+    },
+    "partial_round2/answers/ID134.md": {
+      "bytes": 8986,
+      "sha256": "0a6635549c5e07e68b6bdc8a5e5e2fab8110ce0a3df6cbf781ba22ea06a0427c"
+    },
+    "partial_round2/answers/ID135.md": {
+      "bytes": 3230,
+      "sha256": "15f6786c2a03b51eff5dcdf2ae3a0bd8f35b395a4950789bd1f6d6d2b7ab989f"
+    },
+    "partial_round2/answers/ID136.md": {
+      "bytes": 19491,
+      "sha256": "ad53e89c69ffcc42f0f0171e78a080e58d7b7d187191c2f4ffe3ed1054c70787"
+    },
+    "partial_round2/answers/ID137.md": {
+      "bytes": 26631,
+      "sha256": "a0805981d258f870494d3f3409b1592464ed9121769a98a7a0d8133e93559f45"
+    },
+    "partial_round2/answers/ID138.md": {
+      "bytes": 4777,
+      "sha256": "22fb4591c834e62164960cf1bc4bfebd07a4e162b9b7d7559332d70f543e52f9"
+    },
+    "partial_round2/answers/ID139.md": {
+      "bytes": 19603,
+      "sha256": "e924c672c6bffc913b2e5eeed2febaeaeda6e5bd08cf2840af2aaeed500ff574"
+    },
+    "partial_round2/answers/ID141.md": {
+      "bytes": 7086,
+      "sha256": "9aae6e0d8aa16993bfcb3e0a53e07da01f0516fa74b9194c9610de74a26c0236"
+    },
+    "partial_round2/answers/ID142.md": {
+      "bytes": 2338,
+      "sha256": "947b75fd76d705bf6d986d1c746143c3e354b0f9e4ba46613211e42df3ed297b"
     },
     "data/stopped/decode-user-stop.json": {
       "bytes": 221,
