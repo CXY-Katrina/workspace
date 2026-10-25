@@ -1,0 +1,17 @@
+{
+  "dataset": "aime2026",
+  "round": 1,
+  "seed": 42,
+  "temperature": 1,
+  "top_p": 0.95,
+  "chat_template_kwargs": {
+    "reasoning_effort": "max",
+    "thinking_mode": "enabled"
+  },
+  "concurrency": 16,
+  "max_out_len": 81920,
+  "service_context": 133000,
+  "proxy": "http://177.11.26.1:8009",
+  "model": "minimax-m3.1-flash",
+  "cancel_policy": "Only cancel AIME question ID15 when every other question has returned; count it as unanswered in the denominator."
+}

@@ -1,0 +1,24 @@
+[
+  {
+    "sample_index": 9,
+    "question_id": 10,
+    "record_id": null,
+    "correct": false,
+    "prediction": "103",
+    "reference": 156,
+    "received": true,
+    "request_success": true,
+    "cancelled_by_user_policy": false
+  },
+  {
+    "sample_index": 14,
+    "question_id": 15,
+    "record_id": null,
+    "correct": false,
+    "prediction": "",
+    "reference": 83,
+    "received": false,
+    "request_success": false,
+    "cancelled_by_user_policy": true
+  }
+]

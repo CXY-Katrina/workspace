@@ -6,6 +6,8 @@
 
 本报告固定记录已完成的四轮 AIME 与四轮 GPQA。随后按用户要求停止 DSpark 循环：GPQA 第五轮停在 80/198，部分结果不计入正式成绩；另启动关闭 DSpark 的两轮 GPQA 对照测试，其结果独立记录，不混入下表。
 
+四轮 AIME2026 的完整 AISBench 原始 outputs（含全部返回、评分和配置）见 [outputs 归档](aisbench_outputs/aime2026-repeat4/README.md)。逐文件 SHA256 已随归档保存。
+
 ## 两台服务器与容器
 
 | 项目 | Prefill | Decode |

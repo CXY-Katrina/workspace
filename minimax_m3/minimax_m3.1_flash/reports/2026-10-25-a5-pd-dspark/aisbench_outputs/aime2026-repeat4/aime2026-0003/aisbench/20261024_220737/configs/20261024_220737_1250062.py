@@ -1,0 +1,154 @@
+aime2026_datasets=[
+    dict(abbr='aime2026',
+        eval_cfg=dict(
+            evaluator=dict(
+                type='ais_bench.benchmark.datasets.math.MATHEvaluator',
+                version='v2'),
+            pred_postprocessor=dict(
+                type='ais_bench.benchmark.datasets.math.math_postprocess_v2')),
+        infer_cfg=dict(
+            inferencer=dict(
+                type='ais_bench.benchmark.openicl.icl_inferencer.icl_gen_inferencer.GenInferencer'),
+            prompt_template=dict(
+                template=dict(
+                    round=[
+                        dict(prompt='\nSolve the following math problem step by step. Put your answer inside \\boxed{}.\n\n{problem}\n\nRemember to put your answer inside \\boxed{}.',
+                            role='HUMAN'),
+                        ]),
+                type='ais_bench.benchmark.openicl.icl_prompt_template.icl_prompt_template.PromptTemplate'),
+            retriever=dict(
+                type='ais_bench.benchmark.openicl.icl_retriever.icl_zero_retriever.ZeroRetriever')),
+        path='/home/j00893003/minimax-dspark/cxy-pd-pr19723-20261025/aime2026.jsonl',
+        reader_cfg=dict(
+            input_columns=[
+                'problem',
+                ],
+            output_column='answer'),
+        type='ais_bench.benchmark.datasets.aime2026.Aime2026Dataset'),
+    ]
+aime2026_eval_cfg=dict(
+    evaluator=dict(
+        type='ais_bench.benchmark.datasets.math.MATHEvaluator',
+        version='v2'),
+    pred_postprocessor=dict(
+        type='ais_bench.benchmark.datasets.math.math_postprocess_v2'))
+aime2026_infer_cfg=dict(
+    inferencer=dict(
+        type='ais_bench.benchmark.openicl.icl_inferencer.icl_gen_inferencer.GenInferencer'),
+    prompt_template=dict(
+        template=dict(
+            round=[
+                dict(prompt='\nSolve the following math problem step by step. Put your answer inside \\boxed{}.\n\n{problem}\n\nRemember to put your answer inside \\boxed{}.',
+                    role='HUMAN'),
+                ]),
+        type='ais_bench.benchmark.openicl.icl_prompt_template.icl_prompt_template.PromptTemplate'),
+    retriever=dict(
+        type='ais_bench.benchmark.openicl.icl_retriever.icl_zero_retriever.ZeroRetriever'))
+aime2026_reader_cfg=dict(
+    input_columns=[
+        'problem',
+        ],
+    output_column='answer')
+cli_args=dict(
+    cfg_time_str='20261024_220737',
+    config='config.py',
+    config_dir='configs',
+    custom_dataset_data_type=None,
+    custom_dataset_infer_method=None,
+    custom_dataset_meta_path=None,
+    custom_dataset_path=None,
+    datasets=None,
+    debug=False,
+    dir_time_str='20261024_220737',
+    dry_run=False,
+    dump_eval_details=False,
+    dump_extract_rate=False,
+    max_num_workers=1,
+    max_workers_per_gpu=1,
+    merge_ds=False,
+    mode='infer',
+    models=None,
+    num_prompts=None,
+    num_warmups=0,
+    pressure=False,
+    pressure_time=15,
+    reuse=None,
+    search=False,
+    summarizer=None,
+    work_dir='/home/j00893003/minimax-dspark/cxy-pd-pr19723-20261025/runs/aime2026-0003/aisbench')
+datasets=[
+    dict(abbr='aime2026',
+        eval_cfg=dict(
+            evaluator=dict(
+                type='ais_bench.benchmark.datasets.math.MATHEvaluator',
+                version='v2'),
+            pred_postprocessor=dict(
+                type='ais_bench.benchmark.datasets.math.math_postprocess_v2')),
+        infer_cfg=dict(
+            inferencer=dict(
+                type='ais_bench.benchmark.openicl.icl_inferencer.icl_gen_inferencer.GenInferencer'),
+            prompt_template=dict(
+                template=dict(
+                    round=[
+                        dict(prompt='\nSolve the following math problem step by step. Put your answer inside \\boxed{}.\n\n{problem}\n\nRemember to put your answer inside \\boxed{}.',
+                            role='HUMAN'),
+                        ]),
+                type='ais_bench.benchmark.openicl.icl_prompt_template.icl_prompt_template.PromptTemplate'),
+            retriever=dict(
+                prompt_template=dict(
+                    template=dict(
+                        round=[
+                            dict(prompt='\nSolve the following math problem step by step. Put your answer inside \\boxed{}.\n\n{problem}\n\nRemember to put your answer inside \\boxed{}.',
+                                role='HUMAN'),
+                            ]),
+                    type='ais_bench.benchmark.openicl.icl_prompt_template.icl_prompt_template.PromptTemplate'),
+                type='ais_bench.benchmark.openicl.icl_retriever.icl_zero_retriever.ZeroRetriever')),
+        path='/home/j00893003/minimax-dspark/cxy-pd-pr19723-20261025/aime2026.jsonl',
+        reader_cfg=dict(
+            input_columns=[
+                'problem',
+                ],
+            output_column='answer'),
+        type='ais_bench.benchmark.datasets.aime2026.Aime2026Dataset'),
+    ]
+infer=dict(
+    partitioner=dict(
+        out_dir='/home/j00893003/minimax-dspark/cxy-pd-pr19723-20261025/runs/aime2026-0003/aisbench/20261024_220737/predictions/',
+        type='ais_bench.benchmark.partitioners.naive.NaivePartitioner'),
+    runner=dict(
+        debug=False,
+        max_num_workers=1,
+        max_workers_per_gpu=1,
+        task=dict(
+            type='ais_bench.benchmark.tasks.openicl_api_infer.OpenICLApiInferTask'),
+        type='ais_bench.benchmark.runners.local.LocalRunner'))
+models=[
+    dict(abbr='minimax-pd-dspark',
+        api_key='',
+        attr='service',
+        batch_size=16,
+        generation_kwargs=dict(
+            chat_template_kwargs=dict(
+                reasoning_effort='max',
+                thinking_mode='enabled'),
+            ignore_eos=False,
+            seed=44,
+            temperature=1,
+            top_p=0.95),
+        host_ip='177.11.26.1',
+        host_port=8009,
+        max_out_len=81920,
+        model='minimax-m3.1-flash',
+        path='',
+        pred_postprocessor=dict(
+            type='ais_bench.benchmark.utils.postprocess.model_postprocessors.extract_non_reasoning_content'),
+        request_rate=0,
+        retry=1,
+        stream=True,
+        type='ais_bench.benchmark.models.api_models.vllm_custom_api_chat.VLLMCustomAPIChat'),
+    ]
+summarizer=dict(
+    attr='accuracy',
+    summary_groups=[
+        ])
+work_dir='/home/j00893003/minimax-dspark/cxy-pd-pr19723-20261025/runs/aime2026-0003/aisbench/20261024_220737'

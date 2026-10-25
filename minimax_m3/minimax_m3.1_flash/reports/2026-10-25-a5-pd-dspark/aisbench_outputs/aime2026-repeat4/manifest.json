@@ -1,0 +1,509 @@
+{
+  "source_host": "177.11.26.1",
+  "source_run_root": "/home/j00893003/minimax-dspark/cxy-pd-pr19723-20261025/runs",
+  "created_at_unix": 1792939635.8031518,
+  "rounds": [
+    {
+      "round": 1,
+      "timestamp": "20261024_212941",
+      "returned_predictions": 29,
+      "successful_predictions": 29,
+      "correct": 27,
+      "accuracy_percent": 90.0,
+      "original_aisbench_score": 90.0,
+      "original_infer_exitcode": "143",
+      "original_eval_exitcode": "0",
+      "cancelled_question_ids": [
+        15
+      ]
+    },
+    {
+      "round": 2,
+      "timestamp": "20261024_214513",
+      "returned_predictions": 29,
+      "successful_predictions": 29,
+      "correct": 28,
+      "accuracy_percent": 93.33333333333333,
+      "original_aisbench_score": 93.33333333333333,
+      "original_infer_exitcode": "143",
+      "original_eval_exitcode": "0",
+      "cancelled_question_ids": [
+        15
+      ]
+    },
+    {
+      "round": 3,
+      "timestamp": "20261024_220737",
+      "returned_predictions": 29,
+      "successful_predictions": 29,
+      "correct": 28,
+      "accuracy_percent": 93.33333333333333,
+      "original_aisbench_score": 93.33333333333333,
+      "original_infer_exitcode": "143",
+      "original_eval_exitcode": "0",
+      "cancelled_question_ids": [
+        15
+      ]
+    },
+    {
+      "round": 4,
+      "timestamp": "20261024_223305",
+      "returned_predictions": 29,
+      "successful_predictions": 29,
+      "correct": 29,
+      "accuracy_percent": 96.66666666666667,
+      "original_aisbench_score": 96.66666666666667,
+      "original_infer_exitcode": "143",
+      "original_eval_exitcode": "0",
+      "cancelled_question_ids": [
+        15
+      ]
+    }
+  ],
+  "files": [
+    {
+      "path": "aime2026-0001/aisbench/20261024_212941/configs/20261024_212941_1249859.py",
+      "bytes": 6388,
+      "sha256": "9df5a8bc424935dc3e478680c72e6822f8d38552f0a7560f5c8922a59510de0d"
+    },
+    {
+      "path": "aime2026-0001/aisbench/20261024_212941/configs/20261024_214455_1249925.py",
+      "bytes": 6499,
+      "sha256": "4e3268d8a2123759de8e99a4549909baa34ae2c49538fc478b3f0596e916478a"
+    },
+    {
+      "path": "aime2026-0001/aisbench/20261024_212941/logs/eval/minimax-pd-dspark/aime2026.out",
+      "bytes": 835675,
+      "sha256": "fcd3b7c1202410be681c4271114f397ad5d1a82a6a09a5fa3c0090297798358f"
+    },
+    {
+      "path": "aime2026-0001/aisbench/20261024_212941/logs/infer/minimax-pd-dspark/aime2026.out",
+      "bytes": 3669,
+      "sha256": "f24e8063ebaa30f51ff4ff8a2d53cbdcfe3e6f09d4b04c169bd216ced7af188a"
+    },
+    {
+      "path": "aime2026-0001/aisbench/20261024_212941/predictions/minimax-pd-dspark/aime2026.jsonl",
+      "bytes": 832955,
+      "sha256": "86d2196ad453048d3d2bd5c00c720d67f23e07821d59bed87ae473a85cbe616c"
+    },
+    {
+      "path": "aime2026-0001/aisbench/20261024_212941/predictions/minimax-pd-dspark/tmp/tmp_9ada0602.db",
+      "bytes": 12288,
+      "sha256": "019122d62e55603be67a13deb72d389274f4c5bbd6dd5b2688cd3274442289e2"
+    },
+    {
+      "path": "aime2026-0001/aisbench/20261024_212941/predictions/minimax-pd-dspark/tmp/tmp_9ada0602.jsonl",
+      "bytes": 832955,
+      "sha256": "140882493a7de55b4b131f12f5c45e1d29e4e393847d6d6e7d509993ccb407ba"
+    },
+    {
+      "path": "aime2026-0001/aisbench/20261024_212941/results/minimax-pd-dspark/aime2026.json",
+      "bytes": 839641,
+      "sha256": "e4cfbf31034c2130f566e6352e9a7b4e50ad323e78e8a0505d2ed92e7abb13af"
+    },
+    {
+      "path": "aime2026-0001/aisbench/20261024_212941/summary/summary_20261024_214455.csv",
+      "bytes": 121,
+      "sha256": "b31a4e18cc20d88571f90ad11a3ea2a31eb9b70b63214c60f28f6be3a97174b3"
+    },
+    {
+      "path": "aime2026-0001/aisbench/20261024_212941/summary/summary_20261024_214455.md",
+      "bytes": 197,
+      "sha256": "43dfbed18f9b44376804c713a13df0962922bf7901fca8317412cf461d4bd14a"
+    },
+    {
+      "path": "aime2026-0001/aisbench/20261024_212941/summary/summary_20261024_214455.txt",
+      "bytes": 2357,
+      "sha256": "f32e67f9120f3f5f1e3e8c334b24db76faa099a74274a4825f010a30bcb38331"
+    },
+    {
+      "path": "aime2026-0001/config.py",
+      "bytes": 2253,
+      "sha256": "e36d1ef9450b119df67af1dc2f6c8c2cb64346cd140f981021bdbf15f7cb69d4"
+    },
+    {
+      "path": "aime2026-0001/eval.exitcode",
+      "bytes": 1,
+      "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "path": "aime2026-0001/eval.log",
+      "bytes": 3323,
+      "sha256": "3f1db4f50fde581847db976722859282a0bcff66cbde89735c75ef7d7c11d79a"
+    },
+    {
+      "path": "aime2026-0001/infer-command.json",
+      "bytes": 208,
+      "sha256": "685f8dc1abc175e772f5a8281d36c789d5966fdd873a0d1cbb7e9a8f572ccbd0"
+    },
+    {
+      "path": "aime2026-0001/infer.exitcode",
+      "bytes": 3,
+      "sha256": "d6f0c71ef0c88e45e4b3a2118fcb83b0def392d759c901e9d755d0e879028727"
+    },
+    {
+      "path": "aime2026-0001/infer.log",
+      "bytes": 8819,
+      "sha256": "f3fdef874d661072a5eaff9aaa6b7f1075e6446e85fe158d0666ecfb0a2a0674"
+    },
+    {
+      "path": "aime2026-0001/per-question.json",
+      "bytes": 7049,
+      "sha256": "58025cda00a4b9430b2d43914372e17c6d51eac250f73c9bb548ac917f4ecf49"
+    },
+    {
+      "path": "aime2026-0001/policy-cancellation.json",
+      "bytes": 201,
+      "sha256": "f1039e4522a8755cc61a12052d82615a5d321509c50edb0c967078c6ab37398c"
+    },
+    {
+      "path": "aime2026-0001/settings.json",
+      "bytes": 468,
+      "sha256": "40b47fdcc3fbfd4e83fb278e4f897f446eeb4a446f271f9f3af720c63c9b24df"
+    },
+    {
+      "path": "aime2026-0001/summary.json",
+      "bytes": 10159,
+      "sha256": "85e0cb239081c576a37cc1e80fec10dfcf39e5afcbb3aaa6109791889b13bd13"
+    },
+    {
+      "path": "aime2026-0001/wrong-questions.json",
+      "bytes": 706,
+      "sha256": "4209af91580e27d026db66e5c7ba5cc6882260690795abe20a00905c7de0fa1f"
+    },
+    {
+      "path": "aime2026-0002/aisbench/20261024_214513/configs/20261024_214513_1249961.py",
+      "bytes": 6388,
+      "sha256": "20439968c9a1fca154b5ab28eadb361b388d25636a8a29012c9ae7f5412a7a4d"
+    },
+    {
+      "path": "aime2026-0002/aisbench/20261024_214513/configs/20261024_220719_1250026.py",
+      "bytes": 6499,
+      "sha256": "9a29e70d512809c9620f0f9d75ec5316221440c7f2254e454c769d89b3f349e6"
+    },
+    {
+      "path": "aime2026-0002/aisbench/20261024_214513/logs/eval/minimax-pd-dspark/aime2026.out",
+      "bytes": 1015911,
+      "sha256": "a396e3307b66e0e3591dea72c44381f9ac7b29e475ab59cc432da74a49acf122"
+    },
+    {
+      "path": "aime2026-0002/aisbench/20261024_214513/logs/infer/minimax-pd-dspark/aime2026.out",
+      "bytes": 3989,
+      "sha256": "aba6112b7c8a4415b5f124dc0c799f4b96fa2c070d0e34adb565a259980e9747"
+    },
+    {
+      "path": "aime2026-0002/aisbench/20261024_214513/predictions/minimax-pd-dspark/aime2026.jsonl",
+      "bytes": 1013637,
+      "sha256": "2b308b4ea02193483ddd7c0e44d0e9b3111840371941157fa4cd95c7a485318a"
+    },
+    {
+      "path": "aime2026-0002/aisbench/20261024_214513/predictions/minimax-pd-dspark/tmp/tmp_89a8abf6.db",
+      "bytes": 12288,
+      "sha256": "019122d62e55603be67a13deb72d389274f4c5bbd6dd5b2688cd3274442289e2"
+    },
+    {
+      "path": "aime2026-0002/aisbench/20261024_214513/predictions/minimax-pd-dspark/tmp/tmp_89a8abf6.jsonl",
+      "bytes": 1013637,
+      "sha256": "cb1c018803ef2ac94ba674b4a4a124542464df4e955fba6b9ac8a0117f2ecb45"
+    },
+    {
+      "path": "aime2026-0002/aisbench/20261024_214513/results/minimax-pd-dspark/aime2026.json",
+      "bytes": 1020342,
+      "sha256": "687cd7ca61f01e244df988033b5d6411b8e2c72abeb44a5ffcf04cf1630937b3"
+    },
+    {
+      "path": "aime2026-0002/aisbench/20261024_214513/summary/summary_20261024_220719.csv",
+      "bytes": 121,
+      "sha256": "26d426492a6f1ecc14688ae88f901d0d382abf1aad9f4ec00da61e4133f4252b"
+    },
+    {
+      "path": "aime2026-0002/aisbench/20261024_214513/summary/summary_20261024_220719.md",
+      "bytes": 197,
+      "sha256": "1a30e4cd7b1de8127bded8671809035e565e0861532bac2a144ac55158d0bba5"
+    },
+    {
+      "path": "aime2026-0002/aisbench/20261024_214513/summary/summary_20261024_220719.txt",
+      "bytes": 2370,
+      "sha256": "0871fe8ba724f5cdf8857b06fd027dc8330c6781436b6bfe334d1d00b48322be"
+    },
+    {
+      "path": "aime2026-0002/config.py",
+      "bytes": 2253,
+      "sha256": "2cd23719509535c54b0de73b4e930e694fb5a66ab94fa9915c6d69efd67d4795"
+    },
+    {
+      "path": "aime2026-0002/eval.exitcode",
+      "bytes": 1,
+      "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "path": "aime2026-0002/eval.log",
+      "bytes": 3323,
+      "sha256": "3926d0fa3c123fa2f7be0bc08f8534c31c24e6256528629b08af092adb587ae8"
+    },
+    {
+      "path": "aime2026-0002/infer-command.json",
+      "bytes": 208,
+      "sha256": "1d56e829aed4e1fc93f9650e7471f07bc8e1de20f56873d9e38140f147198b84"
+    },
+    {
+      "path": "aime2026-0002/infer.exitcode",
+      "bytes": 3,
+      "sha256": "d6f0c71ef0c88e45e4b3a2118fcb83b0def392d759c901e9d755d0e879028727"
+    },
+    {
+      "path": "aime2026-0002/infer.log",
+      "bytes": 2519,
+      "sha256": "dbe30302c9219d54a301207e713e5f3fce7e92c8eb7bbc550936454135696778"
+    },
+    {
+      "path": "aime2026-0002/per-question.json",
+      "bytes": 7055,
+      "sha256": "cc4e806b5ab7c14da636ee85cecf312fff5988933d9509cdf871b3a2ce2a5fb0"
+    },
+    {
+      "path": "aime2026-0002/policy-cancellation.json",
+      "bytes": 201,
+      "sha256": "151ffb2ffd093eed0c0c8b258ff03ccc958fb06a4d24f059375613aa16d04791"
+    },
+    {
+      "path": "aime2026-0002/settings.json",
+      "bytes": 468,
+      "sha256": "a939fed203169990819d0afd766ac92a503617f55ead75a4bf5e86623805189c"
+    },
+    {
+      "path": "aime2026-0002/summary.json",
+      "bytes": 10190,
+      "sha256": "4f35d6e4e4daf219d47a36566f5226b4a803544f34eb13b15135200577aae393"
+    },
+    {
+      "path": "aime2026-0002/wrong-questions.json",
+      "bytes": 480,
+      "sha256": "c7cbd8c92cebde4ea87c9cebe2f3825f8f071b097a4063fcb7e28418e11a2480"
+    },
+    {
+      "path": "aime2026-0003/aisbench/20261024_220737/configs/20261024_220737_1250062.py",
+      "bytes": 6388,
+      "sha256": "89d968e5ac2b05b5f5e126fc82a1f25141cc67340c78b6d3ac3a962b44a53fa4"
+    },
+    {
+      "path": "aime2026-0003/aisbench/20261024_220737/configs/20261024_223247_1250128.py",
+      "bytes": 6499,
+      "sha256": "af590f1186f7dad0dc36dcc447fc2d5453bb01bad8841189321f462f227d1308"
+    },
+    {
+      "path": "aime2026-0003/aisbench/20261024_220737/logs/eval/minimax-pd-dspark/aime2026.out",
+      "bytes": 1220140,
+      "sha256": "2915f7196d4792f382876f3f64effc45a8262da64b8a6eca6abf1c19c4559989"
+    },
+    {
+      "path": "aime2026-0003/aisbench/20261024_220737/logs/infer/minimax-pd-dspark/aime2026.out",
+      "bytes": 5269,
+      "sha256": "066fc1976702ce2515c0518af47b924598b12f115ae9f075e552cae849ee3797"
+    },
+    {
+      "path": "aime2026-0003/aisbench/20261024_220737/predictions/minimax-pd-dspark/aime2026.jsonl",
+      "bytes": 1215121,
+      "sha256": "c656d2e41a5933b7b2da2381a7d7ecbcc3f080c381a6acb7b5dd7ecf6230267a"
+    },
+    {
+      "path": "aime2026-0003/aisbench/20261024_220737/predictions/minimax-pd-dspark/tmp/tmp_94d4ab63.db",
+      "bytes": 12288,
+      "sha256": "019122d62e55603be67a13deb72d389274f4c5bbd6dd5b2688cd3274442289e2"
+    },
+    {
+      "path": "aime2026-0003/aisbench/20261024_220737/predictions/minimax-pd-dspark/tmp/tmp_94d4ab63.jsonl",
+      "bytes": 1215121,
+      "sha256": "6896240280662c54d0859aea1cf8b93c15a0361020c7f3055c05a6b2efe8befc"
+    },
+    {
+      "path": "aime2026-0003/aisbench/20261024_220737/results/minimax-pd-dspark/aime2026.json",
+      "bytes": 1221819,
+      "sha256": "7af37f1cb174ca180b71b76195c351dc8db35cb17e9afdb57567846c90e3cc41"
+    },
+    {
+      "path": "aime2026-0003/aisbench/20261024_220737/summary/summary_20261024_223247.csv",
+      "bytes": 121,
+      "sha256": "26d426492a6f1ecc14688ae88f901d0d382abf1aad9f4ec00da61e4133f4252b"
+    },
+    {
+      "path": "aime2026-0003/aisbench/20261024_220737/summary/summary_20261024_223247.md",
+      "bytes": 197,
+      "sha256": "1a30e4cd7b1de8127bded8671809035e565e0861532bac2a144ac55158d0bba5"
+    },
+    {
+      "path": "aime2026-0003/aisbench/20261024_220737/summary/summary_20261024_223247.txt",
+      "bytes": 2370,
+      "sha256": "8895ad87244bb8304c7e07cef3c8c20f1b4caf884142f05ea06e703021d288e4"
+    },
+    {
+      "path": "aime2026-0003/config.py",
+      "bytes": 2253,
+      "sha256": "9f473363a590742cd8c940e03cbbc976738ecdc2b21ef68665a405889cde304a"
+    },
+    {
+      "path": "aime2026-0003/eval.exitcode",
+      "bytes": 1,
+      "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "path": "aime2026-0003/eval.log",
+      "bytes": 3323,
+      "sha256": "58adbab8644826b7cfc87c07bb396252fef289e1dba5a1b1d2d5dba69f557732"
+    },
+    {
+      "path": "aime2026-0003/infer-command.json",
+      "bytes": 208,
+      "sha256": "a5629b2ed3c8edece9b76e3e2670390aab7ffa411536ab81f1e6c58113b3dd9d"
+    },
+    {
+      "path": "aime2026-0003/infer.exitcode",
+      "bytes": 3,
+      "sha256": "d6f0c71ef0c88e45e4b3a2118fcb83b0def392d759c901e9d755d0e879028727"
+    },
+    {
+      "path": "aime2026-0003/infer.log",
+      "bytes": 3779,
+      "sha256": "1ce841d1de562033240f76ce2f5625f20fb6d58a162e806a3a1b17699e2890da"
+    },
+    {
+      "path": "aime2026-0003/per-question.json",
+      "bytes": 7048,
+      "sha256": "150b9e1bbc79b1f833e27defea646f45266fcd78a3b73628ac0dea4048aae026"
+    },
+    {
+      "path": "aime2026-0003/policy-cancellation.json",
+      "bytes": 201,
+      "sha256": "06b858fd01513d6d76fa167f21374f428b9d121e91556e01f4aded1639338d92"
+    },
+    {
+      "path": "aime2026-0003/settings.json",
+      "bytes": 468,
+      "sha256": "1b28b88f2def629fc31a1375b5bf79289b716fdd9b09481fdfbd8c1d7dfec233"
+    },
+    {
+      "path": "aime2026-0003/summary.json",
+      "bytes": 10172,
+      "sha256": "d40f6fe362fb09fb4098319ed7daf3d67944b783b2fc6c4a687e2653f93e9d5b"
+    },
+    {
+      "path": "aime2026-0003/wrong-questions.json",
+      "bytes": 472,
+      "sha256": "d9844710c803872429aecb0b4960b933c48774ab6d5f062bb261eeff48a7762a"
+    },
+    {
+      "path": "aime2026-0004/aisbench/20261024_223305/configs/20261024_223305_1250164.py",
+      "bytes": 6388,
+      "sha256": "0fbdd642b8de6ab4d632e9686ec91d3367ab169e44e07a1931d011e024bc1667"
+    },
+    {
+      "path": "aime2026-0004/aisbench/20261024_223305/configs/20261024_225637_1250230.py",
+      "bytes": 6499,
+      "sha256": "1c7d88d9a9972259355b6bc18fc6a309c045d29aecf4e927ff4e8eadae9fc008"
+    },
+    {
+      "path": "aime2026-0004/aisbench/20261024_223305/logs/eval/minimax-pd-dspark/aime2026.out",
+      "bytes": 1041124,
+      "sha256": "cec0daad8cd491cefe88595ed554cc3c634b8aced70135bb4511b72bd5f953ac"
+    },
+    {
+      "path": "aime2026-0004/aisbench/20261024_223305/logs/infer/minimax-pd-dspark/aime2026.out",
+      "bytes": 2389,
+      "sha256": "e92d1c3b87ed95247fe43f8509c818d85ea1144098f436baa71f2ad4b990af1b"
+    },
+    {
+      "path": "aime2026-0004/aisbench/20261024_223305/predictions/minimax-pd-dspark/aime2026.jsonl",
+      "bytes": 1038126,
+      "sha256": "5b100db676ee59f69a33258b2578e4c6711edd6240ee03242cb7045baca51d7a"
+    },
+    {
+      "path": "aime2026-0004/aisbench/20261024_223305/predictions/minimax-pd-dspark/tmp/tmp_6503fef4.db",
+      "bytes": 12288,
+      "sha256": "019122d62e55603be67a13deb72d389274f4c5bbd6dd5b2688cd3274442289e2"
+    },
+    {
+      "path": "aime2026-0004/aisbench/20261024_223305/predictions/minimax-pd-dspark/tmp/tmp_6503fef4.jsonl",
+      "bytes": 1038126,
+      "sha256": "94f05392a83ae71bbe8c89bc75c07f22c33f7a57142b9947181ab5e0982c458c"
+    },
+    {
+      "path": "aime2026-0004/aisbench/20261024_223305/results/minimax-pd-dspark/aime2026.json",
+      "bytes": 1044823,
+      "sha256": "0cf6cd5e032eafbf341978fea9d5655bb5e611c8c8d11801ac141132b313912d"
+    },
+    {
+      "path": "aime2026-0004/aisbench/20261024_223305/summary/summary_20261024_225637.csv",
+      "bytes": 121,
+      "sha256": "25666385a0ba8a3db9f25fa5881feeb3e77200ccd41e9397973c70ad71a7b61c"
+    },
+    {
+      "path": "aime2026-0004/aisbench/20261024_223305/summary/summary_20261024_225637.md",
+      "bytes": 197,
+      "sha256": "f19a0215d1f2044cadf3b82f51a6b6d314e7b4e2f0ed44764b8344ef4b08ee7c"
+    },
+    {
+      "path": "aime2026-0004/aisbench/20261024_223305/summary/summary_20261024_225637.txt",
+      "bytes": 2370,
+      "sha256": "a8c8558ebb4e32bed79abf4303d36f9310397a8adf70d7b7acea8a2239e5dea6"
+    },
+    {
+      "path": "aime2026-0004/config.py",
+      "bytes": 2253,
+      "sha256": "9b73b05cc2a63e880e6c54be2f666406449586f34d6c79f9294fddcc1052b5b1"
+    },
+    {
+      "path": "aime2026-0004/eval.exitcode",
+      "bytes": 1,
+      "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+    },
+    {
+      "path": "aime2026-0004/eval.log",
+      "bytes": 3323,
+      "sha256": "d10de6fb8c1b031f39d68ff7c6221cfdaf47fb9cbf921961af2577989e151830"
+    },
+    {
+      "path": "aime2026-0004/infer-command.json",
+      "bytes": 208,
+      "sha256": "40bd2cf2beb77244e6466d92d7ed5cac2ed62b4cbc83b77fc2ab32a955bcb41a"
+    },
+    {
+      "path": "aime2026-0004/infer.exitcode",
+      "bytes": 3,
+      "sha256": "d6f0c71ef0c88e45e4b3a2118fcb83b0def392d759c901e9d755d0e879028727"
+    },
+    {
+      "path": "aime2026-0004/infer.log",
+      "bytes": 2204,
+      "sha256": "a9b1dce524106ca97174c06b508d5a67a1548675b8a5e9ed3aee954fe8a7735c"
+    },
+    {
+      "path": "aime2026-0004/per-question.json",
+      "bytes": 7047,
+      "sha256": "c16176528801dc60cd967e94f7b7140862ba8859a2cdfc64251344dc989d9df2"
+    },
+    {
+      "path": "aime2026-0004/policy-cancellation.json",
+      "bytes": 201,
+      "sha256": "3a19d0c2228b5ca583ed350b8d4587a468a32a6772bb8b586f3d0e6258c62025"
+    },
+    {
+      "path": "aime2026-0004/settings.json",
+      "bytes": 468,
+      "sha256": "bc4d7d232697977da8a26febfde3b446fcff29f360093cbc3c1f8733d2482870"
+    },
+    {
+      "path": "aime2026-0004/summary.json",
+      "bytes": 10160,
+      "sha256": "1b822772ba4f68da4d04b743a72fbcdcce4f82a87e7ecd8a0023cad8fff8daa0"
+    },
+    {
+      "path": "aime2026-0004/wrong-questions.json",
+      "bytes": 236,
+      "sha256": "701128d3e9387da13120423bebefa5b286dea38609b9c9aa247b9203bf1bd295"
+    }
+  ],
+  "notes": [
+    "Original AISBench output trees preserved byte for byte, including configs, predictions, temporary predictions, results, logs and summary.",
+    "Only ID15 was cancelled after the other 29 requests completed in each round, per user policy; no missing response fabricated."
+  ]
+}

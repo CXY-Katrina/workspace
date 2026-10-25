@@ -1,0 +1,12 @@
+/usr/local/python3.12.13/lib/python3.12/site-packages/triton/language/extra/cann/extension/math_ops.py:13: FutureWarning: triton.language.extra.cann.extension.atan2 is deprecated and will be removed in the next release; use triton.language.extra.cann.libdevice.atan2 instead.
+  @_deprecated(replacement="triton.language.extra.cann.libdevice.atan2")
+/usr/local/python3.12.13/lib/python3.12/site-packages/triton/language/extra/cann/extension/math_ops.py:35: FutureWarning: triton.language.extra.cann.extension.isfinited is deprecated and will be removed in the next release; use triton.language.extra.cann.libdevice.isfinited instead.
+  @_deprecated(replacement="triton.language.extra.cann.libdevice.isfinited")
+/usr/local/python3.12.13/lib/python3.12/site-packages/triton/language/extra/cann/extension/math_ops.py:49: FutureWarning: triton.language.extra.cann.extension.finitef is deprecated and will be removed in the next release; use triton.language.extra.cann.libdevice.finitef instead.
+  @_deprecated(replacement="triton.language.extra.cann.libdevice.finitef")
+[2026-10-24 22:33:12,140] [ais_bench] [[32mINFO[0m] Current exp folder: /home/j00893003/minimax-dspark/cxy-pd-pr19723-20261025/runs/aime2026-0004/aisbench/20261024_223305
+[2026-10-24 22:33:12,150] [ais_bench] [[32mINFO[0m] Starting inference tasks...
+[2026-10-24 22:33:12,150] [ais_bench] [[32mINFO[0m] Partitioned into 1 tasks.
+[2026-10-24 22:33:12,169] [ais_bench] [[33mWARNING[0m] Can't set cursor because of setupterm: could not find terminal, running in background mode
+[2026-10-24 22:33:12,169] [ais_bench] [[32mINFO[0m] Launch TasksMonitor, PID: 1250181, Refresh interval: 0.5, Run in background: True
+Monitoring tasks progress:   0%|          | 0/1 [00:00<?, ?it/s][2026-10-24 22:33:12,170] [ais_bench] [[33mWARNING[0m] Failed to read status file '/home/j00893003/minimax-dspark/cxy-pd-pr19723-20261025/runs/aime2026-0004/aisbench/20261024_223305/status_tmp/tmp_minimax-pd-dspark_aime2026.json': [Errno 2] No such file or directory: '/home/j00893003/minimax-dspark/cxy-pd-pr19723-20261025/runs/aime2026-0004/aisbench/20261024_223305/status_tmp/tmp_minimax-pd-dspark_aime2026.json'. Attempting to clear and continuing.

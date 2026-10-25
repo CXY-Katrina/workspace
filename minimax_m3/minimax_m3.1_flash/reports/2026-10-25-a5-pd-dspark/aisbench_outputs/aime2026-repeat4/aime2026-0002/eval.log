@@ -1,0 +1,31 @@
+/usr/local/python3.12.13/lib/python3.12/site-packages/triton/language/extra/cann/extension/math_ops.py:13: FutureWarning: triton.language.extra.cann.extension.atan2 is deprecated and will be removed in the next release; use triton.language.extra.cann.libdevice.atan2 instead.
+  @_deprecated(replacement="triton.language.extra.cann.libdevice.atan2")
+/usr/local/python3.12.13/lib/python3.12/site-packages/triton/language/extra/cann/extension/math_ops.py:35: FutureWarning: triton.language.extra.cann.extension.isfinited is deprecated and will be removed in the next release; use triton.language.extra.cann.libdevice.isfinited instead.
+  @_deprecated(replacement="triton.language.extra.cann.libdevice.isfinited")
+/usr/local/python3.12.13/lib/python3.12/site-packages/triton/language/extra/cann/extension/math_ops.py:49: FutureWarning: triton.language.extra.cann.extension.finitef is deprecated and will be removed in the next release; use triton.language.extra.cann.libdevice.finitef instead.
+  @_deprecated(replacement="triton.language.extra.cann.libdevice.finitef")
+[2026-10-24 22:07:26,053] [ais_bench] [[32mINFO[0m] Reusing experiements from 20261024_214513
+[2026-10-24 22:07:26,053] [ais_bench] [[32mINFO[0m] Current exp folder: /home/j00893003/minimax-dspark/cxy-pd-pr19723-20261025/runs/aime2026-0002/aisbench/20261024_214513
+[2026-10-24 22:07:26,063] [ais_bench] [[32mINFO[0m] Starting evaluation tasks...
+[2026-10-24 22:07:26,064] [ais_bench] [[32mINFO[0m] Partitioned into 1 tasks.
+[2026-10-24 22:07:26,081] [ais_bench] [[33mWARNING[0m] Can't set cursor because of setupterm: could not find terminal, running in background mode
+[2026-10-24 22:07:26,082] [ais_bench] [[32mINFO[0m] Launch TasksMonitor, PID: 1250043, Refresh interval: 0.5, Run in background: True
+Monitoring tasks progress:   0%|          | 0/1 [00:00<?, ?it/s]Monitoring tasks progress: 100%|██████████| 1/1 [00:09<00:00,  9.01s/it]Monitoring tasks progress: 100%|██████████| 1/1 [00:09<00:00,  9.01s/it]
+[2026-10-24 22:07:36,011] [ais_bench] [[32mINFO[0m] Evaluation tasks completed.
+[2026-10-24 22:07:36,011] [ais_bench] [[32mINFO[0m] Summarizing evaluation results...
+[2026-10-24 22:07:36,019] [ais_bench] [[32mINFO[0m] write summary to /home/j00893003/minimax-dspark/cxy-pd-pr19723-20261025/runs/aime2026-0002/aisbench/20261024_214513/summary/summary_20261024_220719.txt
+[2026-10-24 22:07:36,019] [ais_bench] [[32mINFO[0m] write csv to /home/j00893003/minimax-dspark/cxy-pd-pr19723-20261025/runs/aime2026-0002/aisbench/20261024_214513/summary/summary_20261024_220719.csv
+[2026-10-24 22:07:36,019] [ais_bench] [[32mINFO[0m] write markdown summary to /home/j00893003/minimax-dspark/cxy-pd-pr19723-20261025/runs/aime2026-0002/aisbench/20261024_214513/summary/summary_20261024_220719.md
+dataset    version    metric        mode      minimax-pd-dspark
+---------  ---------  ------------  ------  -------------------
+aime2026   6f75bb     accuracy      gen                   93.33
+aime2026   6f75bb     extract_rate  gen                  100.00
+
+
+The markdown format results is as below:
+
+| dataset | version | metric | mode | minimax-pd-dspark |
+|----- | ----- | ----- | ----- | -----|
+| aime2026 | 6f75bb | accuracy | gen | 93.33 |
+| aime2026 | 6f75bb | extract_rate | gen | 100.00 |
+

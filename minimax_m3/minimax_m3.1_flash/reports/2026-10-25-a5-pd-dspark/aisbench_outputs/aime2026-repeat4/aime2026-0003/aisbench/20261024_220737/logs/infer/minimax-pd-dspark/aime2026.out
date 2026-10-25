@@ -1,0 +1,27 @@
+/usr/local/python3.12.13/lib/python3.12/site-packages/triton/language/extra/cann/extension/math_ops.py:13: FutureWarning: triton.language.extra.cann.extension.atan2 is deprecated and will be removed in the next release; use triton.language.extra.cann.libdevice.atan2 instead.
+  @_deprecated(replacement="triton.language.extra.cann.libdevice.atan2")
+/usr/local/python3.12.13/lib/python3.12/site-packages/triton/language/extra/cann/extension/math_ops.py:35: FutureWarning: triton.language.extra.cann.extension.isfinited is deprecated and will be removed in the next release; use triton.language.extra.cann.libdevice.isfinited instead.
+  @_deprecated(replacement="triton.language.extra.cann.libdevice.isfinited")
+/usr/local/python3.12.13/lib/python3.12/site-packages/triton/language/extra/cann/extension/math_ops.py:49: FutureWarning: triton.language.extra.cann.extension.finitef is deprecated and will be removed in the next release; use triton.language.extra.cann.libdevice.finitef instead.
+  @_deprecated(replacement="triton.language.extra.cann.libdevice.finitef")
+[2026-10-24 22:07:52,362] [ais_bench] [[32mINFO[0m] Task [minimax-pd-dspark/aime2026]
+[2026-10-24 22:07:52,380] [ais_bench] [[32mINFO[0m] Zero Retriever initialized, returning empty shot case for all queries
+[2026-10-24 22:07:52,384] [ais_bench] [[32mINFO[0m] Apply ice template finished
+[2026-10-24 22:07:52,385] [ais_bench] [[32mINFO[0m] Warmup size is 0, skip...
+[2026-10-24 22:07:52,385] [ais_bench] [[32mINFO[0m] Dataset needed memory size: 0.01980019 MB
+[2026-10-24 22:07:52,385] [ais_bench] [[32mINFO[0m] Memory usage check passed: 2.75% < 80% (Available: 2182.69 GB)
+[2026-10-24 22:07:52,386] [ais_bench] [[33mWARNING[0m] The request rate is below 0.1, resulting in an excessively long interval between two consecutive requests.
+[2026-10-24 22:07:52,386] [ais_bench] [[32mINFO[0m] Traffic request rate: 0 RPS with burstiness 1.0.
+[2026-10-24 22:07:52,386] [ais_bench] [[32mINFO[0m] Request rate (0.0) or ramp end rps (None) < 0.001, sending all requests simultaneously
+[2026-10-24 22:07:52,386] [ais_bench] [[32mINFO[0m] Total concurrency: 16, per worker concurrency: [16]
+[2026-10-24 22:07:52,386] [ais_bench] [[32mINFO[0m] Total data num: 30, per worker data num: [30]
+[2026-10-24 22:07:52,498] [ais_bench] [[32mINFO[0m] All subprocesses have finished deserializing the first batch of data
+[2026-10-24 22:16:13,568] [ais_bench] [[33mWARNING[0m] Failed to parse JSON from status file '/home/j00893003/minimax-dspark/cxy-pd-pr19723-20261025/runs/aime2026-0003/aisbench/20261024_220737/status_tmp/tmp_minimax-pd-dspark_aime2026.json': Expecting value: line 1 column 1 (char 0). Starting with empty status list.
+[2026-10-24 22:16:17,070] [ais_bench] [[33mWARNING[0m] Failed to parse JSON from status file '/home/j00893003/minimax-dspark/cxy-pd-pr19723-20261025/runs/aime2026-0003/aisbench/20261024_220737/status_tmp/tmp_minimax-pd-dspark_aime2026.json': Expecting value: line 1 column 1 (char 0). Starting with empty status list.
+[2026-10-24 22:18:27,630] [ais_bench] [[33mWARNING[0m] Failed to parse JSON from status file '/home/j00893003/minimax-dspark/cxy-pd-pr19723-20261025/runs/aime2026-0003/aisbench/20261024_220737/status_tmp/tmp_minimax-pd-dspark_aime2026.json': Expecting value: line 1 column 1 (char 0). Starting with empty status list.
+[2026-10-24 22:18:28,130] [ais_bench] [[33mWARNING[0m] Failed to parse JSON from status file '/home/j00893003/minimax-dspark/cxy-pd-pr19723-20261025/runs/aime2026-0003/aisbench/20261024_220737/status_tmp/tmp_minimax-pd-dspark_aime2026.json': Expecting value: line 1 column 1 (char 0). Starting with empty status list.
+[2026-10-24 22:18:36,634] [ais_bench] [[33mWARNING[0m] Failed to parse JSON from status file '/home/j00893003/minimax-dspark/cxy-pd-pr19723-20261025/runs/aime2026-0003/aisbench/20261024_220737/status_tmp/tmp_minimax-pd-dspark_aime2026.json': Expecting value: line 1 column 1 (char 0). Starting with empty status list.
+[2026-10-24 22:18:39,635] [ais_bench] [[33mWARNING[0m] Failed to parse JSON from status file '/home/j00893003/minimax-dspark/cxy-pd-pr19723-20261025/runs/aime2026-0003/aisbench/20261024_220737/status_tmp/tmp_minimax-pd-dspark_aime2026.json': Expecting value: line 1 column 1 (char 0). Starting with empty status list.
+[2026-10-24 22:18:40,636] [ais_bench] [[33mWARNING[0m] Failed to parse JSON from status file '/home/j00893003/minimax-dspark/cxy-pd-pr19723-20261025/runs/aime2026-0003/aisbench/20261024_220737/status_tmp/tmp_minimax-pd-dspark_aime2026.json': Expecting value: line 1 column 1 (char 0). Starting with empty status list.
+[2026-10-24 22:18:46,639] [ais_bench] [[33mWARNING[0m] Failed to parse JSON from status file '/home/j00893003/minimax-dspark/cxy-pd-pr19723-20261025/runs/aime2026-0003/aisbench/20261024_220737/status_tmp/tmp_minimax-pd-dspark_aime2026.json': Expecting value: line 1 column 1 (char 0). Starting with empty status list.
+[2026-10-24 22:18:53,142] [ais_bench] [[33mWARNING[0m] Failed to parse JSON from status file '/home/j00893003/minimax-dspark/cxy-pd-pr19723-20261025/runs/aime2026-0003/aisbench/20261024_220737/status_tmp/tmp_minimax-pd-dspark_aime2026.json': Expecting value: line 1 column 1 (char 0). Starting with empty status list.
