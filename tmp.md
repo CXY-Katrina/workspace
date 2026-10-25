@@ -1,1 +1,2 @@
-swr.cn-north-12.myhuaweicloud.com/atlas_inference/vllm-ascend:daily-releases-v0.30.0-a3-cann9.2.0_20261014151900-20261016
+GBSA 算子面向 Prefill、Decode 不同推理阶段定制 QKV gather 访存策略，依托动态负载划分、Flash Decoding KV 分块计算与 FP8 量化等多项底层优化，算子性能提升 1.2 倍，带动整网推理性能提升 17%，有效缓解长序列注意力场景下的访存压力。
+Index score 算子通过 KV 分块多核并行、尾部分块并行加速，叠加流水掩盖、多级预取以及 FP8 量化方案释放硬件算力，算子性能提升 1.3 倍，同样实现 17% 的整网性能增益，进一步夯实模型高效推理能力。
