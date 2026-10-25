@@ -1,0 +1,24 @@
+{
+  "decode_dp_engines": [
+    {
+      "engine": "0",
+      "rounds": 505075.0,
+      "proposed": 3535525.0,
+      "accepted": 886665.0,
+      "acceptance_percent": 25.078736538420745,
+      "mean_including_target": 2.755511557689452
+    },
+    {
+      "engine": "1",
+      "rounds": 475188.0,
+      "proposed": 3326316.0,
+      "accepted": 806175.0,
+      "acceptance_percent": 24.236272200235938,
+      "mean_including_target": 2.6965390540165153
+    }
+  ],
+  "measured_external_kv_transfer_prompt_tokens_delta": 86853.0,
+  "before_time": 1792939989.994146,
+  "after_time": 1792944176.018948,
+  "qualification_excluded": true
+}

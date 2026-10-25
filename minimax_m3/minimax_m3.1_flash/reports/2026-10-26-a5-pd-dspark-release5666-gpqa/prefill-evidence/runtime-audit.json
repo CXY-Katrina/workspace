@@ -1,0 +1,78 @@
+{
+  "host": "177.11.26.1",
+  "time": 1792939763.418702,
+  "container": "cxy-pd-release5666-dspark-prefill-20261025",
+  "id": "bd4fabedffe87db92bea10413ad77c0be7f5a95ec337bc9643f3e72f4cdaaf0e",
+  "image": "sha256:c368b77383b2f8a8d6d166693918c22cbbfa932ff7e27031df0b7d713534ea1d",
+  "mounts": [
+    {
+      "Type": "bind",
+      "Source": "/usr/local/dcmi",
+      "Destination": "/usr/local/dcmi",
+      "Mode": "",
+      "RW": false,
+      "Propagation": "rprivate"
+    },
+    {
+      "Type": "bind",
+      "Source": "/etc/hixlep",
+      "Destination": "/etc/hixlep",
+      "Mode": "",
+      "RW": false,
+      "Propagation": "rprivate"
+    },
+    {
+      "Type": "bind",
+      "Source": "/usr/local/Ascend/driver",
+      "Destination": "/usr/local/Ascend/driver",
+      "Mode": "",
+      "RW": false,
+      "Propagation": "rprivate"
+    },
+    {
+      "Type": "bind",
+      "Source": "/data/cxy/pd-release5666-dspark-gpqa-20261025",
+      "Destination": "/workspace",
+      "Mode": "",
+      "RW": true,
+      "Propagation": "rprivate"
+    },
+    {
+      "Type": "bind",
+      "Source": "/data/l00845740/minimax_m3dot1_flash_w8a8_mxfp8_quarot_l32",
+      "Destination": "/data/l00845740/minimax_m3dot1_flash_w8a8_mxfp8_quarot_l32",
+      "Mode": "",
+      "RW": false,
+      "Propagation": "rprivate"
+    }
+  ],
+  "repositories": {
+    "vllm": {
+      "head": "ced6857afa0ea7b2e3f0846a62e1394e90f15607",
+      "tree": "22fe534b15542997d37f97a9079b4a1ac7961a18",
+      "status": ""
+    },
+    "vllm-ascend": {
+      "head": "5666e6616ecc0155fb9ae79d861eb9f9781e6f31",
+      "tree": "cd6cf232c10e1ef9d6b3e15393eb178c68cb530a",
+      "status": ""
+    }
+  },
+  "packages": {
+    "vllm": "0.30.0+empty",
+    "vllm-ascend": "0.30.0rc2+pr19.dsparkfix",
+    "torch": "2.10.0+cpu",
+    "torch-npu": "2.10.0.post7",
+    "transformers": "5.14.1"
+  },
+  "weights": {
+    "config.json": {
+      "sha256": "8885810548f09f7970c282af732ab8456479bd41961ea65274e25d8309d234ee",
+      "bytes": 5223
+    },
+    "quant_model_description.json": {
+      "sha256": "9ef9bf62c5c861b0f97040925faee3c4136dcbac02859f3d37a69ee3cadd8cb6",
+      "bytes": 4152831
+    }
+  }
+}

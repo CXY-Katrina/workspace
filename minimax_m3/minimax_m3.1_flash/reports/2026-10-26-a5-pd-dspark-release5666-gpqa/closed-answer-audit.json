@@ -1,0 +1,40 @@
+{
+  "official_correct": 168,
+  "official_total": 198,
+  "official_accuracy_percent": 84.84848484848484,
+  "unclosed_reasoning_question_ids": [
+    2,
+    80,
+    82,
+    89,
+    102,
+    116,
+    128,
+    146,
+    148,
+    167,
+    186
+  ],
+  "unclosed_reasoning_counted_correct_question_ids": [
+    2,
+    89,
+    116
+  ],
+  "unclosed_retokenized_counts": {
+    "2": 81920,
+    "80": 81920,
+    "82": 81919,
+    "89": 81919,
+    "102": 81916,
+    "116": 81919,
+    "128": 81912,
+    "146": 81918,
+    "148": 81919,
+    "167": 81919,
+    "186": 81918
+  },
+  "supplementary_correct_if_unclosed_answers_counted_wrong": 165,
+  "supplementary_accuracy_percent": 83.33333333333333,
+  "official_result_modified": false,
+  "explanation": "Official AISBench preserves unfinished reasoning when no </think> exists and the GPQA regex selects the first ANSWER: X. Supplementary criterion requires a closed reasoning section; it does not replace the official evaluator."
+}

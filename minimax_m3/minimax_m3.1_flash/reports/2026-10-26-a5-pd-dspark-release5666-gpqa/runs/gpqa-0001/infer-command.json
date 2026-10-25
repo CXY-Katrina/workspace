@@ -1,0 +1,1 @@
+["docker", "exec", "j00893003-minimax-a5-dev", "bash", "/home/j00893003/minimax-dspark/cxy-pd-release5666-dspark-gpqa-20261025/pd_round_client.sh", "/home/j00893003/minimax-dspark/cxy-pd-release5666-dspark-gpqa-20261025/runs/gpqa-0001"]

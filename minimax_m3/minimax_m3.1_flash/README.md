@@ -4,6 +4,8 @@
 
 ## 精度测试报告
 
+- [2026年10月26日 release 5666 双机 PD + DSpark GPQA 完整 outputs](reports/2026-10-26-a5-pd-dspark-release5666-gpqa/README.md)：单轮官方成绩 168/198（84.85%），含原始预测、逐题评分、完整错答及评分口径审计。
+
 - [无 DSpark GPQA 两轮对照结果与错题](reports/2026-10-25-a5-pd-no-dspark/README.md)。
 
 - [2026年10月25日 A5 PD 分离与 DSpark 测试](reports/2026-10-25-a5-pd-dspark/README.md)：AIME2026 四轮 112/120（93.33%），GPQA 四轮 671/792（84.72%），包含两台服务器环境、权重路径、采信率及逐题原始错答。

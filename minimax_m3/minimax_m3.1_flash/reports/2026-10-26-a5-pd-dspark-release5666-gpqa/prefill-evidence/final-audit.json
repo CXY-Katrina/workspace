@@ -1,0 +1,40 @@
+{
+  "time": 1792944312.2059515,
+  "host": "177.11.26.1",
+  "container": "cxy-pd-release5666-dspark-prefill-20261025",
+  "source": {
+    "vllm": {
+      "head": "ced6857afa0ea7b2e3f0846a62e1394e90f15607",
+      "status": ""
+    },
+    "vllm-ascend": {
+      "head": "5666e6616ecc0155fb9ae79d861eb9f9781e6f31",
+      "status": ""
+    }
+  },
+  "services_retained_by_user_instruction": true,
+  "health": 200,
+  "weights": {
+    "config.json": {
+      "sha256": "8885810548f09f7970c282af732ab8456479bd41961ea65274e25d8309d234ee",
+      "bytes": 5223
+    },
+    "quant_model_description.json": {
+      "sha256": "9ef9bf62c5c861b0f97040925faee3c4136dcbac02859f3d37a69ee3cadd8cb6",
+      "bytes": 4152831
+    }
+  },
+  "weight_metadata_unchanged": true,
+  "weight_binary_stats": {
+    "dspark/model-dspark-00001.safetensors": {
+      "bytes": 2301867426,
+      "mtime_ns": 1792679812289326630
+    },
+    "optional/quarot.safetensors": {
+      "bytes": 150995040,
+      "mtime_ns": 1792809116141326630
+    }
+  },
+  "cann_draft_forward_workers": 4,
+  "fatal_log_lines": []
+}

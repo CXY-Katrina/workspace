@@ -1,0 +1,22 @@
+{
+  "dataset": "gpqa",
+  "round": 1,
+  "seed": 1042,
+  "temperature": 1,
+  "top_p": 0.95,
+  "chat_template_kwargs": {
+    "reasoning_effort": "max",
+    "thinking_mode": "enabled"
+  },
+  "concurrency": 16,
+  "max_out_len": 81920,
+  "service_context": 133000,
+  "proxy": "http://177.11.26.1:8009",
+  "model": "minimax-m3.1-flash",
+  "speculative_decoding": true,
+  "topology": "PD_P26_DP1_TP4_PP2_D27_DP2_TP4_PP1",
+  "kv_cache_dtype": "fp8",
+  "draft_kv_cache_dtype": "bfloat16",
+  "draft_sample_method": "probabilistic",
+  "cancel_policy": "Only cancel AIME question ID15 when every other question has returned; count it as unanswered in the denominator."
+}

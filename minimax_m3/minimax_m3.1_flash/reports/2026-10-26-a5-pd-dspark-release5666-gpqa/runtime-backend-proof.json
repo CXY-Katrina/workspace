@@ -1,0 +1,34 @@
+{
+  "time": 1792944204.957901,
+  "decode_forward_workers_logged": 8,
+  "source": "5666e6616ecc0155fb9ae79d861eb9f9781e6f31",
+  "source_edits": false,
+  "draft_backend_file": "vllm_ascend/attention/fa_v1.py",
+  "qualification": {
+    "time": 1792939989.9152448,
+    "valid": true,
+    "client": "j00893003-minimax-a5-dev",
+    "proxy": "http://177.11.26.1:8009",
+    "external_kv_transfer_tokens_delta": 212.0,
+    "dspark": {
+      "rounds": 61.0,
+      "proposed_draft_tokens": 427.0,
+      "accepted_draft_tokens": 144.0,
+      "acceptance_percent": 33.723653395784545,
+      "accepted_draft_per_round": 2.360655737704918,
+      "mean_including_target_token": 3.360655737704918,
+      "accepted_per_position": [
+        43.0,
+        33.0,
+        23.0,
+        16.0,
+        12.0,
+        10.0,
+        7.0
+      ],
+      "scope": "Includes generation before any user-requested cancellation; role-scoped counter delta summed over DP engines."
+    },
+    "qualification_excluded_from_benchmark": true
+  },
+  "services_retained": "User instructed service to continue; no automatic service shutdown."
+}

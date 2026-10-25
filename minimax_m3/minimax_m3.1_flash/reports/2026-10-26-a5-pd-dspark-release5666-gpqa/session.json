@@ -1,0 +1,28 @@
+{
+  "case_type": "PD accuracy",
+  "release": "5666e6616ecc0155fb9ae79d861eb9f9781e6f31",
+  "vllm": "ced6857afa0ea7b2e3f0846a62e1394e90f15607",
+  "pr22_merged": true,
+  "extra_source_edits": false,
+  "weights_prefill": "/data/l00845740/minimax_m3dot1_flash_w8a8_mxfp8_quarot_l32",
+  "weights_decode": "/mnt/weight/minimax_m3dot1_flash_w8a8_mxfp8_quarot_l32",
+  "dataset": "GPQA Diamond",
+  "planned_rounds": 1,
+  "planned_requests": 198,
+  "concurrency": 16,
+  "max_out_len": 81920,
+  "context": 133000,
+  "kv_cache_dtype": "fp8",
+  "draft_kv_cache_dtype": "bfloat16",
+  "draft_sample_method": "probabilistic",
+  "temperature": 1,
+  "top_p": 0.95,
+  "seed": 1042,
+  "chat_template_kwargs": {
+    "reasoning_effort": "max",
+    "thinking_mode": "enabled"
+  },
+  "topology": "P26_DP1_TP4_PP2_D27_DP2_TP4_PP1",
+  "prefill_container": "cxy-pd-release5666-dspark-prefill-20261025",
+  "decode_container": "cxy-pd-release5666-dspark-decode-20261025"
+}

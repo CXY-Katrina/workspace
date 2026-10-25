@@ -1,0 +1,63 @@
+MiniMax M3.1 Flash A5 双机 PD + DSpark：GPQA Diamond 单轮验证报告
+测量时间（北京时间）：2026-10-25T22:53:09.994146+08:00 至 2026-10-26T00:02:56.018948+08:00
+
+官方 AISBench 精度：168/198 = 84.848485%
+请求总数 198；成功返回 198；HTTP/推理失败 0；取消 0；本轮仅测试一次 GPQA。
+完整草稿采信率：24.670347% = 1692840/6861841。
+每轮接受草稿数：1.726924305；加上目标模型必定输出的 token 后：2.726924305。
+草稿轮数：980263；按位置接受数：[659338, 410072, 252668, 158281, 101415, 67220, 43846]。
+采信率取 Decode 两个 DP 实例在整轮测量前后的计数差；排除资格验证请求。Prefill 采信计数为 0，不混入 Decode。
+测量期间实际跨机 KV 传输 prompt tokens 增量：86853。启动资格验证另记录 212 个，未纳入正式统计。
+
+部署与源码
+Prefill：177.11.26.1，容器 cxy-pd-release5666-dspark-prefill-20261025（bd4fabedffe8），DP1 × TP4 × PP2，API 31050。
+Decode：177.11.27.1，容器 cxy-pd-release5666-dspark-decode-20261025（61087891fa77），DP2 × TP4 × PP1，API 31060。
+PD 代理：177.11.26.1:8009，MooncakeConnectorV1 / Ascend Direct。
+两端 vLLM Ascend：releases/v0.30.0rc2 @ 5666e6616ecc0155fb9ae79d861eb9f9781e6f31，已合入 PR22；测试前后 Git 工作区均干净，无额外源码补丁。
+两端 vLLM：ced6857afa0ea7b2e3f0846a62e1394e90f15607，Git 工作区干净。
+复用已有 CANN / Torch / Transformers / AISBench 和编译算子；未升级依赖。Prefill 安装包元数据的历史 pr19.dsparkfix 后缀不代表源码版本，实际源码和运行路径见审计文件。
+DSpark 草稿 attention 实际进入 release 中的 vllm_ascend/attention/fa_v1.py 并调用 CANN FlashAttn；Decode 8 个 worker、Prefill 最后 PP 阶段 4 个 worker 有现有 forward 日志证据。主模型仍使用 MiniMax 稀疏 attention 后端。
+
+权重与配置
+Prefill 权重：/data/l00845740/minimax_m3dot1_flash_w8a8_mxfp8_quarot_l32
+Decode 权重：/mnt/weight/minimax_m3dot1_flash_w8a8_mxfp8_quarot_l32（来自 Prefill 的同一份只读 NFS 权重）。
+DSpark：dspark/model-dspark-00001.safetensors，保持原生 MXFP8；未反量化为 BF16。
+QuaRot：optional/quarot.safetensors。
+所有权重只读挂载；本任务未写权重。测试前后 config.json、quant_model_description.json 哈希一致，DSpark 与 QuaRot 文件大小和修改时间一致。
+主模型 KV：FP8；草稿 KV：BF16。DSpark 7 tokens，probabilistic，草稿 eager；Decode FULL_DECODE_ONLY。
+上下文 133000，最大输出 81920，并发 16，temperature=1，top_p=0.95，seed=1042，ignore_eos=False。
+chat_template_kwargs：reasoning_effort=max、thinking_mode=enabled；保留 checkpoint 默认 chat template。
+评分后处理：extract_non_reasoning_content → GPQA_Simple_Eval_postprocess → GPQAEvaluator；temperature 是生成采样参数，后处理不设置温度。
+
+评分口径与输出质量
+11 条回答缺少推理结束标记，ID：[2, 80, 82, 89, 102, 116, 128, 146, 148, 167, 186]。返回文本重新 tokenize 为 81912–81920 tokens，均接近输出上限；原始预测记录未保留 finish_reason，重新编码也可能与原始 token 数有少量差异。
+其中 ID2、89、116 没有完成最终回答，但官方后处理在其推理文本中匹配到正确的 ANSWER: X，因此计入官方 168 分。
+不修改官方成绩。若补充采用“未结束推理的回答统一计错”的口径，成绩为 165/198 = 83.333333%；此为额外审计口径，不替代官方评估。
+全文检查 198 个返回、8,244,008 个字符：NUL 0，意外控制字符 0，Unicode 替换字符 1。
+替换字符位于 ID181 推理中的“�8B”，该题最终 Answer: D，标准答案也是 D。
+部分推理含中文书名、学校名或零星中文词，详见 output-quality-details.json。未检出连续三行相同的长文本；该检查不等于穷尽语义重复。
+
+错题
+[4, 28, 36, 45, 70, 72, 76, 77, 80, 82, 90, 91, 93, 95, 102, 103, 107, 111, 119, 128, 130, 135, 143, 146, 148, 167, 168, 175, 179, 186]
+编号为 CSV 行号 + 1；Record ID、预测选项、标准选项见 runs/gpqa-0001/per-question.json。
+所有 30 道错题的完整提示词和原始回答：wrong-answer-full-responses.json。
+全部 198 个原始返回：raw-returned-responses.jsonl。
+
+Decode 分实例统计
+DP engine 0：采信率 25.078737%；含目标 token 平均长度 2.755511558；轮数 505075。
+DP engine 1：采信率 24.236272%；含目标 token 平均长度 2.696539054；轮数 475188。
+
+历史比较
+历史报告 GPQA 四轮：671/792 = 84.722222%；加权采信率 24.340902%；含目标 token 平均长度 2.703863。
+本轮官方精度与采信率均接近历史报告。单轮与四轮汇总仅作描述性比较，不能据此确定单个代码或配置项的因果影响。
+
+服务状态与证据
+按照用户“服务继续”的要求，测试完成后保留两端 PD 服务和代理；未启动第二轮 GPQA。两端最终 health 均为 200。
+环境、挂载、源码、权重核验、服务日志、Ascend 日志、AISBench 原始 outputs、测量前后及过程中 metrics 均已归档。
+Prefill 运行目录：/data/cxy/pd-release5666-dspark-gpqa-20261025
+Decode 运行目录：/home/x00939195/cxy-pd-release5666-dspark-gpqa-20261025
+本报告目录：/home/j00893003/minimax-dspark/cxy-pd-release5666-dspark-gpqa-20261025
+
+此前 AIME2026 四轮 outputs 已上传 workspace，提交 d4617f8c7b60eed4087995468376fbe1b8833efc：
+https://github.com/CXY-Katrina/workspace/tree/main/minimax_m3/minimax_m3.1_flash/reports/2026-10-25-a5-pd-dspark/aisbench_outputs/aime2026-repeat4
+该历史归档为 112/120 = 93.33%，含 116 条实际返回；本轮没有重跑 AIME。
