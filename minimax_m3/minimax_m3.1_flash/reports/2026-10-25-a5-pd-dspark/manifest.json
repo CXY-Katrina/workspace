@@ -422,8 +422,8 @@
       "sha256": "edf0f2dba636a80acc0fe1d7b2ead8f254eb7b7de853a0d277761973cb73f4b0"
     },
     "README.md": {
-      "bytes": 12865,
-      "sha256": "439894274c1570d3daacec5892ff2ec54883bac00192da632ac951a7bbba0242"
+      "bytes": 12700,
+      "sha256": "e1b42d078852950925d64142abbc2932d4f5f2da58a9505c0883e2be0916ac4c"
     },
     "scripts/dspark/launch_pd_decode.sh": {
       "bytes": 305,

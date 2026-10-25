@@ -131,7 +131,7 @@ AIME 使用 30 题完整集，四次独立串行轮次，共 120 个计划请求
 
 两端启动日志均明确为 `speculative_config=None`；两端健康检查返回 200，实际 PD 请求返回 `2`，Decode 收到 696 个来自跨机 KV 传输的 prompt token，草稿相关计数为 0。详见 [Prefill 启动证据](data/nonspec-switch/prefill-startup-proof.json)、[Decode 启动证据](data/nonspec-switch/decode-startup-proof.json) 与 [请求验证](data/nonspec-switch/qualification.json)。
 
-无 DSpark GPQA 已启动，计划连续完整测试 **2 × 198 = 396** 个请求，使用 seed 1042、1043，与此前 DSpark 前两轮对应。并发16、最大输出81920、temperature=1、top_p=0.95，以及 `chat_template_kwargs` 中的 `reasoning_effort=max`、`thinking_mode=enabled` 均不变。此时尚无这两轮的正式成绩；关闭 DSpark 后采信率不适用，不能写成 0% 并与开启时比较。
+无 DSpark GPQA 按原采样配置连续测试两轮，共396个请求。每轮正式成绩、同 seed 的精度对照与全部错题回答见 [无 DSpark GPQA 对照报告](../2026-10-25-a5-pd-no-dspark/README.md)。关闭 DSpark 后采信率不适用。
 
 - [会话配置](data/nonspec-switch/session.json)
 - [第一轮 AISBench 配置](data/nonspec-switch/gpqa-round1-config.py)

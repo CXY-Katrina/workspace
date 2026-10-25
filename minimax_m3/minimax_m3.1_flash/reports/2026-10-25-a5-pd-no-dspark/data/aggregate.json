@@ -1,0 +1,11 @@
+{
+  "speculative_decoding": false,
+  "completed_rounds": 0,
+  "planned_rounds": 2,
+  "correct_for_completed_rounds": 0,
+  "completed_round_sample_count": 0,
+  "planned_total": 396,
+  "accuracy_completed_rounds": null,
+  "draft_acceptance_percent": null,
+  "snapshot_utc": "2026-10-25T04:48:50.249750+00:00"
+}

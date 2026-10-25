@@ -1,0 +1,29 @@
+{
+  "snapshot_utc": "2026-10-25T04:48:50.249750+00:00",
+  "files": {
+    "README.md": {
+      "bytes": 3276,
+      "sha256": "4da11c36941cd25d3f344b6cfba8a4c031090ea9bd625924fa214e77ca8cf035"
+    },
+    "wrong_answers.md": {
+      "bytes": 185,
+      "sha256": "128f39386908cbc144c8c8deaa137326e0c33535bdbd2e7649c447738ab5246c"
+    },
+    "data/aggregate.json": {
+      "bytes": 309,
+      "sha256": "00cbed21b8ab4e9c62aff812bb0e2016e0defa51d2d23eb352aa96fcb429bd8e"
+    },
+    "data/session.json": {
+      "bytes": 689,
+      "sha256": "54a637a3cbc60c0bbd03a541e984bc2ba7262424da59aaa7adccf921936406d1"
+    },
+    "data/snapshot.json": {
+      "bytes": 12002,
+      "sha256": "ec25a7b583d62b20452bff830eb9093d300c7a82ac50d58e81243496ab15bd94"
+    },
+    "data/wrong-question-index.json": {
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    }
+  }
+}

@@ -1,0 +1,50 @@
+# MiniMax M3.1 Flash 无 DSpark GPQA 精度对照测试
+
+结果更新时间：**2026-10-25T12:48:50+08:00（北京时间）**。
+
+两台服务器沿用 [DSpark 测试报告](../2026-10-25-a5-pd-dspark/README.md) 中的容器、只读主模型权重、代码提交和 PD 拓扑。本次仅从两端启动命令中删除 `--speculative-config` 整段，不删除或改写草稿权重文件。
+
+## 正式成绩
+
+| 轮次 | 请求 seed | 完成状态 | 正确 / 总数 | 精度 | DSpark采信率 |
+| --- | --- | --- | --- | --- | --- |
+| 1 | 1042 | 运行中 | — | — | 不适用，已关闭 |
+| 2 | 1043 | 等待前一轮完成 | — | — | 不适用，已关闭 |
+
+**尚无完整轮次的正式成绩。** 计划连续测试两轮，每轮198题，共396题。
+
+## 当前轮次临时核对
+
+第1轮已返回 **64/198** 题；按相同的答案提取规则临时核对，**61题正确**，3题暂未匹配参考答案。
+
+这只是已返回子集的临时核对，不是完整198题的正式成绩。完整轮次结束后由 AISBench evaluator 统一评分，并更新正式成绩与错题原始回答。
+
+当前子集暂未匹配的题号：4、18、31。
+
+## 与 DSpark 相同请求 seed 的对照
+
+| seed | DSpark 正确 / 总数 | 无 DSpark 正确 / 总数 | 精度差值，无 DSpark减DSpark |
+| --- | --- | --- | --- |
+| 1042 | 169/198 | 待完成 | — |
+| 1043 | 170/198 | 待完成 | — |
+
+此前 DSpark 四轮总分为671/792（84.72%）；上表仅将前两轮相同请求 seed 对齐比较。
+
+## 配置与 DSpark 关闭证据
+
+- Prefill：`177.11.26.1`，容器 `cxy-vllm-ascend-0.30.0rc2-20261024`；DP1 × TP4 × PP2。
+- Decode：`177.11.27.1`，容器 `cxy-minimax-pd-decode-20261025`；DP2 × TP4 × PP1。
+- Prefill 权重：`/data/l00845740/minimax_m3dot1_flash_w8a8_mxfp8_quarot_l32`。
+- Decode 权重：`/mnt/weight/minimax_m3dot1_flash_w8a8_mxfp8_quarot_l32`，只读 NFS 挂载同一份权重。
+- vLLM Ascend：`accf5d0fc6005fe89dd909e656848b696bbc18f5`；vLLM：`ced6857afa0ea7b2e3f0846a62e1394e90f15607`。
+- 上下文133000，最大输出81920，并发16，temperature=1，top_p=0.95，主模型 KV cache 为FP8。
+- `chat_template_kwargs`：`reasoning_effort=max`，`thinking_mode=enabled`。
+- 两端运行日志为 `speculative_config=None`，启动验证跨机 KV 传输正常，草稿计数为0；关闭后采信率不适用。
+
+启动参数、日志核验与请求验证见 [切换证据](../2026-10-25-a5-pd-dspark/data/nonspec-switch/qualification.json) 和 [无 DSpark 脚本](../2026-10-25-a5-pd-dspark/scripts/nonspec)。客户端历史 `abbr=minimax-pd-dspark` 仅作为输出目录名沿用，不代表启用了 DSpark。
+
+## 错题回答与原始记录
+
+[逐轮完整错题回答](wrong_answers.md) 包含实际请求题目与选项、参考答案、官方提取答案及全部原始回答。完整轮次的逐题评分、配置与指标位于 `data/rounds`；[结构化汇总](data/aggregate.json)、[错题索引](data/wrong-question-index.json) 与 [本次快照](data/snapshot.json) 可供复核。
+
+服务器结果根目录：`177.11.26.1:/home/j00893003/minimax-dspark/cxy-pd-pr19723-nonspec-gpqa2-20261025`。控制器仅运行两轮GPQA，第二轮完成后退出；本报告在每轮正式评分完成后自动更新。
