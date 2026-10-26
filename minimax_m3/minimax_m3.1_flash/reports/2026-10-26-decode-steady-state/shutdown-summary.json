@@ -1,0 +1,33 @@
+{
+  "requested_action": "stop service and summarize existing data; no further benchmarks",
+  "177.11.26.1": {
+    "verified_at_epoch": 1793026500.0961041,
+    "status": "verified_stopped",
+    "health": {
+      "P": "<urlopen error [Errno 111] Connection refused>",
+      "proxy": "<urlopen error [Errno 111] Connection refused>",
+      "D27": "<urlopen error [Errno 111] Connection refused>"
+    },
+    "empty_npu_count": 8,
+    "test_container_processes": "PID                 PPID                COMMAND\n3098670             3098652             sleep infinity\n3125063             3098652             bash\n",
+    "remaining_monitors": []
+  },
+  "177.11.21.1": {
+    "verified_at_epoch": 1793026432.894047,
+    "status": "test_container_absent; no NPU processes",
+    "container_error": "Error: No such object: cxy-m31-a5-openeuler-40260585905-1\n",
+    "empty_npu_count": 8,
+    "temporary_monitors_stopped": true,
+    "temporary_trace_disabled": true
+  },
+  "177.11.27.1": {
+    "status": "cleanup_unverified_due_to_ssh_authentication_failure",
+    "health_from_P26": "<urlopen error [Errno 111] Connection refused>",
+    "process_cleanup_verified": false,
+    "temporary_monitors_cleanup_verified": false,
+    "note": "Previously launched monitors have 7200-second bounds; actual termination not verified."
+  },
+  "valid_runs": 34,
+  "valid_graph1024_runs": 0,
+  "new_dual_D_128k_completed": false
+}
