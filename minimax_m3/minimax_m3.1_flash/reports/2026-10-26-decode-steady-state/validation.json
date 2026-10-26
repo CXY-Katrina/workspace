@@ -43,5 +43,14 @@
     "sha256_matches_remote": true,
     "raw_sqlite_metrics_match": true,
     "official_stable_csv_matches": true
+  },
+  {
+    "run": "115_search_d16k_cc64",
+    "group": "new-dp4",
+    "requests": 256,
+    "steady_requests": 192,
+    "sha256_matches_remote": true,
+    "raw_sqlite_metrics_match": true,
+    "official_stable_csv_matches": true
   }
 ]

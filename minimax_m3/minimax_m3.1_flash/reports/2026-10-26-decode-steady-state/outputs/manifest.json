@@ -23,5 +23,10 @@
     "name": "new-dp4-107_search_d16k_cc128.tar.gz",
     "bytes": 4119220,
     "sha256": "908a3ad15aaeb37be62c2568f7faf42bb5f55e8f7ee1fec548d008f5e145ae4b"
+  },
+  {
+    "name": "new-dp4-115_search_d16k_cc64.tar.gz",
+    "bytes": 2506581,
+    "sha256": "e0cecc9ef46a62d1114c2cb1ebfb6fd50b8d6f203efbb17c5b842b77d0d2b740"
   }
 ]

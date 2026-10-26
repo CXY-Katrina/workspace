@@ -4,7 +4,7 @@
 
 ## 性能测试报告
 
-- [2026年10月26日纯 D 稳态离线重分析](reports/2026-10-26-decode-steady-state/README.md)：32 组历史数据、最佳完整 AISBench outputs；旧单机直连 D 与新双机完整 PD 分组列出。graph 1024 优化补测进行中。
+- [2026年10月26日纯 D 稳态离线重分析](reports/2026-10-26-decode-steady-state/README.md)：34 组历史数据、最佳完整 AISBench outputs；旧单机直连 D 与新双机完整 PD 分组列出。graph 1024 优化补测进行中。
 
 ## 精度测试报告
 
