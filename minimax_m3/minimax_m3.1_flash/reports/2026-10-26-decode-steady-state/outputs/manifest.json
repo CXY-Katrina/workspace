@@ -1,0 +1,27 @@
+[
+  {
+    "name": "old-single-d-507_d16k_confirm_cc32.tar.gz",
+    "bytes": 2689089,
+    "sha256": "46a7897ceeaf6fae77f5d1e7fe5ae1a4430c4ec73a46c82f87590f502340a361"
+  },
+  {
+    "name": "old-single-d-505_d16k_confirm_cc78.tar.gz",
+    "bytes": 3785859,
+    "sha256": "e620796e5a61427947ebe2806883ee4534e9167854f6f4981cd9dcd23c732d44"
+  },
+  {
+    "name": "old-single-d-110_d128k_cc8.tar.gz",
+    "bytes": 2718024,
+    "sha256": "05f1c9d811da044026cc5fc36ae9bfa08dbcd0ebbad5482becd520a8df276790"
+  },
+  {
+    "name": "new-dp4-111_refine_d16k_cc91.tar.gz",
+    "bytes": 3309679,
+    "sha256": "a826938678e069d592dc5b622d308d8a9c7f5e862e52d590edca06f75b9b38fc"
+  },
+  {
+    "name": "new-dp4-107_search_d16k_cc128.tar.gz",
+    "bytes": 4119220,
+    "sha256": "908a3ad15aaeb37be62c2568f7faf42bb5f55e8f7ee1fec548d008f5e145ae4b"
+  }
+]

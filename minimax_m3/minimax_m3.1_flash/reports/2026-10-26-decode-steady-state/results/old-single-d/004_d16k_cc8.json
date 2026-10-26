@@ -1,0 +1,310 @@
+{
+  "run_id": "004_d16k_cc8",
+  "group": "old-single-d",
+  "method": "AISBench StablePerfMetricCalculator (request-start cohort)",
+  "parameters": {
+    "role": "decode",
+    "input_len": 16384,
+    "output_len": 1024,
+    "concurrency": 8,
+    "request_rate": 0.0,
+    "prefix_hit_target": 1,
+    "prefix_num": 1,
+    "dp": 2,
+    "data_num": 32,
+    "seed": 1024,
+    "npu_num": 8
+  },
+  "source": {
+    "run_path": "/work/pd-pure-perf-20261026-0022/runs/004_d16k_cc8",
+    "measured_outputs": "/work/pd-pure-perf-20261026-0022/runs/004_d16k_cc8/aisbench/outputs/20261025_163411",
+    "original_result": {
+      "run_id": "004_d16k_cc8",
+      "case_type": "decode",
+      "status": "success",
+      "parameters": {
+        "role": "decode",
+        "input_len": 16384,
+        "output_len": 1024,
+        "concurrency": 8,
+        "request_rate": 0.0,
+        "prefix_hit_target": 1,
+        "prefix_num": 1,
+        "dp": 2,
+        "data_num": 32,
+        "seed": 1024,
+        "npu_num": 8
+      },
+      "requests": {
+        "total": 32,
+        "successful": 32,
+        "failed": 0,
+        "actual_concurrency": 7.4802,
+        "max_concurrency": 8.0
+      },
+      "workload": {
+        "requested_input_len": 16384,
+        "actual_input_len_avg": 16384.0,
+        "actual_input_len_min": 16384,
+        "actual_input_len_max": 16384,
+        "requested_output_len": 1024,
+        "output_tokens_avg": 1024.0,
+        "output_tokens_min": 1024,
+        "output_tokens_max": 1024,
+        "prefix_hit_target": 1,
+        "prefix_hit_actual": 0.984375,
+        "prefix_engines": {
+          "0": {
+            "query_delta": 278528.0,
+            "hit_delta": 274176.0,
+            "hit_rate": 0.984375
+          },
+          "1": {
+            "query_delta": 245760.0,
+            "hit_delta": 241920.0,
+            "hit_rate": 0.984375
+          }
+        }
+      },
+      "metrics": {
+        "ttft_avg_s": 0.7316,
+        "ttft_p90_s": 1.7249,
+        "ttft_p99_s": 1.749,
+        "e2el_avg_s": 13.7972,
+        "tpot_avg_ms": 12.8,
+        "tpot_p90_ms": 18.8,
+        "tpot_p99_ms": 18.9,
+        "itl_avg_ms": 41.7,
+        "qps": 0.5421,
+        "output_token_throughput": 555.1605,
+        "input_token_throughput": 8882.5682,
+        "benchmark_duration_s": 59.024371,
+        "peak_kv_cache_usage": 0.030842665687534465
+      },
+      "validity": {
+        "data_valid": true,
+        "valid": true,
+        "slo_pass": {
+          "20": true,
+          "50": true
+        },
+        "service_healthy": true,
+        "reasons": []
+      },
+      "artifacts": {
+        "aisbench_outputs": "aisbench/outputs",
+        "console_log": "logs/aisbench_console.log",
+        "service_script": "config/service_script.sh",
+        "service_log": "logs/service.log",
+        "ascend_logs": "logs/ascend",
+        "deployment": "service/decode/deployments/decode-search"
+      }
+    }
+  },
+  "window": {
+    "absolute_start_monotonic_s": 2357925.85752224,
+    "absolute_end_monotonic_s": 2357962.05917308,
+    "relative_start_s": 11.4518759297207,
+    "relative_end_s": 47.653526769950986,
+    "duration_s": 36.201650840230286,
+    "max_concurrency": 8,
+    "time_at_max_concurrency_fraction": 0.9994381372056526,
+    "min_concurrency": 7,
+    "selected_request_count": 24,
+    "original_request_count": 32
+  },
+  "selected_requests": [
+    {
+      "row_index": 8,
+      "id": 8,
+      "uuid": "098bdcd4624544cc92c5b170c0eedcd5",
+      "start_relative_s": 11.4518759297207,
+      "end_relative_s": 22.519161849748343
+    },
+    {
+      "row_index": 9,
+      "id": 10,
+      "uuid": "faa4d7b8547b44d186eaddfa56da4a9c",
+      "start_relative_s": 12.654930329881608,
+      "end_relative_s": 23.993039059918374
+    },
+    {
+      "row_index": 10,
+      "id": 11,
+      "uuid": "94a4130ae6c74a7a98e9a3a62b88e0ba",
+      "start_relative_s": 12.72979166964069,
+      "end_relative_s": 24.61886717984453
+    },
+    {
+      "row_index": 11,
+      "id": 14,
+      "uuid": "642a4a04852d410abcbd197bc6476d0d",
+      "start_relative_s": 15.818809129763395,
+      "end_relative_s": 28.68133341986686
+    },
+    {
+      "row_index": 12,
+      "id": 9,
+      "uuid": "47728b507d4c4f5eac560b1096e891aa",
+      "start_relative_s": 12.18861676985398,
+      "end_relative_s": 31.958886129781604
+    },
+    {
+      "row_index": 13,
+      "id": 16,
+      "uuid": "91bf84aace7f416e944a5f70a67ca2d4",
+      "start_relative_s": 22.519980259705335,
+      "end_relative_s": 32.73592560971156
+    },
+    {
+      "row_index": 14,
+      "id": 13,
+      "uuid": "71ee4d857b434ad8988e57219f47ba46",
+      "start_relative_s": 14.464080169796944,
+      "end_relative_s": 33.335685919970274
+    },
+    {
+      "row_index": 15,
+      "id": 12,
+      "uuid": "e2a2a2769c4141da9d91ebca517af727",
+      "start_relative_s": 13.82193769980222,
+      "end_relative_s": 33.37339575961232
+    },
+    {
+      "row_index": 16,
+      "id": 18,
+      "uuid": "8f50e448629c4493a429ebecbbafe82f",
+      "start_relative_s": 24.619684239849448,
+      "end_relative_s": 34.831882919650525
+    },
+    {
+      "row_index": 17,
+      "id": 15,
+      "uuid": "7b352ddbcf38465e8a9de1054610e7c3",
+      "start_relative_s": 21.026328849606216,
+      "end_relative_s": 35.368830639868975
+    },
+    {
+      "row_index": 18,
+      "id": 19,
+      "uuid": "df690e90669b4f22aa339ffc334e6b50",
+      "start_relative_s": 28.68216605996713,
+      "end_relative_s": 41.97347358986735
+    },
+    {
+      "row_index": 19,
+      "id": 23,
+      "uuid": "2d350b4bc9ae4f858a717fb068eea720",
+      "start_relative_s": 33.3741687098518,
+      "end_relative_s": 42.74350713985041
+    },
+    {
+      "row_index": 20,
+      "id": 22,
+      "uuid": "4ac21e2cb3fc41da864279c9e6f6f8b9",
+      "start_relative_s": 33.336722639855,
+      "end_relative_s": 43.13297970965505
+    },
+    {
+      "row_index": 21,
+      "id": 17,
+      "uuid": "edf4d77e082646c295a05e705a28e442",
+      "start_relative_s": 23.993815070018172,
+      "end_relative_s": 43.66779890982434
+    },
+    {
+      "row_index": 22,
+      "id": 25,
+      "uuid": "7f0eb9110d3a4f9589f9bec85c8433ed",
+      "start_relative_s": 35.36974879959598,
+      "end_relative_s": 47.54294221987948
+    },
+    {
+      "row_index": 23,
+      "id": 24,
+      "uuid": "b4d33de396a8454a92b5eb4fdd023b9f",
+      "start_relative_s": 34.83293821988627,
+      "end_relative_s": 47.652678459882736
+    },
+    {
+      "row_index": 24,
+      "id": 20,
+      "uuid": "8795c35db11440afa02008391574d469",
+      "start_relative_s": 31.95971253979951,
+      "end_relative_s": 51.65349767962471
+    },
+    {
+      "row_index": 25,
+      "id": 26,
+      "uuid": "aa0a3672c62b47aa842d6c31053cfefb",
+      "start_relative_s": 41.9745799000375,
+      "end_relative_s": 51.76187609974295
+    },
+    {
+      "row_index": 26,
+      "id": 21,
+      "uuid": "480516ea29ff4a8ca62ca014dd0b7b12",
+      "start_relative_s": 32.73683127993718,
+      "end_relative_s": 52.45635650958866
+    },
+    {
+      "row_index": 27,
+      "id": 29,
+      "uuid": "4d33143a4e154437ba403bb4eeb4cf14",
+      "start_relative_s": 43.6688451198861,
+      "end_relative_s": 54.29869388975203
+    },
+    {
+      "row_index": 28,
+      "id": 30,
+      "uuid": "453705b7223f4ca58f8b4f3ba2172806",
+      "start_relative_s": 47.544056459795684,
+      "end_relative_s": 56.05007596965879
+    },
+    {
+      "row_index": 29,
+      "id": 31,
+      "uuid": "cd7cb62a40404250867f0e615dc17907",
+      "start_relative_s": 47.653526769950986,
+      "end_relative_s": 57.76399441994727
+    },
+    {
+      "row_index": 30,
+      "id": 27,
+      "uuid": "d761ac7bbb6f4190be4c633a74d1dcaa",
+      "start_relative_s": 42.74453433975577,
+      "end_relative_s": 58.672929119784385
+    },
+    {
+      "row_index": 31,
+      "id": 28,
+      "uuid": "c2e1a3b909b6418f9385c40b2d900dae",
+      "start_relative_s": 43.13383405003697,
+      "end_relative_s": 59.02437097998336
+    }
+  ],
+  "metrics": {
+    "tpot_avg_ms": 12.892793152053741,
+    "tpot_p90_ms": 18.827406507265824,
+    "tpot_p99_ms": 18.918448391225724,
+    "ttft_avg_s": 0.45695044624153525,
+    "ttft_p90_s": 0.6093487219419329,
+    "ttft_p99_s": 0.7230349188065156,
+    "e2el_avg_s": 13.646277840792512,
+    "e2el_p90_s": 19.687844749819487,
+    "e2el_p99_s": 19.758598209964113,
+    "output_token_throughput": 678.8640691680586,
+    "qps": 0.6629531925469322,
+    "benchmark_duration_s": 36.201650840230286,
+    "client_concurrency_time_weighted": 7.999438137205653
+  },
+  "validity": {
+    "data_valid": true,
+    "slo_pass": {
+      "20": true,
+      "50": true
+    },
+    "tolerance_ms": 1
+  },
+  "interpretation": "AISBench stable-stage counts full output tokens of requests starting in the selected interval and divides by interval duration; request latency retains the full lifetime. It is not an exact token-event time slice or a guarantee of a constant server decode batch."
+}

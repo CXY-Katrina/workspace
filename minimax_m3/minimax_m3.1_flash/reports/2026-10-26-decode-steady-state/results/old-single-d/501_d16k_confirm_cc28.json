@@ -1,0 +1,732 @@
+{
+  "run_id": "501_d16k_confirm_cc28",
+  "group": "old-single-d",
+  "method": "AISBench StablePerfMetricCalculator (request-start cohort)",
+  "parameters": {
+    "role": "decode",
+    "input_len": 16384,
+    "output_len": 1024,
+    "concurrency": 28,
+    "request_rate": 0.0,
+    "prefix_hit_target": 1,
+    "prefix_num": 1,
+    "dp": 2,
+    "data_num": 112,
+    "seed": 1024,
+    "npu_num": 8,
+    "fixed_initial_prefix_seed": true
+  },
+  "source": {
+    "run_path": "/work/pd-pure-perf-20261026-0022/runs/501_d16k_confirm_cc28",
+    "measured_outputs": "/work/pd-pure-perf-20261026-0022/runs/501_d16k_confirm_cc28/aisbench/outputs/20261025_171654",
+    "original_result": {
+      "run_id": "501_d16k_confirm_cc28",
+      "case_type": "decode",
+      "status": "success",
+      "parameters": {
+        "role": "decode",
+        "input_len": 16384,
+        "output_len": 1024,
+        "concurrency": 28,
+        "request_rate": 0.0,
+        "prefix_hit_target": 1,
+        "prefix_num": 1,
+        "dp": 2,
+        "data_num": 112,
+        "seed": 1024,
+        "npu_num": 8,
+        "fixed_initial_prefix_seed": true
+      },
+      "requests": {
+        "total": 112,
+        "successful": 112,
+        "failed": 0,
+        "actual_concurrency": 25.6817,
+        "max_concurrency": 28.0
+      },
+      "workload": {
+        "requested_input_len": 16384,
+        "actual_input_len_avg": 16384.0,
+        "actual_input_len_min": 16384,
+        "actual_input_len_max": 16384,
+        "requested_output_len": 1024,
+        "output_tokens_avg": 1024.0,
+        "output_tokens_min": 1024,
+        "output_tokens_max": 1024,
+        "prefix_hit_target": 1,
+        "prefix_hit_actual": 0.984375,
+        "prefix_engines": {
+          "0": {
+            "query_delta": 901120.0,
+            "hit_delta": 887040.0,
+            "hit_rate": 0.984375
+          },
+          "1": {
+            "query_delta": 933888.0,
+            "hit_delta": 919296.0,
+            "hit_rate": 0.984375
+          }
+        }
+      },
+      "metrics": {
+        "ttft_avg_s": 0.6623,
+        "ttft_p90_s": 0.9589,
+        "ttft_p99_s": 1.3112000000000001,
+        "e2el_avg_s": 17.171799999999998,
+        "tpot_avg_ms": 16.1,
+        "tpot_p90_ms": 19.1,
+        "tpot_p99_ms": 31.0,
+        "itl_avg_ms": 75.1,
+        "qps": 1.4956,
+        "output_token_throughput": 1531.4693,
+        "input_token_throughput": 24503.5087,
+        "benchmark_duration_s": 74.8875609,
+        "peak_kv_cache_usage": 0.04701561065197424
+      },
+      "validity": {
+        "data_valid": true,
+        "valid": true,
+        "slo_pass": {
+          "20": true,
+          "50": true
+        },
+        "service_healthy": true,
+        "reasons": []
+      },
+      "artifacts": {
+        "aisbench_outputs": "aisbench/outputs",
+        "console_log": "logs/aisbench_console.log",
+        "service_script": "config/service_script.sh",
+        "service_log": "logs/service.log",
+        "ascend_logs": "logs/ascend",
+        "deployment": "service/decode/deployments/decode-confirm"
+      }
+    }
+  },
+  "window": {
+    "absolute_start_monotonic_s": 2360487.48818112,
+    "absolute_end_monotonic_s": 2360542.72082226,
+    "relative_start_s": 10.020870849955827,
+    "relative_end_s": 65.25351198995486,
+    "duration_s": 55.23264113999903,
+    "max_concurrency": 28,
+    "time_at_max_concurrency_fraction": 0.9988642814997808,
+    "min_concurrency": 26,
+    "selected_request_count": 84,
+    "original_request_count": 112
+  },
+  "selected_requests": [
+    {
+      "row_index": 28,
+      "id": 28,
+      "uuid": "03106675d06f422f9b23a1546364ccc6",
+      "start_relative_s": 10.020870849955827,
+      "end_relative_s": 27.398446270264685
+    },
+    {
+      "row_index": 29,
+      "id": 30,
+      "uuid": "965e783771ab481899a21c445308a9b2",
+      "start_relative_s": 11.49602968012914,
+      "end_relative_s": 27.50695273000747
+    },
+    {
+      "row_index": 30,
+      "id": 37,
+      "uuid": "28a14d8ea3624e5b98a159a7f1cccc54",
+      "start_relative_s": 13.272767160087824,
+      "end_relative_s": 28.528747420292348
+    },
+    {
+      "row_index": 31,
+      "id": 36,
+      "uuid": "bbd9d00051734d6d9e8a22ffe15f3c7a",
+      "start_relative_s": 13.270571350120008,
+      "end_relative_s": 28.5805579200387
+    },
+    {
+      "row_index": 32,
+      "id": 32,
+      "uuid": "b431d7cb18d14fcbb63b1907b104d25d",
+      "start_relative_s": 12.383034210186452,
+      "end_relative_s": 29.317186910193413
+    },
+    {
+      "row_index": 33,
+      "id": 29,
+      "uuid": "91c240738b5b4223b6adb33ce5ab4f16",
+      "start_relative_s": 11.44457586016506,
+      "end_relative_s": 29.44180339993909
+    },
+    {
+      "row_index": 34,
+      "id": 35,
+      "uuid": "bd42e6edee604f55a6377bf4e43117e8",
+      "start_relative_s": 12.491202339995652,
+      "end_relative_s": 29.445745000150055
+    },
+    {
+      "row_index": 35,
+      "id": 31,
+      "uuid": "fc3d2176a5a74c1c84cf3c82abbc4776",
+      "start_relative_s": 11.501065970398486,
+      "end_relative_s": 30.128035970032215
+    },
+    {
+      "row_index": 36,
+      "id": 41,
+      "uuid": "3bb6056b75784e9c95fc0504c19f21e1",
+      "start_relative_s": 14.145572630222887,
+      "end_relative_s": 30.143906030338258
+    },
+    {
+      "row_index": 37,
+      "id": 38,
+      "uuid": "9624e0948d414cba90f4945cb141e528",
+      "start_relative_s": 13.702329969964921,
+      "end_relative_s": 30.18653726996854
+    },
+    {
+      "row_index": 38,
+      "id": 33,
+      "uuid": "6d046f58c1794562a279d0b0cb9612fe",
+      "start_relative_s": 12.383840820286423,
+      "end_relative_s": 31.158044639974833
+    },
+    {
+      "row_index": 39,
+      "id": 40,
+      "uuid": "f99755d73bdf4b22895a5ad2321d9717",
+      "start_relative_s": 13.720519340131432,
+      "end_relative_s": 31.741834730375558
+    },
+    {
+      "row_index": 40,
+      "id": 43,
+      "uuid": "e523cc9884dc4f0aaba63052820fd577",
+      "start_relative_s": 14.955051310360432,
+      "end_relative_s": 31.794343560002744
+    },
+    {
+      "row_index": 41,
+      "id": 45,
+      "uuid": "5b5dd51e53984645bd6887c02c90c61b",
+      "start_relative_s": 16.195591100025922,
+      "end_relative_s": 31.850517540238798
+    },
+    {
+      "row_index": 42,
+      "id": 42,
+      "uuid": "790877795b2346d88e706e0c07f76bb1",
+      "start_relative_s": 14.953273330349475,
+      "end_relative_s": 32.14623867999762
+    },
+    {
+      "row_index": 43,
+      "id": 44,
+      "uuid": "d3a588ba8f37418d88c927d3995e33b3",
+      "start_relative_s": 15.553608450107276,
+      "end_relative_s": 33.45960056036711
+    },
+    {
+      "row_index": 44,
+      "id": 39,
+      "uuid": "9996ccbe13a3459f88675a328ae3f8af",
+      "start_relative_s": 13.715582660399377,
+      "end_relative_s": 33.50914669036865
+    },
+    {
+      "row_index": 45,
+      "id": 34,
+      "uuid": "c88a9edfc8fe460c93f448c8ad78bea6",
+      "start_relative_s": 12.489120680373162,
+      "end_relative_s": 33.51314386026934
+    },
+    {
+      "row_index": 46,
+      "id": 47,
+      "uuid": "bbd988d872ae4e76bddc835255a05cdc",
+      "start_relative_s": 17.140188350342214,
+      "end_relative_s": 34.960722689982504
+    },
+    {
+      "row_index": 47,
+      "id": 50,
+      "uuid": "2e7ccb3fa4dc49a586cbbb52ff60b78b",
+      "start_relative_s": 17.14403955033049,
+      "end_relative_s": 35.68939237995073
+    },
+    {
+      "row_index": 48,
+      "id": 46,
+      "uuid": "8f4b9bf782d44b0bb0ba0d81ad04762b",
+      "start_relative_s": 16.249282150063664,
+      "end_relative_s": 36.177239110227674
+    },
+    {
+      "row_index": 49,
+      "id": 52,
+      "uuid": "0f2854e860fd422abf5facf479203413",
+      "start_relative_s": 19.188596120104194,
+      "end_relative_s": 36.28777934005484
+    },
+    {
+      "row_index": 50,
+      "id": 53,
+      "uuid": "4ee033bfa5b946a7a4194d2dcdb36f1f",
+      "start_relative_s": 19.189641460310668,
+      "end_relative_s": 36.58760075038299
+    },
+    {
+      "row_index": 51,
+      "id": 49,
+      "uuid": "88b40c34863246d49742614b34049e6e",
+      "start_relative_s": 17.141847630031407,
+      "end_relative_s": 37.53166018007323
+    },
+    {
+      "row_index": 52,
+      "id": 51,
+      "uuid": "6585004b58524f1cb8d60c15a60cfb69",
+      "start_relative_s": 19.18739971006289,
+      "end_relative_s": 38.28498085029423
+    },
+    {
+      "row_index": 53,
+      "id": 55,
+      "uuid": "bffcc55131df488cb76d3db882177ea2",
+      "start_relative_s": 19.192796000279486,
+      "end_relative_s": 38.395612440072
+    },
+    {
+      "row_index": 54,
+      "id": 54,
+      "uuid": "8385f2d7f4594d118a28027f6e8e60e4",
+      "start_relative_s": 19.191150680184364,
+      "end_relative_s": 39.566573129966855
+    },
+    {
+      "row_index": 55,
+      "id": 48,
+      "uuid": "38c96fcff33f4b929148a9ee963838fd",
+      "start_relative_s": 17.141439069993794,
+      "end_relative_s": 40.0944838100113
+    },
+    {
+      "row_index": 56,
+      "id": 56,
+      "uuid": "11334ecdd57c4f19bcd417d1510267a1",
+      "start_relative_s": 27.399736990220845,
+      "end_relative_s": 46.52523013018072
+    },
+    {
+      "row_index": 57,
+      "id": 58,
+      "uuid": "96df15b827b440ce9ce1e765397f76a5",
+      "start_relative_s": 28.52941319020465,
+      "end_relative_s": 47.46183505002409
+    },
+    {
+      "row_index": 58,
+      "id": 62,
+      "uuid": "0f63191a2cd04200881ab0c5b6091791",
+      "start_relative_s": 29.446343529969454,
+      "end_relative_s": 47.518405930139124
+    },
+    {
+      "row_index": 59,
+      "id": 61,
+      "uuid": "ce3e65b1d7cf411aaca96bffc7b60796",
+      "start_relative_s": 29.442592840176076,
+      "end_relative_s": 47.87099316995591
+    },
+    {
+      "row_index": 60,
+      "id": 63,
+      "uuid": "2ad00aa8fd6246d39041f2f341101224",
+      "start_relative_s": 30.128909150138497,
+      "end_relative_s": 48.18507276009768
+    },
+    {
+      "row_index": 61,
+      "id": 60,
+      "uuid": "da7df1b9cef0458f9e08f25b92308b86",
+      "start_relative_s": 29.318178540095687,
+      "end_relative_s": 48.95389399025589
+    },
+    {
+      "row_index": 62,
+      "id": 64,
+      "uuid": "5865139e77c244a09da31fb8ca22dd60",
+      "start_relative_s": 30.144618570338935,
+      "end_relative_s": 48.95518104033545
+    },
+    {
+      "row_index": 63,
+      "id": 65,
+      "uuid": "71eddefc69564f27bea03999cdcd3be1",
+      "start_relative_s": 30.187345870304853,
+      "end_relative_s": 49.610126439947635
+    },
+    {
+      "row_index": 64,
+      "id": 70,
+      "uuid": "a6b4219dd4c9434796c69dd7c3dbba70",
+      "start_relative_s": 32.14700231002644,
+      "end_relative_s": 50.64663827000186
+    },
+    {
+      "row_index": 65,
+      "id": 71,
+      "uuid": "e10f0f1b2ef9426bb81557dd05b4f98a",
+      "start_relative_s": 33.4605718399398,
+      "end_relative_s": 50.64776997035369
+    },
+    {
+      "row_index": 66,
+      "id": 72,
+      "uuid": "15fc236bd7fb4a9983a804e243f60b88",
+      "start_relative_s": 33.50996260019019,
+      "end_relative_s": 51.37717005005106
+    },
+    {
+      "row_index": 67,
+      "id": 66,
+      "uuid": "148e7b2caa0d478dbac79d3ee5c8bede",
+      "start_relative_s": 31.158907980192453,
+      "end_relative_s": 51.43306732038036
+    },
+    {
+      "row_index": 68,
+      "id": 69,
+      "uuid": "4b532af935804d8db9b389f463c84040",
+      "start_relative_s": 31.851282780058682,
+      "end_relative_s": 52.48416132014245
+    },
+    {
+      "row_index": 69,
+      "id": 73,
+      "uuid": "e011e60f493e45b086f4757e2bd9999e",
+      "start_relative_s": 33.51377571001649,
+      "end_relative_s": 52.48864446999505
+    },
+    {
+      "row_index": 70,
+      "id": 67,
+      "uuid": "7c13b23f15eb425f92872bab74f12db6",
+      "start_relative_s": 31.742497210390866,
+      "end_relative_s": 53.28466330002993
+    },
+    {
+      "row_index": 71,
+      "id": 76,
+      "uuid": "ffd7f14a33d54213ab1c383517de40da",
+      "start_relative_s": 36.178065120242536,
+      "end_relative_s": 53.33672190038487
+    },
+    {
+      "row_index": 72,
+      "id": 75,
+      "uuid": "b1ec25082ceb4138bf04e2f68df8c812",
+      "start_relative_s": 35.69024294009432,
+      "end_relative_s": 54.26181733002886
+    },
+    {
+      "row_index": 73,
+      "id": 77,
+      "uuid": "c1291325d8d149dbb67e85ae61286895",
+      "start_relative_s": 36.288577950093895,
+      "end_relative_s": 54.70782195031643
+    },
+    {
+      "row_index": 74,
+      "id": 79,
+      "uuid": "076ce27926d4411b975125073e611de8",
+      "start_relative_s": 37.532477100379765,
+      "end_relative_s": 55.29272283008322
+    },
+    {
+      "row_index": 75,
+      "id": 74,
+      "uuid": "6b67c5dfc9ee40f1988048e25d2aa2b4",
+      "start_relative_s": 34.961650350131094,
+      "end_relative_s": 56.10407957015559
+    },
+    {
+      "row_index": 76,
+      "id": 81,
+      "uuid": "78cdde3db4604020b29252103cdb6d01",
+      "start_relative_s": 38.39633502997458,
+      "end_relative_s": 56.10750214010477
+    },
+    {
+      "row_index": 77,
+      "id": 57,
+      "uuid": "8008276bae364a27bdb14e52ba4a1e5d",
+      "start_relative_s": 27.507772020064294,
+      "end_relative_s": 56.591720450203866
+    },
+    {
+      "row_index": 78,
+      "id": 82,
+      "uuid": "8d8a0994e2944fba8c00676dc5c9e880",
+      "start_relative_s": 39.567430950235575,
+      "end_relative_s": 56.645418209955096
+    },
+    {
+      "row_index": 79,
+      "id": 78,
+      "uuid": "6bd80775bbe54da0ac4de7ee7a98e5b4",
+      "start_relative_s": 36.58836784027517,
+      "end_relative_s": 57.43279618024826
+    },
+    {
+      "row_index": 80,
+      "id": 83,
+      "uuid": "538599b66bf047d79cf6643dc4196066",
+      "start_relative_s": 40.095313700381666,
+      "end_relative_s": 57.48703808011487
+    },
+    {
+      "row_index": 81,
+      "id": 80,
+      "uuid": "7cab401a7bfa4e039fdcba54415207ca",
+      "start_relative_s": 38.28584357025102,
+      "end_relative_s": 57.54236484039575
+    },
+    {
+      "row_index": 82,
+      "id": 68,
+      "uuid": "daa7bfb23c554a91af49ef034716b6be",
+      "start_relative_s": 31.795141980051994,
+      "end_relative_s": 64.61532342014834
+    },
+    {
+      "row_index": 83,
+      "id": 87,
+      "uuid": "43778d53567d48fda2d3e36fdbc02962",
+      "start_relative_s": 47.87182242004201,
+      "end_relative_s": 65.25270443037152
+    },
+    {
+      "row_index": 84,
+      "id": 84,
+      "uuid": "979bb88f948d49639918bd099fd509a4",
+      "start_relative_s": 46.52616801997647,
+      "end_relative_s": 65.25680288020521
+    },
+    {
+      "row_index": 85,
+      "id": 85,
+      "uuid": "a68a5928c282470e992fec40c96e937f",
+      "start_relative_s": 47.46275439998135,
+      "end_relative_s": 65.84729418018833
+    },
+    {
+      "row_index": 86,
+      "id": 91,
+      "uuid": "b182dc6b6af7404e825d36b80ecf804b",
+      "start_relative_s": 49.61097142007202,
+      "end_relative_s": 65.90138119040057
+    },
+    {
+      "row_index": 87,
+      "id": 88,
+      "uuid": "ecf3cff7b0604aee8dde6f43bb388c56",
+      "start_relative_s": 48.18577089998871,
+      "end_relative_s": 66.32729919999838
+    },
+    {
+      "row_index": 88,
+      "id": 90,
+      "uuid": "6fcd3d2b6c83427bb5280a3029ecaf67",
+      "start_relative_s": 48.95571153005585,
+      "end_relative_s": 66.48340953001752
+    },
+    {
+      "row_index": 89,
+      "id": 59,
+      "uuid": "1aa68373374548fab5e8ac5cbc20452b",
+      "start_relative_s": 28.581122330389917,
+      "end_relative_s": 66.7871274203062
+    },
+    {
+      "row_index": 90,
+      "id": 92,
+      "uuid": "253df1efa83a446b84ebffd0e42a1efe",
+      "start_relative_s": 50.64730621036142,
+      "end_relative_s": 66.93719322001562
+    },
+    {
+      "row_index": 91,
+      "id": 86,
+      "uuid": "085b44223606494b8f9f2ae7bd9c5380",
+      "start_relative_s": 47.51911664009094,
+      "end_relative_s": 67.08662455994636
+    },
+    {
+      "row_index": 92,
+      "id": 94,
+      "uuid": "a44f21a7a8734030911099337fc5ae6d",
+      "start_relative_s": 51.37807252025232,
+      "end_relative_s": 67.28355853026733
+    },
+    {
+      "row_index": 93,
+      "id": 96,
+      "uuid": "fd0911acccc144c1a66c837e0a616389",
+      "start_relative_s": 52.48490878008306,
+      "end_relative_s": 67.6754476800561
+    },
+    {
+      "row_index": 94,
+      "id": 99,
+      "uuid": "3c702aa81fe84568bc76062ef50faac4",
+      "start_relative_s": 53.33743525017053,
+      "end_relative_s": 67.67755098035559
+    },
+    {
+      "row_index": 95,
+      "id": 93,
+      "uuid": "9ec3c91b553741f4a6b7011c26068dfb",
+      "start_relative_s": 50.64839581027627,
+      "end_relative_s": 68.01098718028516
+    },
+    {
+      "row_index": 96,
+      "id": 95,
+      "uuid": "7c24a5ae4d5d4a6e8deca268cc1179d6",
+      "start_relative_s": 51.4338000100106,
+      "end_relative_s": 68.01228767028078
+    },
+    {
+      "row_index": 97,
+      "id": 101,
+      "uuid": "746448fadc314ac9af457bccd54b46f7",
+      "start_relative_s": 54.70863994024694,
+      "end_relative_s": 68.05984199000522
+    },
+    {
+      "row_index": 98,
+      "id": 98,
+      "uuid": "8b0d89d825c24b81a18705d7618bcf2e",
+      "start_relative_s": 53.28557529998943,
+      "end_relative_s": 68.38136894023046
+    },
+    {
+      "row_index": 99,
+      "id": 103,
+      "uuid": "7519695d4119499e8fc7704275ca5bff",
+      "start_relative_s": 56.10488763032481,
+      "end_relative_s": 68.69721601018682
+    },
+    {
+      "row_index": 100,
+      "id": 100,
+      "uuid": "69d41ad9bf674b28bebc2896f56d981d",
+      "start_relative_s": 54.26249396009371,
+      "end_relative_s": 68.83178724022582
+    },
+    {
+      "row_index": 101,
+      "id": 104,
+      "uuid": "2f22a17456a34575af4b9874de75b619",
+      "start_relative_s": 56.10789738036692,
+      "end_relative_s": 68.91909917024896
+    },
+    {
+      "row_index": 102,
+      "id": 106,
+      "uuid": "0340ca762c134a7aa5836087b155719a",
+      "start_relative_s": 56.64614261034876,
+      "end_relative_s": 68.96230090036988
+    },
+    {
+      "row_index": 103,
+      "id": 105,
+      "uuid": "515f0443ad83455abd5da1462915eac2",
+      "start_relative_s": 56.59256327012554,
+      "end_relative_s": 69.29380874009803
+    },
+    {
+      "row_index": 104,
+      "id": 109,
+      "uuid": "503c7b987f1c4ea4b038a9860e3e0fee",
+      "start_relative_s": 57.5430921302177,
+      "end_relative_s": 69.40366841014475
+    },
+    {
+      "row_index": 105,
+      "id": 107,
+      "uuid": "63d91187e4b04efb95e74eeaa8e86f77",
+      "start_relative_s": 57.43353469017893,
+      "end_relative_s": 69.51379306009039
+    },
+    {
+      "row_index": 106,
+      "id": 108,
+      "uuid": "32723467defc40bca1130964154c6743",
+      "start_relative_s": 57.48773477040231,
+      "end_relative_s": 69.84459816012532
+    },
+    {
+      "row_index": 107,
+      "id": 102,
+      "uuid": "b2ca0cac4757489397ffe34d302bd1b3",
+      "start_relative_s": 55.29359778016806,
+      "end_relative_s": 70.02630589017645
+    },
+    {
+      "row_index": 108,
+      "id": 110,
+      "uuid": "3f1334d0b8a54e3c9a6e1936fbc517ec",
+      "start_relative_s": 64.61618387000635,
+      "end_relative_s": 73.46293237013742
+    },
+    {
+      "row_index": 109,
+      "id": 111,
+      "uuid": "ff6c27b1c96e4d038467de0387e5783f",
+      "start_relative_s": 65.25351198995486,
+      "end_relative_s": 73.70333062997088
+    },
+    {
+      "row_index": 110,
+      "id": 89,
+      "uuid": "862721a2e43745ab9e51bd77db068afb",
+      "start_relative_s": 48.95468860026449,
+      "end_relative_s": 74.18634235020727
+    },
+    {
+      "row_index": 111,
+      "id": 97,
+      "uuid": "d3aa90b022944c97bd8d05b6c6225f9e",
+      "start_relative_s": 52.48911856021732,
+      "end_relative_s": 74.88756086025387
+    }
+  ],
+  "metrics": {
+    "tpot_avg_ms": 16.9407541604692,
+    "tpot_p90_ms": 19.778651388258268,
+    "tpot_p99_ms": 32.275879182461345,
+    "ttft_avg_s": 0.6095641191849219,
+    "ttft_p90_s": 0.8736718480009585,
+    "ttft_p99_s": 1.3156344918720424,
+    "e2el_avg_s": 17.93995562534491,
+    "e2el_p90_s": 20.97014472791925,
+    "e2el_p99_s": 33.73577146056575,
+    "output_token_throughput": 1557.3399755042296,
+    "qps": 1.5208398198283493,
+    "benchmark_duration_s": 55.23264113999903,
+    "client_concurrency_time_weighted": 27.998846979776932
+  },
+  "validity": {
+    "data_valid": true,
+    "slo_pass": {
+      "20": true,
+      "50": true
+    },
+    "tolerance_ms": 1
+  },
+  "interpretation": "AISBench stable-stage counts full output tokens of requests starting in the selected interval and divides by interval duration; request latency retains the full lifetime. It is not an exact token-event time slice or a guarantee of a constant server decode batch."
+}

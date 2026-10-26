@@ -1,0 +1,47 @@
+[
+  {
+    "run": "507_d16k_confirm_cc32",
+    "group": "old-single-d",
+    "requests": 128,
+    "steady_requests": 96,
+    "sha256_matches_remote": true,
+    "raw_sqlite_metrics_match": true,
+    "official_stable_csv_matches": true
+  },
+  {
+    "run": "505_d16k_confirm_cc78",
+    "group": "old-single-d",
+    "requests": 312,
+    "steady_requests": 234,
+    "sha256_matches_remote": true,
+    "raw_sqlite_metrics_match": true,
+    "official_stable_csv_matches": true
+  },
+  {
+    "run": "110_d128k_cc8",
+    "group": "old-single-d",
+    "requests": 32,
+    "steady_requests": 24,
+    "sha256_matches_remote": true,
+    "raw_sqlite_metrics_match": true,
+    "official_stable_csv_matches": true
+  },
+  {
+    "run": "111_refine_d16k_cc91",
+    "group": "new-dp4",
+    "requests": 364,
+    "steady_requests": 273,
+    "sha256_matches_remote": true,
+    "raw_sqlite_metrics_match": true,
+    "official_stable_csv_matches": true
+  },
+  {
+    "run": "107_search_d16k_cc128",
+    "group": "new-dp4",
+    "requests": 512,
+    "steady_requests": 384,
+    "sha256_matches_remote": true,
+    "raw_sqlite_metrics_match": true,
+    "official_stable_csv_matches": true
+  }
+]

@@ -2,6 +2,10 @@
 
 从 `MiniMax_A5_PD_DSpark_启动交接说明.html` 第 0 章引用的服务器文件导出，日期：2026-10-23。脚本保留导出时的原始内容，不包含 SSH 登录密码。
 
+## 性能测试报告
+
+- [2026年10月26日纯 D 稳态离线重分析](reports/2026-10-26-decode-steady-state/README.md)：32 组历史数据、最佳完整 AISBench outputs；旧单机直连 D 与新双机完整 PD 分组列出。graph 1024 优化补测进行中。
+
 ## 精度测试报告
 
 - [2026年10月26日 release 5666 双机 PD + DSpark GPQA 完整 outputs](reports/2026-10-26-a5-pd-dspark-release5666-gpqa/README.md)：单轮官方成绩 168/198（84.85%），含原始预测、逐题评分、完整错答及评分口径审计。

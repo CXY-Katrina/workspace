@@ -1,0 +1,254 @@
+{
+  "run_id": "102_search_d16k_cc4",
+  "group": "new-dp4",
+  "method": "AISBench StablePerfMetricCalculator (request-start cohort)",
+  "parameters": {
+    "role": "decode",
+    "input_len": 16384,
+    "output_len": 1024,
+    "concurrency": 4,
+    "request_rate": 0.0,
+    "prefix_hit_target": 1,
+    "prefix_num": 1,
+    "dp": 4,
+    "data_num": 16,
+    "seed": 1024,
+    "npu_num": 16,
+    "fixed_initial_prefix_seed": true,
+    "request_path": "proxy -> P26 -> D27+21",
+    "proxy": "197.13.50.1:8009",
+    "prefill_topology": "DP1 TP4 PP2",
+    "decode_topology": "DP4 TP4 PP1 EP16"
+  },
+  "source": {
+    "run_path": "/work/decode-dp4-tp4-ep16-20261026/runs/102_search_d16k_cc4",
+    "measured_outputs": "/work/decode-dp4-tp4-ep16-20261026/runs/102_search_d16k_cc4/aisbench/outputs/20261026_103728",
+    "original_result": {
+      "run_id": "102_search_d16k_cc4",
+      "case_type": "decode",
+      "status": "success",
+      "parameters": {
+        "role": "decode",
+        "input_len": 16384,
+        "output_len": 1024,
+        "concurrency": 4,
+        "request_rate": 0.0,
+        "prefix_hit_target": 1,
+        "prefix_num": 1,
+        "dp": 4,
+        "data_num": 16,
+        "seed": 1024,
+        "npu_num": 16,
+        "fixed_initial_prefix_seed": true,
+        "request_path": "proxy -> P26 -> D27+21",
+        "proxy": "197.13.50.1:8009",
+        "prefill_topology": "DP1 TP4 PP2",
+        "decode_topology": "DP4 TP4 PP1 EP16"
+      },
+      "requests": {
+        "total": 16,
+        "successful": 16,
+        "failed": 0,
+        "actual_concurrency": 3.5928,
+        "max_concurrency": 4.0
+      },
+      "workload": {
+        "requested_input_len": 16384,
+        "actual_input_len_avg": 16384.0,
+        "actual_input_len_min": 16384,
+        "actual_input_len_max": 16384,
+        "requested_output_len": 1024,
+        "output_tokens_avg": 1024.0,
+        "output_tokens_min": 1024,
+        "output_tokens_max": 1024,
+        "prefix_hit_target": 1,
+        "prefix_hit_actual": 0.984375,
+        "prefix_engines": {
+          "0": {
+            "query_delta": 81920.0,
+            "hit_delta": 80640.0,
+            "hit_rate": 0.984375
+          },
+          "1": {
+            "query_delta": 49152.0,
+            "hit_delta": 48384.0,
+            "hit_rate": 0.984375
+          },
+          "2": {
+            "query_delta": 49152.0,
+            "hit_delta": 48384.0,
+            "hit_rate": 0.984375
+          },
+          "3": {
+            "query_delta": 81920.0,
+            "hit_delta": 80640.0,
+            "hit_rate": 0.984375
+          }
+        }
+      },
+      "metrics": {
+        "ttft_avg_s": 0.9279952312645037,
+        "ttft_p90_s": 1.146844840142876,
+        "ttft_p99_s": 1.399442674126476,
+        "e2el_avg_s": 7.452384224394336,
+        "tpot_avg_ms": 6.377701850566796,
+        "tpot_p90_ms": 6.483097028584454,
+        "tpot_p99_ms": 10.866738415986866,
+        "itl_avg_ms": 28.68651384723202,
+        "qps": 0.4821001746282513,
+        "output_token_throughput": 493.6705788193293,
+        "input_token_throughput": 7898.7293,
+        "benchmark_duration_s": 33.188123220112175,
+        "single_request_output_token_throughput_avg": 141.33159660927316,
+        "itl_p90_ms": 28.30329779535532,
+        "itl_p99_ms": 71.04946655221282,
+        "e2el_p90_s": 7.453591444995254,
+        "e2el_p99_s": 12.458796180668285,
+        "aisbench_rounded_tpot_avg_ms": 6.4,
+        "spec_drafts": 3670.0,
+        "spec_proposed": 25690.0,
+        "spec_accepted": 12747.0,
+        "spec_acceptance_rate": 0.49618528610354223,
+        "spec_tokens_per_round_including_target": 4.473297002724795
+      },
+      "validity": {
+        "data_valid": true,
+        "valid": true,
+        "slo_pass": {
+          "20": true,
+          "50": true
+        },
+        "service_healthy": true,
+        "reasons": [],
+        "tolerance_ms": 1
+      },
+      "artifacts": {
+        "aisbench_outputs": "aisbench/outputs",
+        "console_log": "logs/aisbench_console.log",
+        "service_script": "config/service_script.sh"
+      }
+    }
+  },
+  "window": {
+    "absolute_start_monotonic_s": 2422918.19950729,
+    "absolute_end_monotonic_s": 2422938.36008715,
+    "relative_start_s": 7.08808577992022,
+    "relative_end_s": 27.248665639664978,
+    "duration_s": 20.160579859744757,
+    "max_concurrency": 4,
+    "time_at_max_concurrency_fraction": 0.9995059502176669,
+    "min_concurrency": 3,
+    "selected_request_count": 12,
+    "original_request_count": 16
+  },
+  "selected_requests": [
+    {
+      "row_index": 4,
+      "id": 6,
+      "uuid": "de68751a43b840d788f5091e4822489b",
+      "start_relative_s": 7.452148579992354,
+      "end_relative_s": 13.822733089793473
+    },
+    {
+      "row_index": 5,
+      "id": 4,
+      "uuid": "cf35404d0347437c8688c8dd9a87b5bb",
+      "start_relative_s": 7.08808577992022,
+      "end_relative_s": 14.549981580115855
+    },
+    {
+      "row_index": 6,
+      "id": 5,
+      "uuid": "a32180d953e6494ba849b16743d693d3",
+      "start_relative_s": 7.369043509941548,
+      "end_relative_s": 14.672109629958868
+    },
+    {
+      "row_index": 7,
+      "id": 8,
+      "uuid": "6c639c2d806a43bb8a7af3eaf58d38bd",
+      "start_relative_s": 13.823527969885617,
+      "end_relative_s": 20.45331515977159
+    },
+    {
+      "row_index": 8,
+      "id": 7,
+      "uuid": "47267c811dd4443a88d898f2d9da05d2",
+      "start_relative_s": 13.358257699757814,
+      "end_relative_s": 20.73908527009189
+    },
+    {
+      "row_index": 9,
+      "id": 9,
+      "uuid": "649a033910ed4c96a5166be3d2eb0ac0",
+      "start_relative_s": 14.550838999915868,
+      "end_relative_s": 21.899104800075293
+    },
+    {
+      "row_index": 10,
+      "id": 10,
+      "uuid": "b6b8ae3353554f0cb15fb62d46dce5a5",
+      "start_relative_s": 14.673092579934746,
+      "end_relative_s": 22.002554619684815
+    },
+    {
+      "row_index": 11,
+      "id": 11,
+      "uuid": "05a7b9a456a64be498a334e2b33e3474",
+      "start_relative_s": 20.454272269736975,
+      "end_relative_s": 27.247674559708685
+    },
+    {
+      "row_index": 12,
+      "id": 12,
+      "uuid": "8d0d5e231b6641f084a669a44934b835",
+      "start_relative_s": 20.739978149998933,
+      "end_relative_s": 28.070161889772862
+    },
+    {
+      "row_index": 13,
+      "id": 13,
+      "uuid": "b846427de3444de1a28c3356f3201462",
+      "start_relative_s": 21.900001300033182,
+      "end_relative_s": 28.96157420007512
+    },
+    {
+      "row_index": 14,
+      "id": 14,
+      "uuid": "5e7557adef72432d8bfb03ec896c76bd",
+      "start_relative_s": 22.00334241008386,
+      "end_relative_s": 29.0638824198395
+    },
+    {
+      "row_index": 15,
+      "id": 15,
+      "uuid": "4e3bf837718f498f9d10f82c26f56f83",
+      "start_relative_s": 27.248665639664978,
+      "end_relative_s": 33.188123220112175
+    }
+  ],
+  "metrics": {
+    "tpot_avg_ms": 6.002863108521251,
+    "tpot_p90_ms": 6.420113488882489,
+    "tpot_p99_ms": 6.532162444498518,
+    "ttft_avg_s": 0.8598248358272637,
+    "ttft_p90_s": 1.0445537549909205,
+    "ttft_p99_s": 1.1013116528233513,
+    "e2el_avg_s": 7.000753795844503,
+    "e2el_p90_s": 7.377571393316612,
+    "e2el_p99_s": 7.452978294910863,
+    "output_token_throughput": 609.5062783653274,
+    "qps": 0.59522097496614,
+    "benchmark_duration_s": 20.160579859744757,
+    "client_concurrency_time_weighted": 3.999505950217667
+  },
+  "validity": {
+    "data_valid": true,
+    "slo_pass": {
+      "20": true,
+      "50": true
+    },
+    "tolerance_ms": 1
+  },
+  "interpretation": "AISBench stable-stage counts full output tokens of requests starting in the selected interval and divides by interval duration; request latency retains the full lifetime. It is not an exact token-event time slice or a guarantee of a constant server decode batch."
+}
