@@ -1,5 +1,9 @@
 # MiniMax M3.1 Flash：A5 PD + DSpark 启动脚本
 
+## 最新双机 Decode 部署
+
+- [2026年10月27日 A5：1P + 双机 D（DP4 TP4 EP16）](deployments/2026-10-27-a5-1p2d/README.md)：P=27.1，D=28.1+21.1；graph size 1024、P/D prefix cache、DSpark 7。含实测启动脚本、proxy、容器准备及网络说明。
+
 从 `MiniMax_A5_PD_DSpark_启动交接说明.html` 第 0 章引用的服务器文件导出，日期：2026-10-23。脚本保留导出时的原始内容，不包含 SSH 登录密码。
 
 ## 性能测试报告

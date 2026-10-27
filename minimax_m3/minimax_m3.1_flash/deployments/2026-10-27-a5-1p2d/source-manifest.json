@@ -1,0 +1,35 @@
+{
+  "captured": "2026-10-27",
+  "files": [
+    {
+      "file": "prefill/launch.sh",
+      "source_host": "177.11.27.1",
+      "sha256": "bf9fcda3c681fb0f3972e13be1943c515820a22a4eca0acedde083c418806697"
+    },
+    {
+      "file": "prefill/serve.sh",
+      "source_host": "177.11.27.1",
+      "sha256": "afcf2e05b42f461fcbde7a6c93227105a0df1ceb26558812e44891368a053363"
+    },
+    {
+      "file": "decode-head/launch.sh",
+      "source_host": "177.11.28.1",
+      "sha256": "bf9fcda3c681fb0f3972e13be1943c515820a22a4eca0acedde083c418806697"
+    },
+    {
+      "file": "decode-head/serve.sh",
+      "source_host": "177.11.28.1",
+      "sha256": "60cabe444dac756e16875b8cefaad6e972637a7b414c3ce83cf45e06baf7bb82"
+    },
+    {
+      "file": "decode-worker/launch.sh",
+      "source_host": "177.11.21.1",
+      "sha256": "bf9fcda3c681fb0f3972e13be1943c515820a22a4eca0acedde083c418806697"
+    },
+    {
+      "file": "decode-worker/serve.sh",
+      "source_host": "177.11.21.1",
+      "sha256": "52951ef804a9002d8e78f1abe7a81f933570329200d33d5b1697a7d8759fc402"
+    }
+  ]
+}
