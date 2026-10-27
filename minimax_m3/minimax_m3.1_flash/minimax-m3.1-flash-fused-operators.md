@@ -191,15 +191,97 @@ A14：主Attention decode metadata准备，属于旁路；不参与Indexer后端
 
 ### A4. 稀疏 Attention 与辅助构建
 
+**A15–A19是实际Attention计算的候选实现，A14和A20是两类不同的准备步骤。编号不是执行顺序。** 同一token选择一条attention路径；mixed batch中的decode区和prefill区可以分别运行不同路径。以下条件仍以本文固定的PR/main快照为准。
+
+#### A4.1 第一级：主Attention backend选择
+
+入口为 `common/sparse_attention.py::select_main_backend_and_impl_cls`。它主要看**主KV的 `kv_cache_dtype`、GPU和 `topk_blocks`**；Indexer入口看的是 **`indexer_kv_dtype`**，两者不能混用。Indexer产出的Top-K逻辑页号由所选主Attention实现消费，Indexer的MSA/Triton名字不会直接决定主Attention的实现。
+
+| NVIDIA侧条件 | 选择的主Attention实现 | 后续分支 |
+|---|---|---|
+| CUDA SM100 family，`topk_blocks∈{4,8,16,32}`，主KV为受支持的BF16/FP8 E4M3（不是E5M2） | `MiniMaxM3SparseMSAImpl` | prefill为A20→A17；decode再选A16或A18 |
+| 同上，主KV为`nvfp4`，且满足NVFP4专用实现检查 | PR：`MiniMaxM3SparseMSANvfp4Impl`；main：同一个`MiniMaxM3SparseMSAImpl`内的NVFP4分支 | prefill为A20→A19；decode必须A18 |
+| 主KV为受支持的非NVFP4格式，但不满足上述MSA条件，例如FP8 E5M2或非SM100-family GPU | `MiniMaxM3SparseTritonImpl` | prefill A15；decode A16 |
+| NVIDIA NVFP4不满足MSA/专用实现条件 | 报错 | 没有A15/A16的NVFP4兜底路径 |
+
+这里的MSA初选条件不等于完整kernel支持条件。例如MSA prefill可选4/8/16/32页，而A18的静态检查要求Top16。ROCm由AITER/FlyDSL等独立分支处理，见C节；不能把此表的NVIDIA失败条件直接套到ROCm。[主backend选择](https://github.com/vllm-project/vllm/blob/32ad976c451304fd66b5f0d65897ded406bde97c/vllm/models/minimax_m3/common/sparse_attention.py#L525)、[PR NVFP4构造检查](https://github.com/vllm-project/vllm/blob/32ad976c451304fd66b5f0d65897ded406bde97c/vllm/models/minimax_m3/nvidia/sparse_attention_msa.py#L460)
+
+#### A4.2 第二级：本次forward实际执行哪些步骤
+
+| 主Attention实现 / token区域 | 实际路径 | 互斥、复用与准备步骤 |
+|---|---|---|
+| Triton / prefill | Indexer Top-K → **A15** | 不运行A17/A19/A20 |
+| Triton / decode | Indexer Top-K → **A16** | A16包含split attention与merge；不运行A18/A20 |
+| MSA，BF16/FP8主KV / prefill | Indexer Top-K → **A20 → A17** | A20先把本层Top-K转成CSR/schedule；A17消费它们 |
+| MSA，BF16主KV / decode | Indexer Top-K → **A16** | A18的dtype检查不支持BF16 cache；选了MSA仍使用Triton decode |
+| MSA，FP8 E4M3主KV / decode，静态支持且本次plan存在 | metadata builder先准备 **A14**；本层Indexer Top-K + plan → **A18** | A18替代A16；A14不依赖本层Top-K，执行在metadata准备阶段 |
+| MSA，FP8 E4M3主KV / decode，配置选Triton或不满足A18静态/动态条件 | Indexer Top-K → **A16** | 若query已为E4M3，先反量化为A16所需的model dtype；不串行执行A18 |
+| MSA，NVFP4主KV / prefill | Indexer Top-K → **A20 → A19** | main的A19为CuTe-DSL；PR的A19为专用CUTLASS Q8KV4；二者是版本差异，不是同一次forward的两个阶段 |
+| MSA，NVFP4主KV / decode | metadata builder先准备 **A14**；本层Indexer Top-K + plan → **A18** | 没有plan则报错；不回退A16。NVFP4绕过普通FP8的最小batch门槛，但仍受query长度与容量限制 |
+
+```text
+主Attention（输入为本层Q、主KV cache和Indexer Top-K）
+├─ Triton
+│  ├─ prefill → A15
+│  └─ decode  → A16（split attention + merge）
+└─ MSA
+   ├─ prefill → A20（本层Top-K → CSR / schedule）
+   │            ├─ BF16 / FP8主KV → A17
+   │            └─ NVFP4主KV     → A19（main CuTe / PR CUTLASS）
+   └─ decode
+      ├─ BF16主KV → A16
+      ├─ FP8主KV  → 配置与shape支持且有plan？A18 : A16
+      └─ NVFP4主KV→ 必须有plan并执行A18，否则报错
+
+独立准备阶段：metadata builder → A14 → decode plan ─→ A18
+             （A14不读取本层Top-K，也不接在A20之后）
+```
+
+MSA forward先处理decode切片 `[:num_decode_tokens]`，再处理prefill切片；这个调用顺序不表示同一个token先后做两种attention。A15、A17、A19是不同prefill路径；A16、A18是不同decode路径；A20不是另一种attention，也不参与decode的选择。[Triton forward](https://github.com/vllm-project/vllm/blob/32ad976c451304fd66b5f0d65897ded406bde97c/vllm/models/minimax_m3/common/sparse_attention.py#L451)、[MSA BF16/FP8 forward](https://github.com/vllm-project/vllm/blob/32ad976c451304fd66b5f0d65897ded406bde97c/vllm/models/minimax_m3/nvidia/sparse_attention_msa.py#L353)、[MSA NVFP4 forward](https://github.com/vllm-project/vllm/blob/32ad976c451304fd66b5f0d65897ded406bde97c/vllm/models/minimax_m3/nvidia/sparse_attention_msa.py#L513)
+
+#### A4.3 A18的具体选择门槛与版本区别
+
+普通FP8 decode要同时满足 `supports_cutlass_sparse_decode()` 的静态检查和 `should_prepare_decode_metadata()` 的动态检查；forward还检查 `decode.msa_cutlass is not None`。下表中的 `R` 是**decode请求数**，`L` 是每请求decode query长度，`Hq/Hkv`为本rank头数；`R`不是全batch token数，也不是缓存页大小。
+
+| 检查层次 | 条件 / 版本区别 |
+|---|---|
+| decode配置 | `minimax_m3_msa_decode_backend="cutlass"`才让普通FP8尝试A18；固定main默认`"triton"`，PR默认`"cutlass"`。这只是允许进入候选，不能保证每个batch用A18。NVFP4两版均强制CUTLASS，不受`"triton"`选择影响 |
+| backend别名 | `CUTLASS_MSA` / `TRITON_MSA`仅映射上述**decode**配置；`TRITON_MSA`并不把MSA prefill改为A15，也不更改Indexer backend |
+| 静态geometry/dtype | CUDA SM100 family；主KV为`fp8`/`fp8_e4m3`或NVFP4；`0<Hq≤64`、`0<Hkv≤4`、`Hq%Hkv=0`；page size=128；Top-K=16；本文模型head dim=128 |
+| 动态query长度 | `1≤L≤32`；只对被metadata归为decode的请求适用 |
+| 普通FP8最小batch | 默认`R≥16`；SM103且`1≤L≤8`、`(Hq,Hkv)∈{(64,4),(32,2),(16,1)}`时改为`R≥ceil(1024/(L*Hq))`。环境变量`VLLM_MINIMAX_M3_MSA_CUTLASS_MIN_BATCH`可覆盖该门槛。两版NVFP4均豁免最小batch限制 |
+| planner容量 | 普通FP8两版要求`R*L*Hq≤65536`；main的NVFP4也用此限制；PR的NVFP4改为`R*L≤65535` |
+| 未通过时 | BF16/FP8走A16；NVFP4缺少decode plan时报错，没有Triton fallback |
+
+例如SM103、TP4的`Hq=16,Hkv=1`、`L=1`：普通FP8默认要`R≥64`才准备A18 plan，而不是一律`R≥16`；若`L=8`则门槛为`R≥8`。这些数值是源码条件代入，不是实测性能结论。[PR静态/动态检查](https://github.com/vllm-project/vllm/blob/32ad976c451304fd66b5f0d65897ded406bde97c/vllm/models/minimax_m3/nvidia/msa_cutlass_sparse_decode.py#L287)、[main检查](https://github.com/vllm-project/vllm/blob/6674eedd28d785bed1daf6309615ba337e791aa6/vllm/models/minimax_m3/nvidia/msa_cutlass_sparse_decode.py#L230)、[PR默认及别名](https://github.com/vllm-project/vllm/blob/32ad976c451304fd66b5f0d65897ded406bde97c/vllm/config/attention.py#L43)、[main默认](https://github.com/vllm-project/vllm/blob/6674eedd28d785bed1daf6309615ba337e791aa6/vllm/config/attention.py#L43)、[环境变量读取](https://github.com/vllm-project/vllm/blob/32ad976c451304fd66b5f0d65897ded406bde97c/vllm/models/minimax_m3/nvidia/sparse_attention_msa.py#L83)
+
+**PR NVFP4还要过prefill检查，即使关心的是decode，也不能忽略构造阶段的限制。** PR的Q8KV4 decode内核支持GQA ratio 8或16，但该主Attention类同时要求专用prefill支持，最终还需GQA ratio=16、SM100/103/107、CUDA toolkit≥13.4、page size=128、causal且不输出max-score；与A18的静态Top16检查取交集后，本模型此路径为Top16。forward使用E4M3 Q，主KV global K/V scales必须为1。不满足时不会自动切到main的CuTe NVFP4 prefill。MSA库中通用adapter的auto fallback不能当作此PR模型类的fallback。[PR构造校验](https://github.com/vllm-project/vllm/blob/32ad976c451304fd66b5f0d65897ded406bde97c/vllm/models/minimax_m3/nvidia/sparse_attention_msa.py#L481)、[MSA prefill geometry](https://github.com/vllm-project/MSA/blob/25c144700f727b638067e98066a60507081b63ad/python/fmha_sm100/q8kv4_prefill_adapter.py#L54)、[toolkit要求](https://github.com/vllm-project/MSA/blob/25c144700f727b638067e98066a60507081b63ad/python/fmha_sm100/prefill_q8kv4/jit.py#L51)
+
+#### A4.4 A14为什么曾排在A20后面？
+
+**这是文档编排造成的，不是代码执行关系。** A14原先列在Indexer目录，核对后移到了主Attention目录；为保留已有编号对照，当时追加在表尾。这次将详细表调整为A14→A20的编号顺序，编号仍只表示条目身份。
+
+| 对比项 | A14：decode runtime metadata | A20：prefill CSR / schedule |
+|---|---|---|
+| 谁调用 | `MiniMaxM3SparseMSAMetadataBuilder.build()` → `prepare_decode_metadata()` → plan cache `prepare()` | Attention层forward中的 `_build_prefill_csr()`；main在forward中直接构建 |
+| 依赖什么 | 本次decode的`seq_lens`、query长度和plan；**不读Indexer Top-K** | **本层Indexer Top-K**与prefill query/KV长度 |
+| 产物给谁 | 更新decode plan内的KV segment长度、query offset；PR可额外更新request长度，供**A18**读取 | key→query CSR与schedule，供**A17或A19**读取；PR A19直接使用row pointer和schedule |
+| 何时重复 | 每次相关metadata build/prepare更新；plan缓存命中仍更新长度。按实际metadata builder/组的调用计数，不能按60层乘60，也不能保证全模型只有一个builder | 当前forward按层读取不同Top-K并构建；不是全层共享的一份静态CSR |
+| 能否替代 | 不能替代A20，也不是其后处理 | 不能替代A14；decode不经过A20 |
+
+因此应读成 **“A14准备 → A18 decode”** 与 **“本层Top-K → A20准备 → A17/A19 prefill”** 两条依赖链。mixed batch可能同时需要这两类准备，但不存在固定的“A20→A14”计算链。[metadata builder](https://github.com/vllm-project/vllm/blob/32ad976c451304fd66b5f0d65897ded406bde97c/vllm/models/minimax_m3/nvidia/sparse_attention_msa.py#L202)、[plan缓存与runtime更新](https://github.com/vllm-project/vllm/blob/32ad976c451304fd66b5f0d65897ded406bde97c/vllm/models/minimax_m3/nvidia/msa_cutlass_sparse_decode.py#L197)、[按层CSR构建](https://github.com/vllm-project/vllm/blob/32ad976c451304fd66b5f0d65897ded406bde97c/vllm/models/minimax_m3/nvidia/sparse_attention_msa.py#L280)
+
+#### A4.5 各步骤的实现、I/O与代码路径
+
 | 编号 / 算子 | 实现语言 / 技术栈 | 融合内容、代码路径 | 输入：shape / dtype / 含义 | 输出：shape / dtype / 含义 | 版本 / 触发条件 |
 |---| --- |---|---|---|---|
+| A14 `_update_runtime_metadata_kernel`（主Attention旁路） | **Triton** | 一次生成KV段长度、query offset、可选request seq_lens。[msa_cutlass_sparse_decode.py](https://github.com/vllm-project/vllm/blob/32ad976c451304fd66b5f0d65897ded406bde97c/vllm/models/minimax_m3/nvidia/msa_cutlass_sparse_decode.py#L98) | seq_lens `[R]` INT32，固定decode_query_len | INT32 `[R*q_len]` 段长度和offset；可选 `[R]` request lengths | main有基础版本，PR扩展输出；由主Attention metadata builder准备CUTLASS decode计划时触发，服务A18。**不属于Indexer forward，不与A04–A13相加为Indexer执行链。** 按metadata build计数，不按层数计数。 |
 | A15 `minimax_m3_sparse_attn` / `_gqa_sparse_fwd_kernel` | **Triton** | paged gather/FP8反量化 + GQA QK + causal mask + online softmax + PV。[common/ops/sparse_attn.py](https://github.com/vllm-project/vllm/blob/32ad976c451304fd66b5f0d65897ded406bde97c/vllm/models/minimax_m3/common/ops/sparse_attn.py#L529) | Q `[T,Hq,128]` BF16/FP16；KV cache模型dtype或FP8；topk `[Hkv,T,16]` INT32；block_table和长度INT32；可选K/V scales FP32 | O `[T,Hq,128]` 与output/model dtype一致。QK/softmax/O accumulator FP32 | 两版，通用Triton prefill；不是NVFP4 fallback。所选topk是逻辑页号，经block_table取物理页。 |
-| A16 `minimax_m3_sparse_attn_decode` + `_merge_topk_attn_out_kernel` | **Triton**（attention与merge） | split-K的每段融合 gather/dequant/QK/softmax/PV；merge融合LSE权重归一化及分段O求和。[decode入口](https://github.com/vllm-project/vllm/blob/32ad976c451304fd66b5f0d65897ded406bde97c/vllm/models/minimax_m3/common/ops/sparse_attn.py#L616)、[merge](https://github.com/vllm-project/vllm/blob/32ad976c451304fd66b5f0d65897ded406bde97c/vllm/models/minimax_m3/common/ops/sparse_attn.py#L434) | 同A15，decode请求/长度；中间partial O `[splits,T,Hq,D]` query dtype，partial LSE `[splits,T,Hq]` FP32 | 最终O为model/output dtype；merge计算FP32 | 两版；**split attention + merge至少两个kernel**。KV scales既可scalar也可实现所支持的per-token/head形式，M3主路径通常scalar。 |
-| A17 MSA `sparse_atten_func` | **CuTe-DSL**主attention kernel；Python调度wrapper | 稀疏paged GQA attention，将QK、mask、online softmax、PV融合；可能另有split归约。[vLLM调用](https://github.com/vllm-project/vllm/blob/32ad976c451304fd66b5f0d65897ded406bde97c/vllm/models/minimax_m3/nvidia/sparse_attention_msa.py#L415)；安装后 `vllm/third_party/fmha_sm100/cute/interface.py` | Q `[T,Hq,D]` BF16或E4M3；K/V paged cache BF16或E4M3；INT32 CSR、schedule、页表、长度 | O `[T,Hq,D]` BF16（模型dtype）；内部按kernel使用FP32累加/softmax统计 | 两版SM100 MSA BF16/FP8 cache prefill。选定硬件/量化geometry决定实际kernel；不是任意混合dtype都可运行。 |
+| A16 `minimax_m3_sparse_attn_decode` + `_merge_topk_attn_out_kernel` | **Triton**（attention与merge） | split-K的每段融合 gather/dequant/QK/softmax/PV；merge融合LSE权重归一化及分段O求和。[decode入口](https://github.com/vllm-project/vllm/blob/32ad976c451304fd66b5f0d65897ded406bde97c/vllm/models/minimax_m3/common/ops/sparse_attn.py#L616)、[merge](https://github.com/vllm-project/vllm/blob/32ad976c451304fd66b5f0d65897ded406bde97c/vllm/models/minimax_m3/common/ops/sparse_attn.py#L434) | 同A15，decode请求/长度；中间partial O `[splits,T,Hq,D]` query dtype，partial LSE `[splits,T,Hq]` FP32 | 最终O为model/output dtype；merge计算FP32 | 两版；Triton backend decode及MSA的BF16/FP8 decode fallback使用；与A18互斥，不支持NVFP4。**split attention + merge至少两个kernel**。KV scales既可scalar也可实现所支持的per-token/head形式，M3主路径通常scalar。 |
+| A17 MSA `sparse_atten_func` | **CuTe-DSL**主attention kernel；Python调度wrapper | 稀疏paged GQA attention，将QK、mask、online softmax、PV融合；可能另有split归约。[vLLM调用](https://github.com/vllm-project/vllm/blob/32ad976c451304fd66b5f0d65897ded406bde97c/vllm/models/minimax_m3/nvidia/sparse_attention_msa.py#L415)；安装后 `vllm/third_party/fmha_sm100/cute/interface.py` | Q `[T,Hq,D]` BF16或E4M3；K/V paged cache BF16或E4M3；INT32 CSR、schedule、页表、长度 | O `[T,Hq,D]` BF16（模型dtype）；内部按kernel使用FP32累加/softmax统计 | 两版SM100 MSA BF16/FP8 cache prefill，实际为A20→A17，与A15/A19互斥。选定硬件/量化geometry决定实际kernel；不是任意混合dtype都可运行。 |
 | A18 `msa_cutlass_sparse_decode` → `fmha_sm100` | **CUDA C++ / CUTLASS**（MSA；Python封装） | FP8/NVFP4 cache读取与反量化 + 稀疏QK/softmax/PV；split时另有reduce。[vLLM wrapper](https://github.com/vllm-project/vllm/blob/32ad976c451304fd66b5f0d65897ded406bde97c/vllm/models/minimax_m3/nvidia/msa_cutlass_sparse_decode.py#L405)；底层安装目录 `vllm/third_party/fmha_sm100/decode_q8kv4/` 和 `csrc/` | Q E4M3 `[T,Hq,128]`；KV FP8 E4M3或NVFP4 UINT8 head-slot pages；topk `[T,Hkv,16]` INT32；plan/page_table；scale为float或FP32 tensor | O `[T,Hq,128]` BF16/model dtype | **main已有主KV NVFP4 decode**；PR优化计划/内存/PDL及大batch等路径。需要SM100系和支持的head geometry、B128/Kb16。 |
 | A19 NVFP4 prefill：main `sparse_atten_nvfp4_kv_func`；PR `prefill_q8kv4.run_prefill` | **main：CuTe-DSL；PR：CUDA C++ / CUTLASS** | packed NVFP4解包/scale + sparse attention QK/softmax/PV；可能另有split reduce。[main调用](https://github.com/vllm-project/vllm/blob/6674eedd28d785bed1daf6309615ba337e791aa6/vllm/models/minimax_m3/nvidia/sparse_attention_msa.py#L367)、[PR调用](https://github.com/vllm-project/vllm/blob/32ad976c451304fd66b5f0d65897ded406bde97c/vllm/models/minimax_m3/nvidia/sparse_attention_msa.py#L581) | Q `[T,Hq,128]`，PR强制E4M3；NVFP4 K/V data(UINT8)与E4M3 block-scale视图；FP32 global scale；CSR/schedule/length INT32 | O `[T,Hq,128]` BF16/model dtype | main已支持NVFP4主cache，但走CuTe sparse函数；PR专用CUTLASS Q8KV4 prefill，要求global scales=1；没有BF16-query kernel或Triton NVFP4 fallback。 |
-| A20 `build_k2q_csr(...return_schedule=True)` | **CUDA C++**（`cute/src/sm100/build_k2q_csr/build_k2q_csr.cu`；目录名cute不代表CuTe-DSL） | 把query→selected key pages反转为key→query CSR并构建sparse attention调度；其中schedule构建与部分CSR步骤融合。[vLLM调用](https://github.com/vllm-project/vllm/blob/32ad976c451304fd66b5f0d65897ded406bde97c/vllm/models/minimax_m3/nvidia/sparse_attention_msa.py#L280)、[MSA接口](https://github.com/vllm-project/MSA/blob/25c144700f727b638067e98066a60507081b63ad/python/fmha_sm100/cute/sparse_index_utils.py#L331) | q2k `[Hkv,T,16]` INT32；cu_seqlens_q/k `[R+1]` INT32；shape上界参数 | `k2q_row_ptr[Hkv,total_rows+1]`、`k2q_q_indices[Hkv,nnz_capacity]` INT32；schedule元数据/计数INT32 | 两版MSA prefill；**这是多kernel构建流程**（row map/hist/prefix/scatter及调度），不能把“fused CSR builder”理解为整个调用只有一个kernel。 |
-| A14 `_update_runtime_metadata_kernel`（主Attention旁路） | **Triton** | 一次生成KV段长度、query offset、可选request seq_lens。[msa_cutlass_sparse_decode.py](https://github.com/vllm-project/vllm/blob/32ad976c451304fd66b5f0d65897ded406bde97c/vllm/models/minimax_m3/nvidia/msa_cutlass_sparse_decode.py#L98) | seq_lens `[R]` INT32，固定decode_query_len | INT32 `[R*q_len]` 段长度和offset；可选 `[R]` request lengths | main有基础版本，PR扩展输出；由主Attention metadata builder准备CUTLASS decode计划时触发，服务A18。**不属于Indexer forward，不与A04–A13相加为Indexer执行链。** 按metadata build计数，不按层数计数。 |
+| A20 `build_k2q_csr(...return_schedule=True)` | **CUDA C++**（`cute/src/sm100/build_k2q_csr/build_k2q_csr.cu`；目录名cute不代表CuTe-DSL） | 把query→selected key pages反转为key→query CSR并构建sparse attention调度；其中schedule构建与部分CSR步骤融合。[vLLM调用](https://github.com/vllm-project/vllm/blob/32ad976c451304fd66b5f0d65897ded406bde97c/vllm/models/minimax_m3/nvidia/sparse_attention_msa.py#L280)、[MSA接口](https://github.com/vllm-project/MSA/blob/25c144700f727b638067e98066a60507081b63ad/python/fmha_sm100/cute/sparse_index_utils.py#L331) | q2k `[Hkv,T,16]` INT32；cu_seqlens_q/k `[R+1]` INT32；shape上界参数 | `k2q_row_ptr[Hkv,total_rows+1]`、`k2q_q_indices[Hkv,nnz_capacity]` INT32；schedule元数据/计数INT32 | 两版MSA prefill，在A17/A19之前按层执行；不用于A18 decode，不接A14。**这是多kernel构建流程**（row map/hist/prefix/scatter及调度），不能把“fused CSR builder”理解为整个调用只有一个kernel。 |
 
 A17–A20 的外部实现不直接作为普通源码文件存放在 vLLM tree：CMake 从 MSA 安装到 `vllm/third_party/fmha_sm100/`。PR 固定 MSA commit `25c144700f727b638067e98066a60507081b63ad`；main 固定 `968061ab16cb14991a5c7d4c0e8eabf531be0dcf`。追踪源码时应先看对应版本的 [PR CMake](https://github.com/vllm-project/vllm/blob/32ad976c451304fd66b5f0d65897ded406bde97c/cmake/external_projects/fmha_sm100.cmake#L17) / [main CMake](https://github.com/vllm-project/vllm/blob/6674eedd28d785bed1daf6309615ba337e791aa6/cmake/external_projects/fmha_sm100.cmake#L17)，不要直接搜索一个当前checkout不存在的 `third_party/fmha_sm100` 文件就判定实现缺失。
 
