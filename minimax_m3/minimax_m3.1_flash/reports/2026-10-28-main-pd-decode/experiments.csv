@@ -1,0 +1,8 @@
+run,valid,input_tokens,concurrency,requests,failed,stable_requests,tpot_mean_ms,tpot_p90_ms,tpot_p99_ms,output_tokens_per_second
+resume_128k_cc55_capacity,True,131072,55,220,0,165.0,24.2,31.3,42.7,1656.8217
+resume_16k_cc224_target20,True,16384,224,896,0,672.0,20.4,22.1,39.8,10027.3042
+resume_16k_cc230_target20,True,16384,230,920,0,689.0,21.2,23.0,42.6,9644.0627
+resume_16k_cc417_capacity,True,16384,417,1668,0,1250.0,33.5,36.9,68.2,11012.6032
+resume_confirm_128k_cc55,True,131072,55,220,0,165.0,24.5,31.0,43.5,1640.1058
+resume_confirm_16k_cc224,True,16384,224,896,0,672.0,20.9,22.8,44.0,9787.9616
+resume_confirm_16k_cc417,True,16384,417,1668,0,1251.0,33.7,36.8,66.1,11032.0619

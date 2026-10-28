@@ -1,0 +1,46 @@
+{
+  "engines": [
+    {
+      "engine": "0",
+      "capacity_tokens": 1818775,
+      "block_size": 128,
+      "reserve_tokens": 0,
+      "tokens_per_request_rounded": 132096,
+      "shared_prefix_tokens": 0,
+      "capacity_method": "total independent KV tokens / (input + output), as requested",
+      "max_concurrency": 13
+    },
+    {
+      "engine": "1",
+      "capacity_tokens": 1818775,
+      "block_size": 128,
+      "reserve_tokens": 0,
+      "tokens_per_request_rounded": 132096,
+      "shared_prefix_tokens": 0,
+      "capacity_method": "total independent KV tokens / (input + output), as requested",
+      "max_concurrency": 13
+    },
+    {
+      "engine": "2",
+      "capacity_tokens": 1818775,
+      "block_size": 128,
+      "reserve_tokens": 0,
+      "tokens_per_request_rounded": 132096,
+      "shared_prefix_tokens": 0,
+      "capacity_method": "total independent KV tokens / (input + output), as requested",
+      "max_concurrency": 13
+    },
+    {
+      "engine": "3",
+      "capacity_tokens": 1818775,
+      "block_size": 128,
+      "reserve_tokens": 0,
+      "tokens_per_request_rounded": 132096,
+      "shared_prefix_tokens": 0,
+      "capacity_method": "total independent KV tokens / (input + output), as requested",
+      "max_concurrency": 13
+    }
+  ],
+  "max_total_concurrency": 55,
+  "requested_concurrency": 55
+}

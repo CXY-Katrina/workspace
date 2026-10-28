@@ -1,0 +1,183 @@
+{
+  "run": "resume_16k_cc230_target20",
+  "valid": true,
+  "workload": {
+    "role": "decode",
+    "input_len": 16384,
+    "output_len": 1024,
+    "concurrency": 230,
+    "request_rate": 0.0,
+    "prefix_hit_target": 1,
+    "prefix_num": 1,
+    "dp": 4,
+    "data_num": 920,
+    "seed": 1024,
+    "npu_num": 16,
+    "fixed_initial_prefix_seed": true,
+    "request_path": "proxy -> P21 -> D28+22",
+    "proxy": "197.13.45.1:8019",
+    "prefill_topology": "DP1 TP4 PP2",
+    "decode_topology": "DP4 TP4 PP1 EP16",
+    "independent_context_capacity": 417,
+    "capacity_note": "Concurrency is limited by total independent KV tokens / (input + output).",
+    "cache_salt": "resume_16k_cc230_target20",
+    "cache_isolation": "Unique per-run cache_salt shared by P/D and all warmup/measurement requests",
+    "max_cudagraph_capture_size": 1024,
+    "hccl_buffsize": 1024,
+    "steady_state_calculator": "StablePerfMetricCalculator"
+  },
+  "requests": {
+    "intended": 920,
+    "completed": 920,
+    "errors": 0,
+    "output_tokens": {
+      "1024": 920
+    },
+    "input_tokens": {
+      "16384": 920
+    }
+  },
+  "prefix": {
+    "decode": {
+      "queries": 15073280.0,
+      "hits": 14955520.0,
+      "ratio": 0.9921875,
+      "generation_tokens": 942080.0,
+      "preemptions": 0.0
+    },
+    "prefill": {
+      "queries": 15073280.0,
+      "hits": 14955520.0,
+      "ratio": 0.9921875,
+      "generation_tokens": 920.0,
+      "preemptions": 0.0
+    }
+  },
+  "steady_table": {
+    "E2EL": [
+      "22827.5 ms",
+      "13951.9 ms",
+      "47288.8 ms",
+      "21970.0 ms",
+      "23127.1 ms",
+      "24766.9 ms",
+      "45144.2 ms",
+      "689"
+    ],
+    "TTFT": [
+      "1170.3 ms",
+      "915.4 ms",
+      "1960.1 ms",
+      "1126.9 ms",
+      "1259.1 ms",
+      "1422.3 ms",
+      "1789.4 ms",
+      "689"
+    ],
+    "TPOT": [
+      "21.2 ms",
+      "12.6 ms",
+      "45.2 ms",
+      "20.4 ms",
+      "21.4 ms",
+      "23.0 ms",
+      "42.6 ms",
+      "689"
+    ],
+    "ITL": [
+      "97.9 ms",
+      "0.0 ms",
+      "238.0 ms",
+      "102.2 ms",
+      "105.5 ms",
+      "109.6 ms",
+      "134.1 ms",
+      "689"
+    ],
+    "InputTokens": [
+      "16384.0",
+      "16384.0",
+      "16384.0",
+      "16384.0",
+      "16384.0",
+      "16384.0",
+      "16384.0",
+      "689"
+    ],
+    "OutputTokens": [
+      "1024.0",
+      "1024.0",
+      "1024.0",
+      "1024.0",
+      "1024.0",
+      "1024.0",
+      "1024.0",
+      "689"
+    ],
+    "OutputTokenThroughput": [
+      "46.0344 token/s",
+      "21.6542 token/s",
+      "73.3948 token/s",
+      "46.6089 token/s",
+      "48.0058 token/s",
+      "49.6384 token/s",
+      "69.1233 token/s",
+      "689"
+    ],
+    "PrefillTokenThroughput": [
+      "14306.3036 token/s",
+      "8358.581 token/s",
+      "17898.7259 token/s",
+      "14539.6251 token/s",
+      "15801.7446 token/s",
+      "17222.2685 token/s",
+      "17728.2723 token/s",
+      "689"
+    ],
+    "Benchmark Duration": [
+      "73157.5503 ms"
+    ],
+    "Total Requests": [
+      "689"
+    ],
+    "Failed Requests": [
+      "0"
+    ],
+    "Success Requests": [
+      "689"
+    ],
+    "Concurrency": [
+      "214.9898"
+    ],
+    "Max Concurrency": [
+      "230"
+    ],
+    "Request Throughput": [
+      "9.418 req/s"
+    ],
+    "Total Input Tokens": [
+      "11288576"
+    ],
+    "Total Generated Tokens": [
+      "705536"
+    ],
+    "Input Token Throughput": [
+      "154305.0028 token/s"
+    ],
+    "Output Token Throughput": [
+      "9644.0627 token/s"
+    ],
+    "Total Token Throughput": [
+      "163949.0655 token/s"
+    ]
+  },
+  "metrics": {
+    "tpot_mean_ms": 21.2,
+    "tpot_p90_ms": 23.0,
+    "tpot_p99_ms": 42.6,
+    "output_token_throughput": 9644.0627,
+    "stable_requests": 689.0,
+    "stable_duration_s": 73.1575503
+  },
+  "service_note": "Per-run D head service log is preserved. Global final P/D-worker health checked separately."
+}

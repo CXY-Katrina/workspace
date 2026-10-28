@@ -1,0 +1,1 @@
+/work/decode-bench-20261027/venv/bin/python -u aisbench_test.py --input_len 130881 --output_len 1024 --data_num 220 --concurrency 55 --request_rate 0 --test_type stream --dataset_type prefix_cache --repeat_rate 0.9 --dp 4 --prefix_num 1 --npu_num 16 --seed 1024 --prefix_test

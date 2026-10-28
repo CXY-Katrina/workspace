@@ -1,0 +1,521 @@
+2026-10-28 00:12:29,784 - INFO - aisbench.log has been cleared for this run.
+2026-10-28 00:12:29,784 - INFO - aisbench_all.log separator added for this run.
+2026-10-28 00:12:29,784 - INFO - input token length: 16193
+2026-10-28 00:12:29,784 - INFO - output token length: 1024
+2026-10-28 00:12:29,785 - INFO - number of dataset: 896
+2026-10-28 00:12:29,785 - INFO - concurrency: 224
+2026-10-28 00:12:29,785 - INFO - request rate: 0
+2026-10-28 00:12:29,785 - INFO - test type: stream
+2026-10-28 00:12:29,785 - INFO - test_times: 1
+2026-10-28 00:12:29,785 - INFO - v3.1 enable_think: False
+2026-10-28 00:12:29,785 - INFO - accuracy test: False
+2026-10-28 00:12:29,785 - INFO - npu numbers: 16
+2026-10-28 00:12:29,785 - INFO - prefix numbers: 1
+2026-10-28 00:12:29,785 - INFO - dataset repeat rate: 1.0
+2026-10-28 00:12:29,785 - INFO - test prefix dataset: True
+2026-10-28 00:12:29,785 - INFO - dataset type: prefix_cache
+2026-10-28 00:12:29,785 - INFO - seed: 1024
+2026-10-28 00:12:29,785 - INFO - dp size: 4
+2026-10-28 00:12:29,785 - INFO - length_mean: None
+2026-10-28 00:12:29,785 - INFO - length_std: None
+2026-10-28 00:12:29,785 - INFO - length_min: None
+2026-10-28 00:12:29,785 - INFO - length_max: None
+2026-10-28 00:12:29,785 - INFO - 加载tokenizer: /work/decode-bench-20261027/tokenizer
+2026-10-28 00:12:30,896 - INFO - [完成] 数据集已生成：
+2026-10-28 00:12:30,896 - INFO -   - 公共前缀：/work/pd-main-20261028/runs/resume_16k_cc224_target20/dataset/prefix-GSM8K-in16193-num4-tokenizer.jsonl  (行数=4)
+2026-10-28 00:12:30,896 - INFO -   - 数据集：  /work/pd-main-20261028/runs/resume_16k_cc224_target20/dataset/GSM8K-in16193-num896-tokenizer-repeatRate1.0.jsonl (行数=896)
+2026-10-28 00:12:30,896 - INFO - [信息] 配置：
+2026-10-28 00:12:30,896 - INFO -   tokens(单条长度)=16193, prefix_ratio(前缀重复率)=1.0
+2026-10-28 00:12:30,896 - INFO -   length_dist=fixed
+2026-10-28 00:12:30,896 - INFO - test start, use command: ais_bench --models vllm_api_chat_temp --datasets gsm8k_gen_0_shot_cot_str_perf --mode perf --summarizer default_perf --work-dir /work/pd-main-20261028/runs/resume_16k_cc224_target20/aisbench/outputs --debug --num-warmups 0 2>&1 | tee -a aisbench.log | tee -a aisbench_all.log
+2026-10-28 00:12:30,897 - INFO - pod_info: ['197.13.52.1:31160']
+2026-10-28 00:12:30,897 - INFO - [开始] 前缀数据集测试
+2026-10-28 00:12:30,897 - INFO - Api config file:
+2026-10-28 00:12:30,897 - INFO - make symlink: /work/decode-bench-20261027/aisbench-decode-src/ais_bench/benchmark/configs/models/vllm_api/vllm_api_chat_temp.py ==> /work/pd-main-20261028/runs/resume_16k_cc224_target20/tool/temp_api.py
+2026-10-28 00:12:30,898 - INFO - src_file: /work/pd-main-20261028/runs/resume_16k_cc224_target20/dataset/prefix-GSM8K-in16193-num4-tokenizer.jsonl
+2026-10-28 00:12:30,898 - INFO - dst_file: /work/decode-bench-20261027/aisbench-decode-src/ais_bench/datasets/gsm8k/test.jsonl
+2026-10-28 00:12:30,898 - INFO - make symlink: /work/decode-bench-20261027/aisbench-decode-src/ais_bench/datasets/gsm8k/test.jsonl ==> /work/pd-main-20261028/runs/resume_16k_cc224_target20/dataset/prefix-GSM8K-in16193-num4-tokenizer.jsonl
+2026-10-28 00:12:30,986 - INFO - queries: normal={0: 17603005, 1: 17979841, 2: 18340287, 3: 18520513}, external={0: 906429, 1: 945857, 2: 985151, 3: 1031233}
+2026-10-28 00:12:31,019 - INFO - hits: normal={0: 16696576, 1: 17033984, 2: 17355136, 3: 17489280}, external={0: 873566, 1: 945506, 2: 984800, 3: 1030882}
+/work/decode-bench-20261027/aisbench-decode-src/ais_bench/benchmark/openicl/icl_evaluator/icl_base_evaluator.py:9: UserWarning: A NumPy version >=1.22.4 and <2.3.0 is required for this version of SciPy (detected version 2.5.4)
+  from scipy.stats import hypergeom
+/usr/local/python3.12.13/lib/python3.12/site-packages/triton/language/extra/cann/extension/math_ops.py:13: FutureWarning: triton.language.extra.cann.extension.atan2 is deprecated and will be removed in the next release; use triton.language.extra.cann.libdevice.atan2 instead.
+  @_deprecated(replacement="triton.language.extra.cann.libdevice.atan2")
+/usr/local/python3.12.13/lib/python3.12/site-packages/triton/language/extra/cann/extension/math_ops.py:35: FutureWarning: triton.language.extra.cann.extension.isfinited is deprecated and will be removed in the next release; use triton.language.extra.cann.libdevice.isfinited instead.
+  @_deprecated(replacement="triton.language.extra.cann.libdevice.isfinited")
+/usr/local/python3.12.13/lib/python3.12/site-packages/triton/language/extra/cann/extension/math_ops.py:49: FutureWarning: triton.language.extra.cann.extension.finitef is deprecated and will be removed in the next release; use triton.language.extra.cann.libdevice.finitef instead.
+  @_deprecated(replacement="triton.language.extra.cann.libdevice.finitef")
+/work/decode-bench-20261027/venv/lib/python3.12/site-packages/fuzzywuzzy/fuzz.py:11: UserWarning: Using slow pure-python SequenceMatcher. Install python-Levenshtein to remove this warning
+  warnings.warn('Using slow pure-python SequenceMatcher. Install python-Levenshtein to remove this warning')
+[2026-10-28 00:12:37,325] [ais_bench] [[32mINFO[0m] Loading vllm_api_chat_temp: /work/decode-bench-20261027/aisbench-decode-src/ais_bench/benchmark/configs/./models/vllm_api/vllm_api_chat_temp.py
+[2026-10-28 00:12:37,328] [ais_bench] [[32mINFO[0m] Loading gsm8k_gen_0_shot_cot_str_perf: /work/decode-bench-20261027/aisbench-decode-src/ais_bench/benchmark/configs/./datasets/gsm8k/gsm8k_gen_0_shot_cot_str_perf.py
+[2026-10-28 00:12:37,330] [ais_bench] [[32mINFO[0m] Loading warmup_perf: /work/decode-bench-20261027/aisbench-decode-src/ais_bench/benchmark/configs/./summarizers/perf/warmup_perf.py
+[2026-10-28 00:12:37,331] [ais_bench] [[32mINFO[0m] Current exp folder: /work/pd-main-20261028/runs/resume_16k_cc224_target20/aisbench/outputs/20261028_001231
+[2026-10-28 00:12:37,379] [ais_bench] [[32mINFO[0m] Starting inference tasks...
+[2026-10-28 00:12:37,380] [ais_bench] [[32mINFO[0m] Partitioned into 1 tasks.
+[2026-10-28 00:12:37,380] [ais_bench] [[32mINFO[0m] Merging datasets with the same model and inferencer...
+[2026-10-28 00:12:37,394] [ais_bench] [[32mINFO[0m] Launch TasksMonitor, PID: 11534, Refresh interval: 0.5, Run in background: True
+/work/decode-bench-20261027/aisbench-decode-src/ais_bench/benchmark/openicl/icl_evaluator/icl_base_evaluator.py:9: UserWarning: A NumPy version >=1.22.4 and <2.3.0 is required for this version of SciPy (detected version 2.5.4)
+  from scipy.stats import hypergeom
+/usr/local/python3.12.13/lib/python3.12/site-packages/triton/language/extra/cann/extension/math_ops.py:13: FutureWarning: triton.language.extra.cann.extension.atan2 is deprecated and will be removed in the next release; use triton.language.extra.cann.libdevice.atan2 instead.
+  @_deprecated(replacement="triton.language.extra.cann.libdevice.atan2")
+/usr/local/python3.12.13/lib/python3.12/site-packages/triton/language/extra/cann/extension/math_ops.py:35: FutureWarning: triton.language.extra.cann.extension.isfinited is deprecated and will be removed in the next release; use triton.language.extra.cann.libdevice.isfinited instead.
+  @_deprecated(replacement="triton.language.extra.cann.libdevice.isfinited")
+/usr/local/python3.12.13/lib/python3.12/site-packages/triton/language/extra/cann/extension/math_ops.py:49: FutureWarning: triton.language.extra.cann.extension.finitef is deprecated and will be removed in the next release; use triton.language.extra.cann.libdevice.finitef instead.
+  @_deprecated(replacement="triton.language.extra.cann.libdevice.finitef")
+/work/decode-bench-20261027/venv/lib/python3.12/site-packages/fuzzywuzzy/fuzz.py:11: UserWarning: Using slow pure-python SequenceMatcher. Install python-Levenshtein to remove this warning
+  warnings.warn('Using slow pure-python SequenceMatcher. Install python-Levenshtein to remove this warning')
+[2026-10-28 00:12:44,541] [ais_bench] [[32mINFO[0m] Debug mode, print progress directly
+[2026-10-28 00:12:44,542] [ais_bench] [[32mINFO[0m] Task [vllm-api-stream-chat/gsm8k]
+[2026-10-28 00:12:44,556] [ais_bench] [[32mINFO[0m] Zero Retriever initialized, returning empty shot case for all queries
+[2026-10-28 00:12:44,557] [ais_bench] [[32mINFO[0m] Apply ice template finished
+[2026-10-28 00:12:44,557] [ais_bench] [[33mWARNING[0m] VLLMCustomAPIChatStream is deprecated, please use VLLMCustomAPIChat with stream=True instead.
+[2026-10-28 00:12:44,558] [ais_bench] [[32mINFO[0m] Warmup size is 0, skip...
+[2026-10-28 00:12:44,558] [ais_bench] [[32mINFO[0m] Dataset needed memory size: 0.25860977 MB
+[2026-10-28 00:12:44,558] [ais_bench] [[32mINFO[0m] Memory usage check passed: 4.57% < 80% (Available: 2142.69 GB)
+[2026-10-28 00:12:44,559] [ais_bench] [[33mWARNING[0m] The request rate is below 0.1, resulting in an excessively long interval between two consecutive requests.
+[2026-10-28 00:12:44,559] [ais_bench] [[32mINFO[0m] Traffic request rate: 0 RPS with burstiness 1.0.
+[2026-10-28 00:12:44,559] [ais_bench] [[32mINFO[0m] Request rate (0.0) or ramp end rps (None) < 0.001, sending all requests simultaneously
+[2026-10-28 00:12:44,559] [ais_bench] [[32mINFO[0m] Debug mode, run with concurrency: 4
+[2026-10-28 00:12:44,659] [ais_bench] [[32mINFO[0m] All subprocesses have finished deserializing the first batch of data
+[2026-10-28 00:12:44,759] [ais_bench] [[32mINFO[0m] Starting progress bar Total data num: 4 Finished data num: 0 Left data num: 4
+Progress:   0%|          | 0/4 [00:00<?, ?case/s]
+[A
+POST=0 (0.0/s)  RECV=0 (0.0/s)  FAIL=0 (0.0/s)  FIN=0 (0.0/s)   [A
+POST=0 (0.0/s)  RECV=0 (0.0/s)  FAIL=0 (0.0/s)  FIN=0 (0.0/s)   [A
+POST=4 (4.0/s)  RECV=0 (0.0/s)  FAIL=0 (0.0/s)  FIN=0 (0.0/s)   [A
+POST=4 (4.0/s)  RECV=0 (0.0/s)  FAIL=0 (0.0/s)  FIN=0 (0.0/s)   [AProgress: 100%|██████████| 4/4 [00:01<00:00,  2.22case/s]
+POST=4 (0.0/s)  RECV=4 (4.0/s)  FAIL=0 (0.0/s)  FINISH=4 (4.0/s)   [A
+POST=4 (0.0/s)  RECV=4 (4.0/s)  FAIL=0 (0.0/s)  FINISH=4 (4.0/s)   [AProgress: 100%|██████████| 4/4 [00:02<00:00,  2.00case/s]
+POST=4 (0.0/s)  RECV=4 (4.0/s)  FAIL=0 (0.0/s)  FINISH=4 (4.0/s)   
+[2026-10-28 00:12:46,761] [ais_bench] [[32mINFO[0m] Api infer task time elapsed: 2.22s
+[2026-10-28 00:12:47,753] [ais_bench] [[32mINFO[0m] Inference tasks completed.
+[2026-10-28 00:12:47,754] [ais_bench] [[32mINFO[0m] Summarizing performance results...
+[transformers] The tokenizer you are loading from '/work/decode-bench-20261027/tokenizer' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.
+Calculating performance details:   0%|          | 0/4 [00:00<?, ?it/s]Calculating performance details:   0%|          | 0/4 [00:00<?, ?it/s]Calculating performance details:   0%|          | 0/4 [00:00<?, ?it/s]Calculating performance details:   0%|          | 0/4 [00:00<?, ?it/s]Calculating performance details:   0%|          | 0/4 [00:00<?, ?it/s]Calculating performance details:   0%|          | 0/4 [00:00<?, ?it/s]Calculating performance details:   0%|          | 0/4 [00:00<?, ?it/s]Calculating performance details:   0%|          | 0/4 [00:00<?, ?it/s]Calculating performance details:   0%|          | 0/4 [00:00<?, ?it/s]Calculating performance details:   0%|          | 0/4 [00:00<?, ?it/s]Calculating performance details:   0%|          | 0/4 [00:00<?, ?it/s][transformers] The tokenizer you are loading from '/work/decode-bench-20261027/tokenizer' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.
+Calculating performance details: 100%|██████████| 4/4 [00:01<00:00,  3.99it/s]Calculating performance details: 100%|██████████| 4/4 [00:01<00:00,  3.63it/s]Calculating performance details: 100%|██████████| 4/4 [00:01<00:00,  3.63it/s]
+/work/decode-bench-20261027/venv/lib/python3.12/site-packages/plotly/offline/offline.py:150: UserWarning: 
+Unrecognized config options supplied: ['showLink']
+  warnings.warn(
+[2026-10-28 00:12:50,019] [ais_bench] [[32mINFO[0m] Request timeline and concurrency chart saved to /work/pd-main-20261028/runs/resume_16k_cc224_target20/aisbench/outputs/20261028_001231/performances/vllm-api-stream-chat/gsm8k_plot.html
+[2026-10-28 00:12:50,019] [ais_bench] [[32mINFO[0m] The gsm8k_plot has been saved in /work/pd-main-20261028/runs/resume_16k_cc224_target20/aisbench/outputs/20261028_001231/performances/vllm-api-stream-chat/gsm8k_plot.html
+[2026-10-28 00:12:50,021] [ais_bench] [[32mINFO[0m] Converting performance results for stage...
+[2026-10-28 00:12:50,021] [ais_bench] [[32mINFO[0m] Performance results conversion completed!
+[2026-10-28 00:12:50,021] [ais_bench] [[32mINFO[0m] Starting metrics calculation...
+[2026-10-28 00:12:50,023] [ais_bench] [[32mINFO[0m] Starting common metrics calculation...
+[2026-10-28 00:12:50,023] [ais_bench] [[32mINFO[0m] Adding units to metrics...
+[2026-10-28 00:12:50,023] [ais_bench] [[32mINFO[0m] Performance data calculation completed!
+[2026-10-28 00:12:50,023] [ais_bench] [[32mINFO[0m] Performance Results of task [vllm-api-stream-chat/gsm8k]: 
+╒══════════════════════════╤═════════╤════════════════════╤════════════════════╤═══════════════════╤════════════════════╤═══════════════════╤════════════════════╤════════════════════╤═════╕
+│ Performance Parameters   │ Stage   │ Average            │ Min                │ Max               │ Median             │ P75               │ P90                │ P99                │  N  │
+╞══════════════════════════╪═════════╪════════════════════╪════════════════════╪═══════════════════╪════════════════════╪═══════════════════╪════════════════════╪════════════════════╪═════╡
+│ E2EL                     │ total   │ 1450.0 ms          │ 1222.1 ms          │ 1540.6 ms         │ 1518.6 ms          │ 1531.9 ms         │ 1537.1 ms          │ 1540.3 ms          │  4  │
+├──────────────────────────┼─────────┼────────────────────┼────────────────────┼───────────────────┼────────────────────┼───────────────────┼────────────────────┼────────────────────┼─────┤
+│ TTFT                     │ total   │ 1443.7 ms          │ 1216.0 ms          │ 1534.2 ms         │ 1512.4 ms          │ 1525.6 ms         │ 1530.8 ms          │ 1533.9 ms          │  4  │
+├──────────────────────────┼─────────┼────────────────────┼────────────────────┼───────────────────┼────────────────────┼───────────────────┼────────────────────┼────────────────────┼─────┤
+│ ITL                      │ total   │ 3.1 ms             │ 0.1 ms             │ 6.2 ms            │ 3.2 ms             │ 6.1 ms            │ 6.1 ms             │ 6.2 ms             │  4  │
+├──────────────────────────┼─────────┼────────────────────┼────────────────────┼───────────────────┼────────────────────┼───────────────────┼────────────────────┼────────────────────┼─────┤
+│ InputTokens              │ total   │ 16384.0            │ 16384.0            │ 16384.0           │ 16384.0            │ 16384.0           │ 16384.0            │ 16384.0            │  4  │
+├──────────────────────────┼─────────┼────────────────────┼────────────────────┼───────────────────┼────────────────────┼───────────────────┼────────────────────┼────────────────────┼─────┤
+│ OutputTokens             │ total   │ 1.0                │ 1.0                │ 1.0               │ 1.0                │ 1.0               │ 1.0                │ 1.0                │  4  │
+├──────────────────────────┼─────────┼────────────────────┼────────────────────┼───────────────────┼────────────────────┼───────────────────┼────────────────────┼────────────────────┼─────┤
+│ OutputTokenThroughput    │ total   │ 0.6961 token/s     │ 0.6491 token/s     │ 0.8183 token/s    │ 0.6585 token/s     │ 0.7018 token/s    │ 0.7717 token/s     │ 0.8136 token/s     │  4  │
+├──────────────────────────┼─────────┼────────────────────┼────────────────────┼───────────────────┼────────────────────┼───────────────────┼────────────────────┼────────────────────┼─────┤
+│ PrefillTokenThroughput   │ total   │ 11455.2069 token/s │ 10679.1422 token/s │ 13474.205 token/s │ 10833.7403 token/s │ 11549.341 token/s │ 12704.2594 token/s │ 13397.2104 token/s │  4  │
+╘══════════════════════════╧═════════╧════════════════════╧════════════════════╧═══════════════════╧════════════════════╧═══════════════════╧════════════════════╧════════════════════╧═════╛
+╒═════════════════════════╤═════════╤════════════════════╕
+│ Common Metric           │ Stage   │ Value              │
+╞═════════════════════════╪═════════╪════════════════════╡
+│ Benchmark Duration      │ total   │ 1546.5063 ms       │
+├─────────────────────────┼─────────┼────────────────────┤
+│ Total Requests          │ total   │ 4                  │
+├─────────────────────────┼─────────┼────────────────────┤
+│ Failed Requests         │ total   │ 0                  │
+├─────────────────────────┼─────────┼────────────────────┤
+│ Success Requests        │ total   │ 4                  │
+├─────────────────────────┼─────────┼────────────────────┤
+│ Concurrency             │ total   │ 3.7503             │
+├─────────────────────────┼─────────┼────────────────────┤
+│ Max Concurrency         │ total   │ 4                  │
+├─────────────────────────┼─────────┼────────────────────┤
+│ Request Throughput      │ total   │ 2.5865 req/s       │
+├─────────────────────────┼─────────┼────────────────────┤
+│ Total Input Tokens      │ total   │ 65536              │
+├─────────────────────────┼─────────┼────────────────────┤
+│ Total Generated Tokens  │ total   │ 4                  │
+├─────────────────────────┼─────────┼────────────────────┤
+│ Input Token Throughput  │ total   │ 42376.8082 token/s │
+├─────────────────────────┼─────────┼────────────────────┤
+│ Output Token Throughput │ total   │ 2.5865 token/s     │
+├─────────────────────────┼─────────┼────────────────────┤
+│ Total Token Throughput  │ total   │ 42379.3947 token/s │
+╘═════════════════════════╧═════════╧════════════════════╛[2026-10-28 00:12:50,027] [ais_bench] [[32mINFO[0m] Performance Result files located in /work/pd-main-20261028/runs/resume_16k_cc224_target20/aisbench/outputs/20261028_001231/performances/vllm-api-stream-chat.
+
+2026-10-28 00:12:51,249 - INFO - [完成] 前缀数据集测试完成，结果保存在aisbench_result.csv
+2026-10-28 00:12:51,321 - INFO - queries: normal={0: 17619389, 1: 17996225, 2: 18373055, 3: 18520513}, external={0: 922813, 1: 962241, 2: 1017919, 3: 1031233}
+2026-10-28 00:12:51,357 - INFO - hits: normal={0: 16696576, 1: 17033984, 2: 17355136, 3: 17489280}, external={0: 889950, 1: 961890, 2: 1017568, 3: 1030882}
+
+======================================================================================================================
+Prefix cache hit detail
+======================================================================================================================
+scope                              hbm_hit_rate       hbm(hit/query)       external_hit_rate    external(hit/query)
+----------------------------------------------------------------------------------------------------------------------
+197.13.52.1:31160/engine0          0.00%              0/16384              100.00%              16384/16384
+197.13.52.1:31160/engine1          0.00%              0/16384              100.00%              16384/16384
+197.13.52.1:31160/engine2          0.00%              0/32768              100.00%              32768/32768
+197.13.52.1:31160/engine3          0.00%              0/0                  0.00%                0/0
+----------------------------------------------------------------------------------------------------------------------
+ALL_PODS                           0.00%              0/65536              100.00%              65536/65536
+======================================================================================================================
+2026-10-28 00:12:51,359 - INFO - {'current_time': '2026-10-28 00:12:51', 'input_len': 16384.0, 'output_len': 1.0, 'total_req': 4.0, 'max_cc': '4', 'cc': 3.7503, 'rr': 0, 'repeat_rate': 1.0, 'TTFT avg': 1443.7, 'TTFT P90': 1530.8, 'TPOT avg': 99999, 'TPOT SLO_P90': 99999, 'E2E_time': 1.5465063000000001, 'output_throughput': 2.5865, 'single_output_throughput': 0.16165625, 'E2E_throughput': 42379.3947, 'single_E2E_throughput': 2648.71216875, 'qps': 2.5865, 'qpm': 155.19, 'input_token_throughput': 42376.8082, 'prefill_token_throughput': 9999, 'E2EL avg': 1450.0, 'E2EL P90': 1537.1}
+2026-10-28 00:12:51,359 - INFO - aisbench.log copied to: /work/pd-main-20261028/runs/resume_16k_cc224_target20/aisbench/outputs/20261028_001231
+2026-10-28 00:12:51,359 - INFO - aisbench.log saved at current directory: /work/pd-main-20261028/runs/resume_16k_cc224_target20/tool
+2026-10-28 00:12:51,365 - INFO - 创建新文件并写入数据
+2026-10-28 00:12:54,483 - INFO - [开始] 全量数据集测试
+2026-10-28 00:12:54,556 - INFO - queries: normal={0: 17635773, 1: 18012609, 2: 18389439, 3: 18536897}, external={0: 922941, 1: 962369, 2: 1018047, 3: 1047617}
+2026-10-28 00:12:54,590 - INFO - hits: normal={0: 16712832, 1: 17050240, 2: 17371392, 3: 17489280}, external={0: 889950, 1: 961890, 2: 1017568, 3: 1030882}
+2026-10-28 00:12:54,591 - INFO - Api config file:
+2026-10-28 00:12:54,591 - INFO - make symlink: /work/decode-bench-20261027/aisbench-decode-src/ais_bench/benchmark/configs/models/vllm_api/vllm_api_chat_temp.py ==> /work/pd-main-20261028/runs/resume_16k_cc224_target20/tool/temp_api.py
+2026-10-28 00:12:54,591 - INFO - src_file: /work/pd-main-20261028/runs/resume_16k_cc224_target20/dataset/GSM8K-in16193-num896-tokenizer-repeatRate1.0.jsonl
+2026-10-28 00:12:54,591 - INFO - dst_file: /work/decode-bench-20261027/aisbench-decode-src/ais_bench/datasets/gsm8k/test.jsonl
+2026-10-28 00:12:54,591 - INFO - make symlink: /work/decode-bench-20261027/aisbench-decode-src/ais_bench/datasets/gsm8k/test.jsonl ==> /work/pd-main-20261028/runs/resume_16k_cc224_target20/dataset/GSM8K-in16193-num896-tokenizer-repeatRate1.0.jsonl
+/work/decode-bench-20261027/aisbench-decode-src/ais_bench/benchmark/openicl/icl_evaluator/icl_base_evaluator.py:9: UserWarning: A NumPy version >=1.22.4 and <2.3.0 is required for this version of SciPy (detected version 2.5.4)
+  from scipy.stats import hypergeom
+/usr/local/python3.12.13/lib/python3.12/site-packages/triton/language/extra/cann/extension/math_ops.py:13: FutureWarning: triton.language.extra.cann.extension.atan2 is deprecated and will be removed in the next release; use triton.language.extra.cann.libdevice.atan2 instead.
+  @_deprecated(replacement="triton.language.extra.cann.libdevice.atan2")
+/usr/local/python3.12.13/lib/python3.12/site-packages/triton/language/extra/cann/extension/math_ops.py:35: FutureWarning: triton.language.extra.cann.extension.isfinited is deprecated and will be removed in the next release; use triton.language.extra.cann.libdevice.isfinited instead.
+  @_deprecated(replacement="triton.language.extra.cann.libdevice.isfinited")
+/usr/local/python3.12.13/lib/python3.12/site-packages/triton/language/extra/cann/extension/math_ops.py:49: FutureWarning: triton.language.extra.cann.extension.finitef is deprecated and will be removed in the next release; use triton.language.extra.cann.libdevice.finitef instead.
+  @_deprecated(replacement="triton.language.extra.cann.libdevice.finitef")
+/work/decode-bench-20261027/venv/lib/python3.12/site-packages/fuzzywuzzy/fuzz.py:11: UserWarning: Using slow pure-python SequenceMatcher. Install python-Levenshtein to remove this warning
+  warnings.warn('Using slow pure-python SequenceMatcher. Install python-Levenshtein to remove this warning')
+[2026-10-28 00:13:00,899] [ais_bench] [[32mINFO[0m] Loading vllm_api_chat_temp: /work/decode-bench-20261027/aisbench-decode-src/ais_bench/benchmark/configs/./models/vllm_api/vllm_api_chat_temp.py
+[2026-10-28 00:13:00,903] [ais_bench] [[32mINFO[0m] Loading gsm8k_gen_0_shot_cot_str_perf: /work/decode-bench-20261027/aisbench-decode-src/ais_bench/benchmark/configs/./datasets/gsm8k/gsm8k_gen_0_shot_cot_str_perf.py
+[2026-10-28 00:13:00,905] [ais_bench] [[32mINFO[0m] Loading default_perf: /work/decode-bench-20261027/aisbench-decode-src/ais_bench/benchmark/configs/./summarizers/perf/default_perf.py
+[2026-10-28 00:13:00,905] [ais_bench] [[32mINFO[0m] Current exp folder: /work/pd-main-20261028/runs/resume_16k_cc224_target20/aisbench/outputs/20261028_001254
+[2026-10-28 00:13:00,954] [ais_bench] [[32mINFO[0m] Starting inference tasks...
+[2026-10-28 00:13:00,955] [ais_bench] [[32mINFO[0m] Partitioned into 1 tasks.
+[2026-10-28 00:13:00,955] [ais_bench] [[32mINFO[0m] Merging datasets with the same model and inferencer...
+[2026-10-28 00:13:00,969] [ais_bench] [[32mINFO[0m] Launch TasksMonitor, PID: 11616, Refresh interval: 0.5, Run in background: True
+/work/decode-bench-20261027/aisbench-decode-src/ais_bench/benchmark/openicl/icl_evaluator/icl_base_evaluator.py:9: UserWarning: A NumPy version >=1.22.4 and <2.3.0 is required for this version of SciPy (detected version 2.5.4)
+  from scipy.stats import hypergeom
+/usr/local/python3.12.13/lib/python3.12/site-packages/triton/language/extra/cann/extension/math_ops.py:13: FutureWarning: triton.language.extra.cann.extension.atan2 is deprecated and will be removed in the next release; use triton.language.extra.cann.libdevice.atan2 instead.
+  @_deprecated(replacement="triton.language.extra.cann.libdevice.atan2")
+/usr/local/python3.12.13/lib/python3.12/site-packages/triton/language/extra/cann/extension/math_ops.py:35: FutureWarning: triton.language.extra.cann.extension.isfinited is deprecated and will be removed in the next release; use triton.language.extra.cann.libdevice.isfinited instead.
+  @_deprecated(replacement="triton.language.extra.cann.libdevice.isfinited")
+/usr/local/python3.12.13/lib/python3.12/site-packages/triton/language/extra/cann/extension/math_ops.py:49: FutureWarning: triton.language.extra.cann.extension.finitef is deprecated and will be removed in the next release; use triton.language.extra.cann.libdevice.finitef instead.
+  @_deprecated(replacement="triton.language.extra.cann.libdevice.finitef")
+/work/decode-bench-20261027/venv/lib/python3.12/site-packages/fuzzywuzzy/fuzz.py:11: UserWarning: Using slow pure-python SequenceMatcher. Install python-Levenshtein to remove this warning
+  warnings.warn('Using slow pure-python SequenceMatcher. Install python-Levenshtein to remove this warning')
+[2026-10-28 00:13:08,079] [ais_bench] [[32mINFO[0m] Debug mode, print progress directly
+[2026-10-28 00:13:08,080] [ais_bench] [[32mINFO[0m] Task [vllm-api-stream-chat/gsm8k]
+[2026-10-28 00:13:08,368] [ais_bench] [[32mINFO[0m] Zero Retriever initialized, returning empty shot case for all queries
+[2026-10-28 00:13:08,549] [ais_bench] [[32mINFO[0m] Apply ice template finished
+[2026-10-28 00:13:08,551] [ais_bench] [[33mWARNING[0m] VLLMCustomAPIChatStream is deprecated, please use VLLMCustomAPIChat with stream=True instead.
+[2026-10-28 00:13:08,552] [ais_bench] [[32mINFO[0m] Warmup size is 0, skip...
+[2026-10-28 00:13:08,569] [ais_bench] [[32mINFO[0m] Dataset needed memory size: 57.93005371 MB
+[2026-10-28 00:13:08,569] [ais_bench] [[32mINFO[0m] Memory usage check passed: 4.60% < 80% (Available: 2142.04 GB)
+[2026-10-28 00:13:08,597] [ais_bench] [[33mWARNING[0m] The request rate is below 0.1, resulting in an excessively long interval between two consecutive requests.
+[2026-10-28 00:13:08,597] [ais_bench] [[32mINFO[0m] Traffic request rate: 0 RPS with burstiness 1.0.
+[2026-10-28 00:13:08,597] [ais_bench] [[32mINFO[0m] Request rate (0.0) or ramp end rps (None) < 0.001, sending all requests simultaneously
+[2026-10-28 00:13:08,598] [ais_bench] [[32mINFO[0m] Debug mode, run with concurrency: 224
+[2026-10-28 00:13:08,698] [ais_bench] [[32mINFO[0m] All subprocesses have finished deserializing the first batch of data
+[2026-10-28 00:13:08,798] [ais_bench] [[32mINFO[0m] Starting progress bar Total data num: 896 Finished data num: 0 Left data num: 896
+Progress:   0%|          | 0/896 [00:00<?, ?case/s]
+[A
+POST=0 (0.0/s)  RECV=0 (0.0/s)  FAIL=0 (0.0/s)  FIN=0 (0.0/s)   [A
+POST=0 (0.0/s)  RECV=0 (0.0/s)  FAIL=0 (0.0/s)  FIN=0 (0.0/s)   [A
+POST=158 (157.9/s)  RECV=0 (0.0/s)  FAIL=0 (0.0/s)  FIN=0 (0.0/s)   [A
+POST=158 (157.9/s)  RECV=0 (0.0/s)  FAIL=0 (0.0/s)  FIN=0 (0.0/s)   [A
+POST=224 (66.0/s)  RECV=0 (0.0/s)  FAIL=0 (0.0/s)  FIN=0 (0.0/s)    [A
+POST=224 (66.0/s)  RECV=0 (0.0/s)  FAIL=0 (0.0/s)  FIN=0 (0.0/s)   [A
+POST=224 (0.0/s)  RECV=0 (0.0/s)  FAIL=0 (0.0/s)  FIN=0 (0.0/s)    [A
+POST=224 (0.0/s)  RECV=0 (0.0/s)  FAIL=0 (0.0/s)  FIN=0 (0.0/s)   [A
+POST=224 (0.0/s)  RECV=0 (0.0/s)  FAIL=0 (0.0/s)  FIN=0 (0.0/s)   [A
+POST=224 (0.0/s)  RECV=0 (0.0/s)  FAIL=0 (0.0/s)  FIN=0 (0.0/s)   [A
+POST=224 (0.0/s)  RECV=0 (0.0/s)  FAIL=0 (0.0/s)  FIN=0 (0.0/s)   [A
+POST=224 (0.0/s)  RECV=0 (0.0/s)  FAIL=0 (0.0/s)  FIN=0 (0.0/s)   [A
+POST=224 (0.0/s)  RECV=0 (0.0/s)  FAIL=0 (0.0/s)  FIN=0 (0.0/s)   [A
+POST=224 (0.0/s)  RECV=0 (0.0/s)  FAIL=0 (0.0/s)  FIN=0 (0.0/s)   [A
+POST=224 (0.0/s)  RECV=0 (0.0/s)  FAIL=0 (0.0/s)  FIN=0 (0.0/s)   [A
+POST=224 (0.0/s)  RECV=0 (0.0/s)  FAIL=0 (0.0/s)  FIN=0 (0.0/s)   [A
+POST=224 (0.0/s)  RECV=0 (0.0/s)  FAIL=0 (0.0/s)  FIN=0 (0.0/s)   [A
+POST=224 (0.0/s)  RECV=0 (0.0/s)  FAIL=0 (0.0/s)  FIN=0 (0.0/s)   [A
+POST=224 (0.0/s)  RECV=0 (0.0/s)  FAIL=0 (0.0/s)  FIN=0 (0.0/s)   [A
+POST=224 (0.0/s)  RECV=0 (0.0/s)  FAIL=0 (0.0/s)  FIN=0 (0.0/s)   [A
+POST=224 (0.0/s)  RECV=0 (0.0/s)  FAIL=0 (0.0/s)  FIN=0 (0.0/s)   [A
+POST=224 (0.0/s)  RECV=0 (0.0/s)  FAIL=0 (0.0/s)  FIN=0 (0.0/s)   [A
+POST=224 (0.0/s)  RECV=0 (0.0/s)  FAIL=0 (0.0/s)  FIN=0 (0.0/s)   [A
+POST=224 (0.0/s)  RECV=0 (0.0/s)  FAIL=0 (0.0/s)  FIN=0 (0.0/s)   [A
+POST=224 (0.0/s)  RECV=0 (0.0/s)  FAIL=0 (0.0/s)  FIN=0 (0.0/s)   [A
+POST=224 (0.0/s)  RECV=0 (0.0/s)  FAIL=0 (0.0/s)  FIN=0 (0.0/s)   [A
+POST=224 (0.0/s)  RECV=0 (0.0/s)  FAIL=0 (0.0/s)  FIN=0 (0.0/s)   [A
+POST=224 (0.0/s)  RECV=0 (0.0/s)  FAIL=0 (0.0/s)  FIN=0 (0.0/s)   [A
+POST=224 (0.0/s)  RECV=0 (0.0/s)  FAIL=0 (0.0/s)  FIN=0 (0.0/s)   [A
+POST=224 (0.0/s)  RECV=0 (0.0/s)  FAIL=0 (0.0/s)  FIN=0 (0.0/s)   [A
+POST=224 (0.0/s)  RECV=0 (0.0/s)  FAIL=0 (0.0/s)  FIN=0 (0.0/s)   [A
+POST=224 (0.0/s)  RECV=0 (0.0/s)  FAIL=0 (0.0/s)  FIN=0 (0.0/s)   [AProgress:   1%|          | 6/896 [00:15<39:04,  2.63s/case]
+POST=230 (6.0/s)  RECV=6 (6.0/s)  FAIL=0 (0.0/s)  FIN=6 (6.0/s)   [A
+POST=230 (6.0/s)  RECV=6 (6.0/s)  FAIL=0 (0.0/s)  FIN=6 (6.0/s)   [AProgress:   1%|          | 10/896 [00:16<21:43,  1.47s/case]
+POST=234 (4.0/s)  RECV=10 (4.0/s)  FAIL=0 (0.0/s)  FIN=10 (4.0/s)   [A
+POST=234 (4.0/s)  RECV=10 (4.0/s)  FAIL=0 (0.0/s)  FIN=10 (4.0/s)   [AProgress:   2%|▏         | 16/896 [00:17<11:48,  1.24case/s]
+POST=240 (6.0/s)  RECV=16 (6.0/s)  FAIL=0 (0.0/s)  FIN=16 (6.0/s)   [A
+POST=240 (6.0/s)  RECV=16 (6.0/s)  FAIL=0 (0.0/s)  FIN=16 (6.0/s)   [AProgress:   3%|▎         | 23/896 [00:18<07:16,  2.00case/s]
+POST=247 (7.0/s)  RECV=23 (7.0/s)  FAIL=0 (0.0/s)  FIN=23 (7.0/s)   [A
+POST=247 (7.0/s)  RECV=23 (7.0/s)  FAIL=0 (0.0/s)  FIN=23 (7.0/s)   [AProgress:   4%|▍         | 34/896 [00:19<04:11,  3.42case/s]
+POST=258 (11.0/s)  RECV=34 (11.0/s)  FAIL=0 (0.0/s)  FIN=34 (11.0/s)   [A
+POST=258 (11.0/s)  RECV=34 (11.0/s)  FAIL=0 (0.0/s)  FIN=34 (11.0/s)   [AProgress:   6%|▌         | 50/896 [00:20<02:27,  5.74case/s]
+POST=274 (16.0/s)  RECV=50 (16.0/s)  FAIL=0 (0.0/s)  FIN=50 (16.0/s)   [A
+POST=274 (16.0/s)  RECV=50 (16.0/s)  FAIL=0 (0.0/s)  FIN=50 (16.0/s)   [AProgress:   7%|▋         | 63/896 [00:21<01:54,  7.25case/s]
+POST=287 (13.0/s)  RECV=63 (13.0/s)  FAIL=0 (0.0/s)  FIN=63 (13.0/s)   [A
+POST=287 (13.0/s)  RECV=63 (13.0/s)  FAIL=0 (0.0/s)  FIN=63 (13.0/s)   [AProgress:   9%|▊         | 77/896 [00:22<01:33,  8.79case/s]
+POST=301 (14.0/s)  RECV=77 (14.0/s)  FAIL=0 (0.0/s)  FIN=77 (14.0/s)   [A
+POST=301 (14.0/s)  RECV=77 (14.0/s)  FAIL=0 (0.0/s)  FIN=77 (14.0/s)   [AProgress:  10%|▉         | 89/896 [00:23<01:24,  9.58case/s]
+POST=313 (12.0/s)  RECV=89 (12.0/s)  FAIL=0 (0.0/s)  FIN=89 (12.0/s)   [A
+POST=313 (12.0/s)  RECV=89 (12.0/s)  FAIL=0 (0.0/s)  FIN=89 (12.0/s)   [AProgress:  11%|█▏        | 103/896 [00:24<01:13, 10.73case/s]
+POST=327 (14.0/s)  RECV=103 (14.0/s)  FAIL=0 (0.0/s)  FIN=103 (14.0/s)   [A
+POST=327 (14.0/s)  RECV=103 (14.0/s)  FAIL=0 (0.0/s)  FIN=103 (14.0/s)   [AProgress:  15%|█▍        | 131/896 [00:25<00:49, 15.41case/s]
+POST=354 (27.0/s)  RECV=131 (28.0/s)  FAIL=0 (0.0/s)  FIN=131 (28.0/s)   [A
+POST=354 (27.0/s)  RECV=131 (28.0/s)  FAIL=0 (0.0/s)  FIN=131 (28.0/s)   [AProgress:  18%|█▊        | 158/896 [00:26<00:39, 18.65case/s]
+POST=382 (28.0/s)  RECV=158 (27.0/s)  FAIL=0 (0.0/s)  FIN=158 (27.0/s)   [A
+POST=382 (28.0/s)  RECV=158 (27.0/s)  FAIL=0 (0.0/s)  FIN=158 (27.0/s)   [AProgress:  20%|██        | 181/896 [00:27<00:35, 19.88case/s]
+POST=405 (23.0/s)  RECV=181 (23.0/s)  FAIL=0 (0.0/s)  FIN=181 (23.0/s)   [A
+POST=405 (23.0/s)  RECV=181 (23.0/s)  FAIL=0 (0.0/s)  FIN=181 (23.0/s)   [AProgress:  23%|██▎       | 209/896 [00:28<00:30, 22.23case/s]
+POST=433 (28.0/s)  RECV=209 (28.0/s)  FAIL=0 (0.0/s)  FIN=209 (28.0/s)   [A
+POST=433 (28.0/s)  RECV=209 (28.0/s)  FAIL=0 (0.0/s)  FIN=209 (28.0/s)   [AProgress:  24%|██▍       | 214/896 [00:29<00:39, 17.18case/s]
+POST=438 (5.0/s)  RECV=214 (5.0/s)  FAIL=0 (0.0/s)  FIN=214 (5.0/s)      [A
+POST=438 (5.0/s)  RECV=214 (5.0/s)  FAIL=0 (0.0/s)  FIN=214 (5.0/s)   [AProgress:  24%|██▍       | 217/896 [00:30<00:52, 13.00case/s]
+POST=441 (3.0/s)  RECV=217 (3.0/s)  FAIL=0 (0.0/s)  FIN=217 (3.0/s)   [A
+POST=441 (3.0/s)  RECV=217 (3.0/s)  FAIL=0 (0.0/s)  FIN=217 (3.0/s)   [AProgress:  24%|██▍       | 219/896 [00:31<01:09,  9.74case/s]
+POST=443 (2.0/s)  RECV=219 (2.0/s)  FAIL=0 (0.0/s)  FIN=219 (2.0/s)   [A
+POST=443 (2.0/s)  RECV=219 (2.0/s)  FAIL=0 (0.0/s)  FIN=219 (2.0/s)   [A
+POST=443 (0.0/s)  RECV=219 (0.0/s)  FAIL=0 (0.0/s)  FIN=219 (0.0/s)   [A
+POST=443 (0.0/s)  RECV=219 (0.0/s)  FAIL=0 (0.0/s)  FIN=219 (0.0/s)   [A
+POST=443 (0.0/s)  RECV=219 (0.0/s)  FAIL=0 (0.0/s)  FIN=219 (0.0/s)   [A
+POST=443 (0.0/s)  RECV=219 (0.0/s)  FAIL=0 (0.0/s)  FIN=219 (0.0/s)   [A
+POST=443 (0.0/s)  RECV=219 (0.0/s)  FAIL=0 (0.0/s)  FIN=219 (0.0/s)   [A
+POST=443 (0.0/s)  RECV=219 (0.0/s)  FAIL=0 (0.0/s)  FIN=219 (0.0/s)   [AProgress:  25%|██▍       | 221/896 [00:35<02:51,  3.93case/s]
+POST=445 (2.0/s)  RECV=221 (2.0/s)  FAIL=0 (0.0/s)  FIN=221 (2.0/s)   [A
+POST=445 (2.0/s)  RECV=221 (2.0/s)  FAIL=0 (0.0/s)  FIN=221 (2.0/s)   [AProgress:  25%|██▌       | 225/896 [00:36<02:50,  3.94case/s]
+POST=449 (4.0/s)  RECV=225 (4.0/s)  FAIL=0 (0.0/s)  FIN=225 (4.0/s)   [A
+POST=449 (4.0/s)  RECV=225 (4.0/s)  FAIL=0 (0.0/s)  FIN=225 (4.0/s)   [AProgress:  26%|██▌       | 229/896 [00:37<02:48,  3.96case/s]
+POST=453 (4.0/s)  RECV=229 (4.0/s)  FAIL=0 (0.0/s)  FIN=229 (4.0/s)   [A
+POST=453 (4.0/s)  RECV=229 (4.0/s)  FAIL=0 (0.0/s)  FIN=229 (4.0/s)   [AProgress:  26%|██▌       | 232/896 [00:38<02:57,  3.74case/s]
+POST=456 (3.0/s)  RECV=232 (3.0/s)  FAIL=0 (0.0/s)  FIN=232 (3.0/s)   [A
+POST=456 (3.0/s)  RECV=232 (3.0/s)  FAIL=0 (0.0/s)  FIN=232 (3.0/s)   [AProgress:  26%|██▋       | 237/896 [00:39<02:42,  4.05case/s]
+POST=461 (5.0/s)  RECV=237 (5.0/s)  FAIL=0 (0.0/s)  FIN=237 (5.0/s)   [A
+POST=461 (5.0/s)  RECV=237 (5.0/s)  FAIL=0 (0.0/s)  FIN=237 (5.0/s)   [AProgress:  27%|██▋       | 245/896 [00:40<02:08,  5.07case/s]
+POST=469 (8.0/s)  RECV=245 (8.0/s)  FAIL=0 (0.0/s)  FIN=245 (8.0/s)   [A
+POST=469 (8.0/s)  RECV=245 (8.0/s)  FAIL=0 (0.0/s)  FIN=245 (8.0/s)   [AProgress:  28%|██▊       | 253/896 [00:41<01:49,  5.87case/s]
+POST=477 (8.0/s)  RECV=253 (8.0/s)  FAIL=0 (0.0/s)  FIN=253 (8.0/s)   [A
+POST=477 (8.0/s)  RECV=253 (8.0/s)  FAIL=0 (0.0/s)  FIN=253 (8.0/s)   [AProgress:  30%|██▉       | 267/896 [00:42<01:17,  8.13case/s]
+POST=491 (14.0/s)  RECV=267 (14.0/s)  FAIL=0 (0.0/s)  FIN=267 (14.0/s)   [A
+POST=491 (14.0/s)  RECV=267 (14.0/s)  FAIL=0 (0.0/s)  FIN=267 (14.0/s)   [AProgress:  31%|███▏      | 280/896 [00:43<01:04,  9.52case/s]
+POST=504 (13.0/s)  RECV=280 (13.0/s)  FAIL=0 (0.0/s)  FIN=280 (13.0/s)   [A
+POST=504 (13.0/s)  RECV=280 (13.0/s)  FAIL=0 (0.0/s)  FIN=280 (13.0/s)   [AProgress:  32%|███▏      | 289/896 [00:44<01:04,  9.37case/s]
+POST=513 (9.0/s)  RECV=289 (9.0/s)  FAIL=0 (0.0/s)  FIN=289 (9.0/s)      [A
+POST=513 (9.0/s)  RECV=289 (9.0/s)  FAIL=0 (0.0/s)  FIN=289 (9.0/s)   [AProgress:  34%|███▍      | 305/896 [00:45<00:52, 11.30case/s]
+POST=529 (16.0/s)  RECV=305 (16.0/s)  FAIL=0 (0.0/s)  FIN=305 (16.0/s)   [A
+POST=529 (16.0/s)  RECV=305 (16.0/s)  FAIL=0 (0.0/s)  FIN=305 (16.0/s)   [AProgress:  36%|███▌      | 320/896 [00:46<00:46, 12.39case/s]
+POST=544 (15.0/s)  RECV=320 (15.0/s)  FAIL=0 (0.0/s)  FIN=320 (15.0/s)   [A
+POST=544 (15.0/s)  RECV=320 (15.0/s)  FAIL=0 (0.0/s)  FIN=320 (15.0/s)   [AProgress:  39%|███▉      | 349/896 [00:47<00:31, 17.31case/s]
+POST=573 (29.0/s)  RECV=349 (29.0/s)  FAIL=0 (0.0/s)  FIN=349 (29.0/s)   [A
+POST=573 (29.0/s)  RECV=349 (29.0/s)  FAIL=0 (0.0/s)  FIN=349 (29.0/s)   [AProgress:  42%|████▏     | 376/896 [00:48<00:25, 20.19case/s]
+POST=600 (27.0/s)  RECV=376 (27.0/s)  FAIL=0 (0.0/s)  FIN=376 (27.0/s)   [A
+POST=600 (27.0/s)  RECV=376 (27.0/s)  FAIL=0 (0.0/s)  FIN=376 (27.0/s)   [AProgress:  44%|████▍     | 397/896 [00:49<00:24, 20.43case/s]
+POST=621 (20.9/s)  RECV=397 (20.9/s)  FAIL=0 (0.0/s)  FIN=397 (20.9/s)   [A
+POST=621 (20.9/s)  RECV=397 (20.9/s)  FAIL=0 (0.0/s)  FIN=397 (20.9/s)   [AProgress:  47%|████▋     | 419/896 [00:50<00:22, 20.87case/s]
+POST=643 (22.0/s)  RECV=419 (22.0/s)  FAIL=0 (0.0/s)  FIN=419 (22.0/s)   [A
+POST=643 (22.0/s)  RECV=419 (22.0/s)  FAIL=0 (0.0/s)  FIN=419 (22.0/s)   [AProgress:  48%|████▊     | 427/896 [00:51<00:27, 17.02case/s]
+POST=651 (8.0/s)  RECV=427 (8.0/s)  FAIL=0 (0.0/s)  FIN=427 (8.0/s)      [A
+POST=651 (8.0/s)  RECV=427 (8.0/s)  FAIL=0 (0.0/s)  FIN=427 (8.0/s)   [AProgress:  48%|████▊     | 433/896 [00:52<00:33, 13.72case/s]
+POST=657 (6.0/s)  RECV=433 (6.0/s)  FAIL=0 (0.0/s)  FIN=433 (6.0/s)   [A
+POST=657 (6.0/s)  RECV=433 (6.0/s)  FAIL=0 (0.0/s)  FIN=433 (6.0/s)   [A
+POST=657 (0.0/s)  RECV=433 (0.0/s)  FAIL=0 (0.0/s)  FIN=433 (0.0/s)   [A
+POST=657 (0.0/s)  RECV=433 (0.0/s)  FAIL=0 (0.0/s)  FIN=433 (0.0/s)   [A
+POST=657 (0.0/s)  RECV=433 (0.0/s)  FAIL=0 (0.0/s)  FIN=433 (0.0/s)   [A
+POST=657 (0.0/s)  RECV=433 (0.0/s)  FAIL=0 (0.0/s)  FIN=433 (0.0/s)   [A
+POST=657 (0.0/s)  RECV=433 (0.0/s)  FAIL=0 (0.0/s)  FIN=433 (0.0/s)   [A
+POST=657 (0.0/s)  RECV=433 (0.0/s)  FAIL=0 (0.0/s)  FIN=433 (0.0/s)   [AProgress:  49%|████▊     | 435/896 [00:56<01:25,  5.38case/s]
+POST=659 (2.0/s)  RECV=435 (2.0/s)  FAIL=0 (0.0/s)  FIN=435 (2.0/s)   [A
+POST=659 (2.0/s)  RECV=435 (2.0/s)  FAIL=0 (0.0/s)  FIN=435 (2.0/s)   [AProgress:  49%|████▉     | 440/896 [00:57<01:25,  5.31case/s]
+POST=664 (5.0/s)  RECV=440 (5.0/s)  FAIL=0 (0.0/s)  FIN=440 (5.0/s)   [A
+POST=664 (5.0/s)  RECV=440 (5.0/s)  FAIL=0 (0.0/s)  FIN=440 (5.0/s)   [AProgress:  49%|████▉     | 443/896 [00:58<01:33,  4.83case/s]
+POST=667 (3.0/s)  RECV=443 (3.0/s)  FAIL=0 (0.0/s)  FIN=443 (3.0/s)   [A
+POST=667 (3.0/s)  RECV=443 (3.0/s)  FAIL=0 (0.0/s)  FIN=443 (3.0/s)   [AProgress:  50%|████▉     | 446/896 [00:59<01:42,  4.41case/s]
+POST=670 (3.0/s)  RECV=446 (3.0/s)  FAIL=0 (0.0/s)  FIN=446 (3.0/s)   [A
+POST=670 (3.0/s)  RECV=446 (3.0/s)  FAIL=0 (0.0/s)  FIN=446 (3.0/s)   [AProgress:  50%|█████     | 450/896 [01:00<01:43,  4.31case/s]
+POST=674 (4.0/s)  RECV=450 (4.0/s)  FAIL=0 (0.0/s)  FIN=450 (4.0/s)   [A
+POST=674 (4.0/s)  RECV=450 (4.0/s)  FAIL=0 (0.0/s)  FIN=450 (4.0/s)   [AProgress:  51%|█████     | 454/896 [01:01<01:44,  4.23case/s]
+POST=678 (4.0/s)  RECV=454 (4.0/s)  FAIL=0 (0.0/s)  FIN=454 (4.0/s)   [A
+POST=678 (4.0/s)  RECV=454 (4.0/s)  FAIL=0 (0.0/s)  FIN=454 (4.0/s)   [AProgress:  51%|█████▏    | 460/896 [01:02<01:32,  4.71case/s]
+POST=684 (6.0/s)  RECV=460 (6.0/s)  FAIL=0 (0.0/s)  FIN=460 (6.0/s)   [A
+POST=684 (6.0/s)  RECV=460 (6.0/s)  FAIL=0 (0.0/s)  FIN=460 (6.0/s)   [AProgress:  52%|█████▏    | 469/896 [01:03<01:12,  5.90case/s]
+POST=693 (9.0/s)  RECV=469 (9.0/s)  FAIL=0 (0.0/s)  FIN=469 (9.0/s)   [A
+POST=693 (9.0/s)  RECV=469 (9.0/s)  FAIL=0 (0.0/s)  FIN=469 (9.0/s)   [AProgress:  54%|█████▍    | 482/896 [01:04<00:52,  7.93case/s]
+POST=706 (13.0/s)  RECV=482 (13.0/s)  FAIL=0 (0.0/s)  FIN=482 (13.0/s)   [A
+POST=706 (13.0/s)  RECV=482 (13.0/s)  FAIL=0 (0.0/s)  FIN=482 (13.0/s)   [AProgress:  55%|█████▍    | 490/896 [01:05<00:51,  7.95case/s]
+POST=713 (7.0/s)  RECV=490 (8.0/s)  FAIL=0 (0.0/s)  FIN=490 (8.0/s)      [A
+POST=713 (7.0/s)  RECV=490 (8.0/s)  FAIL=0 (0.0/s)  FIN=490 (8.0/s)   [AProgress:  57%|█████▋    | 507/896 [01:06<00:36, 10.59case/s]
+POST=731 (18.0/s)  RECV=507 (17.0/s)  FAIL=0 (0.0/s)  FIN=507 (17.0/s)   [A
+POST=731 (18.0/s)  RECV=507 (17.0/s)  FAIL=0 (0.0/s)  FIN=507 (17.0/s)   [AProgress:  58%|█████▊    | 523/896 [01:07<00:30, 12.18case/s]
+POST=747 (16.0/s)  RECV=523 (16.0/s)  FAIL=0 (0.0/s)  FIN=523 (16.0/s)   [A
+POST=747 (16.0/s)  RECV=523 (16.0/s)  FAIL=0 (0.0/s)  FIN=523 (16.0/s)   [AProgress:  60%|█████▉    | 537/896 [01:08<00:28, 12.72case/s]
+POST=761 (14.0/s)  RECV=537 (14.0/s)  FAIL=0 (0.0/s)  FIN=537 (14.0/s)   [A
+POST=761 (14.0/s)  RECV=537 (14.0/s)  FAIL=0 (0.0/s)  FIN=537 (14.0/s)   [AProgress:  63%|██████▎   | 562/896 [01:09<00:20, 16.37case/s]
+POST=786 (25.0/s)  RECV=562 (25.0/s)  FAIL=0 (0.0/s)  FIN=562 (25.0/s)   [A
+POST=786 (25.0/s)  RECV=562 (25.0/s)  FAIL=0 (0.0/s)  FIN=562 (25.0/s)   [AProgress:  65%|██████▌   | 585/896 [01:10<00:16, 18.34case/s]
+POST=809 (23.0/s)  RECV=585 (23.0/s)  FAIL=0 (0.0/s)  FIN=585 (23.0/s)   [A
+POST=809 (23.0/s)  RECV=585 (23.0/s)  FAIL=0 (0.0/s)  FIN=585 (23.0/s)   [AProgress:  69%|██████▉   | 616/896 [01:11<00:12, 22.12case/s]
+POST=840 (31.0/s)  RECV=616 (31.0/s)  FAIL=0 (0.0/s)  FIN=616 (31.0/s)   [A
+POST=840 (31.0/s)  RECV=616 (31.0/s)  FAIL=0 (0.0/s)  FIN=616 (31.0/s)   [AProgress:  71%|███████   | 637/896 [01:12<00:11, 21.78case/s]
+POST=861 (21.0/s)  RECV=637 (21.0/s)  FAIL=0 (0.0/s)  FIN=637 (21.0/s)   [A
+POST=861 (21.0/s)  RECV=637 (21.0/s)  FAIL=0 (0.0/s)  FIN=637 (21.0/s)   [AProgress:  72%|███████▏  | 646/896 [01:13<00:13, 17.95case/s]
+POST=870 (9.0/s)  RECV=646 (9.0/s)  FAIL=0 (0.0/s)  FIN=646 (9.0/s)      [A
+POST=870 (9.0/s)  RECV=646 (9.0/s)  FAIL=0 (0.0/s)  FIN=646 (9.0/s)   [AProgress:  72%|███████▏  | 649/896 [01:14<00:18, 13.47case/s]
+POST=873 (3.0/s)  RECV=649 (3.0/s)  FAIL=0 (0.0/s)  FIN=649 (3.0/s)   [A
+POST=873 (3.0/s)  RECV=649 (3.0/s)  FAIL=0 (0.0/s)  FIN=649 (3.0/s)   [AProgress:  73%|███████▎  | 652/896 [01:15<00:23, 10.33case/s]
+POST=876 (3.0/s)  RECV=652 (3.0/s)  FAIL=0 (0.0/s)  FIN=652 (3.0/s)   [A
+POST=876 (3.0/s)  RECV=652 (3.0/s)  FAIL=0 (0.0/s)  FIN=652 (3.0/s)   [A
+POST=877 (1.0/s)  RECV=653 (1.0/s)  FAIL=0 (0.0/s)  FIN=653 (1.0/s)   [A
+POST=877 (1.0/s)  RECV=653 (1.0/s)  FAIL=0 (0.0/s)  FIN=653 (1.0/s)   [AProgress:  73%|███████▎  | 655/896 [01:17<00:38,  6.26case/s]
+POST=879 (2.0/s)  RECV=655 (2.0/s)  FAIL=0 (0.0/s)  FIN=655 (2.0/s)   [A
+POST=879 (2.0/s)  RECV=655 (2.0/s)  FAIL=0 (0.0/s)  FIN=655 (2.0/s)   [AProgress:  73%|███████▎  | 657/896 [01:18<00:45,  5.20case/s]
+POST=881 (2.0/s)  RECV=657 (2.0/s)  FAIL=0 (0.0/s)  FIN=657 (2.0/s)   [A
+POST=881 (2.0/s)  RECV=657 (2.0/s)  FAIL=0 (0.0/s)  FIN=657 (2.0/s)   [AProgress:  74%|███████▎  | 659/896 [01:19<00:54,  4.37case/s]
+POST=883 (2.0/s)  RECV=659 (2.0/s)  FAIL=0 (0.0/s)  FIN=659 (2.0/s)   [A
+POST=883 (2.0/s)  RECV=659 (2.0/s)  FAIL=0 (0.0/s)  FIN=659 (2.0/s)   [AProgress:  74%|███████▍  | 665/896 [01:20<00:48,  4.81case/s]
+POST=889 (6.0/s)  RECV=665 (6.0/s)  FAIL=0 (0.0/s)  FIN=665 (6.0/s)   [A
+POST=889 (6.0/s)  RECV=665 (6.0/s)  FAIL=0 (0.0/s)  FIN=665 (6.0/s)   [AProgress:  74%|███████▍  | 667/896 [01:21<00:56,  4.02case/s]
+POST=891 (2.0/s)  RECV=667 (2.0/s)  FAIL=0 (0.0/s)  FIN=667 (2.0/s)   [A
+POST=891 (2.0/s)  RECV=667 (2.0/s)  FAIL=0 (0.0/s)  FIN=667 (2.0/s)   [AProgress:  75%|███████▍  | 668/896 [01:22<01:12,  3.16case/s]
+POST=892 (1.0/s)  RECV=668 (1.0/s)  FAIL=0 (0.0/s)  FIN=668 (1.0/s)   [A
+POST=892 (1.0/s)  RECV=668 (1.0/s)  FAIL=0 (0.0/s)  FIN=668 (1.0/s)   [AProgress:  75%|███████▌  | 673/896 [01:23<01:00,  3.69case/s]
+POST=896 (4.0/s)  RECV=673 (5.0/s)  FAIL=0 (0.0/s)  FIN=673 (5.0/s)   [A
+POST=896 (4.0/s)  RECV=673 (5.0/s)  FAIL=0 (0.0/s)  FIN=673 (5.0/s)   [AProgress:  77%|███████▋  | 688/896 [01:24<00:29,  7.00case/s]
+POST=896 (0.0/s)  RECV=688 (15.0/s)  FAIL=0 (0.0/s)  FIN=688 (15.0/s)   [A
+POST=896 (0.0/s)  RECV=688 (15.0/s)  FAIL=0 (0.0/s)  FIN=688 (15.0/s)   [AProgress:  78%|███████▊  | 696/896 [01:25<00:27,  7.29case/s]
+POST=896 (0.0/s)  RECV=696 (8.0/s)  FAIL=0 (0.0/s)  FIN=696 (8.0/s)     [A
+POST=896 (0.0/s)  RECV=696 (8.0/s)  FAIL=0 (0.0/s)  FIN=696 (8.0/s)   [AProgress:  79%|███████▊  | 704/896 [01:26<00:25,  7.50case/s]
+POST=896 (0.0/s)  RECV=704 (8.0/s)  FAIL=0 (0.0/s)  FIN=704 (8.0/s)   [A
+POST=896 (0.0/s)  RECV=704 (8.0/s)  FAIL=0 (0.0/s)  FIN=704 (8.0/s)   [AProgress:  79%|███████▉  | 708/896 [01:27<00:29,  6.46case/s]
+POST=896 (0.0/s)  RECV=708 (4.0/s)  FAIL=0 (0.0/s)  FIN=708 (4.0/s)   [A
+POST=896 (0.0/s)  RECV=708 (4.0/s)  FAIL=0 (0.0/s)  FIN=708 (4.0/s)   [AProgress:  82%|████████▏ | 733/896 [01:28<00:13, 11.98case/s]
+POST=896 (0.0/s)  RECV=733 (25.0/s)  FAIL=0 (0.0/s)  FIN=733 (25.0/s)   [A
+POST=896 (0.0/s)  RECV=733 (25.0/s)  FAIL=0 (0.0/s)  FIN=733 (25.0/s)   [AProgress:  84%|████████▍ | 753/896 [01:29<00:09, 14.38case/s]
+POST=896 (0.0/s)  RECV=753 (20.0/s)  FAIL=0 (0.0/s)  FIN=753 (20.0/s)   [A
+POST=896 (0.0/s)  RECV=753 (20.0/s)  FAIL=0 (0.0/s)  FIN=753 (20.0/s)   [AProgress:  87%|████████▋ | 778/896 [01:30<00:06, 17.55case/s]
+POST=896 (0.0/s)  RECV=778 (25.0/s)  FAIL=0 (0.0/s)  FIN=778 (25.0/s)   [A
+POST=896 (0.0/s)  RECV=778 (25.0/s)  FAIL=0 (0.0/s)  FIN=778 (25.0/s)   [AProgress:  91%|█████████ | 811/896 [01:31<00:03, 22.17case/s]
+POST=896 (0.0/s)  RECV=811 (33.0/s)  FAIL=0 (0.0/s)  FIN=811 (33.0/s)   [A
+POST=896 (0.0/s)  RECV=811 (33.0/s)  FAIL=0 (0.0/s)  FIN=811 (33.0/s)   [AProgress:  95%|█████████▌| 853/896 [01:32<00:01, 28.10case/s]
+POST=896 (0.0/s)  RECV=853 (42.0/s)  FAIL=0 (0.0/s)  FIN=853 (42.0/s)   [A
+POST=896 (0.0/s)  RECV=853 (42.0/s)  FAIL=0 (0.0/s)  FIN=853 (42.0/s)   [AProgress:  97%|█████████▋| 868/896 [01:33<00:01, 24.17case/s]
+POST=896 (0.0/s)  RECV=868 (15.0/s)  FAIL=0 (0.0/s)  FIN=868 (15.0/s)   [A
+POST=896 (0.0/s)  RECV=868 (15.0/s)  FAIL=0 (0.0/s)  FIN=868 (15.0/s)   [AProgress:  98%|█████████▊| 875/896 [01:34<00:01, 19.02case/s]
+POST=896 (0.0/s)  RECV=875 (7.0/s)  FAIL=0 (0.0/s)  FIN=875 (7.0/s)     [A
+POST=896 (0.0/s)  RECV=875 (7.0/s)  FAIL=0 (0.0/s)  FIN=875 (7.0/s)   [AProgress:  98%|█████████▊| 879/896 [01:35<00:01, 14.52case/s]
+POST=896 (0.0/s)  RECV=879 (4.0/s)  FAIL=0 (0.0/s)  FIN=879 (4.0/s)   [A
+POST=896 (0.0/s)  RECV=879 (4.0/s)  FAIL=0 (0.0/s)  FIN=879 (4.0/s)   [AProgress:  99%|█████████▉| 889/896 [01:36<00:00, 13.16case/s]
+POST=896 (0.0/s)  RECV=889 (10.0/s)  FAIL=0 (0.0/s)  FIN=889 (10.0/s)   [A
+POST=896 (0.0/s)  RECV=889 (10.0/s)  FAIL=0 (0.0/s)  FIN=889 (10.0/s)   [A
+POST=896 (0.0/s)  RECV=890 (1.0/s)  FAIL=0 (0.0/s)  FIN=890 (1.0/s)     [A
+POST=896 (0.0/s)  RECV=890 (1.0/s)  FAIL=0 (0.0/s)  FIN=890 (1.0/s)   [AProgress: 100%|█████████▉| 892/896 [01:38<00:00,  7.78case/s]
+POST=896 (0.0/s)  RECV=892 (2.0/s)  FAIL=0 (0.0/s)  FIN=892 (2.0/s)   [A
+POST=896 (0.0/s)  RECV=892 (2.0/s)  FAIL=0 (0.0/s)  FIN=892 (2.0/s)   [AProgress: 100%|█████████▉| 894/896 [01:39<00:00,  6.35case/s]
+POST=896 (0.0/s)  RECV=894 (2.0/s)  FAIL=0 (0.0/s)  FIN=894 (2.0/s)   [A
+POST=896 (0.0/s)  RECV=894 (2.0/s)  FAIL=0 (0.0/s)  FIN=894 (2.0/s)   [AProgress: 100%|██████████| 896/896 [01:40<00:00,  5.21case/s]
+POST=896 (0.0/s)  RECV=896 (2.0/s)  FAIL=0 (0.0/s)  FIN=896 (2.0/s)   [A
+POST=896 (0.0/s)  RECV=896 (2.0/s)  FAIL=0 (0.0/s)  FIN=896 (2.0/s)   [A
+POST=896 (0.0/s)  RECV=896 (0.0/s)  FAIL=0 (0.0/s)  FINISH=896 (0.0/s)   [A
+POST=896 (0.0/s)  RECV=896 (0.0/s)  FAIL=0 (0.0/s)  FINISH=896 (0.0/s)   [AProgress: 100%|██████████| 896/896 [01:41<00:00,  8.85case/s]
+POST=896 (0.0/s)  RECV=896 (0.0/s)  FAIL=0 (0.0/s)  FINISH=896 (0.0/s)   
+[2026-10-28 00:14:50,081] [ais_bench] [[32mINFO[0m] Api infer task time elapsed: 102.00s
+[2026-10-28 00:14:51,570] [ais_bench] [[32mINFO[0m] Inference tasks completed.
+[2026-10-28 00:14:51,571] [ais_bench] [[32mINFO[0m] Summarizing performance results...
+[transformers] The tokenizer you are loading from '/work/decode-bench-20261027/tokenizer' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.
+Calculating performance details:   0%|          | 0/896 [00:00<?, ?it/s]Calculating performance details:   0%|          | 0/896 [00:00<?, ?it/s]Calculating performance details:   0%|          | 0/896 [00:00<?, ?it/s]Calculating performance details:   0%|          | 0/896 [00:00<?, ?it/s]Calculating performance details:   0%|          | 0/896 [00:00<?, ?it/s]Calculating performance details:   0%|          | 0/896 [00:00<?, ?it/s]Calculating performance details:   0%|          | 0/896 [00:00<?, ?it/s]Calculating performance details:   0%|          | 0/896 [00:00<?, ?it/s]Calculating performance details:   0%|          | 0/896 [00:00<?, ?it/s]Calculating performance details:   0%|          | 0/896 [00:00<?, ?it/s]Calculating performance details:   0%|          | 0/896 [00:00<?, ?it/s][transformers] The tokenizer you are loading from '/work/decode-bench-20261027/tokenizer' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.
+Calculating performance details:  24%|██▍       | 219/896 [00:01<00:03, 218.43it/s]Calculating performance details: 100%|██████████| 896/896 [00:01<00:00, 812.47it/s]Calculating performance details: 100%|██████████| 896/896 [00:01<00:00, 744.85it/s]Calculating performance details: 100%|██████████| 896/896 [00:01<00:00, 744.78it/s]
+/work/decode-bench-20261027/venv/lib/python3.12/site-packages/plotly/offline/offline.py:150: UserWarning: 
+Unrecognized config options supplied: ['showLink']
+  warnings.warn(
+[2026-10-28 00:14:54,122] [ais_bench] [[32mINFO[0m] Request timeline and concurrency chart saved to /work/pd-main-20261028/runs/resume_16k_cc224_target20/aisbench/outputs/20261028_001254/performances/vllm-api-stream-chat/gsm8k_plot.html
+[2026-10-28 00:14:54,123] [ais_bench] [[32mINFO[0m] The gsm8k_plot has been saved in /work/pd-main-20261028/runs/resume_16k_cc224_target20/aisbench/outputs/20261028_001254/performances/vllm-api-stream-chat/gsm8k_plot.html
+[2026-10-28 00:14:54,127] [ais_bench] [[32mINFO[0m] Starting stable stage calculation...
+Calculating stable stage:   0%|          | 0/1792 [00:00<?, ? req/s]Calculating stable stage: 100%|██████████| 1792/1792 [00:00<00:00, 2650279.54 req/s]
+[2026-10-28 00:14:54,129] [ais_bench] [[32mINFO[0m] Stable stage calculation completed. Start time: 14.961624, End time: 83.587048, Stable Stage Duration: 68.625424
+[2026-10-28 00:14:54,129] [ais_bench] [[32mINFO[0m] Converting performance results for stage...
+[2026-10-28 00:14:54,130] [ais_bench] [[32mINFO[0m] Performance results conversion completed!
+[2026-10-28 00:14:54,130] [ais_bench] [[32mINFO[0m] Starting metrics calculation...
+[2026-10-28 00:14:54,145] [ais_bench] [[32mINFO[0m] Starting common metrics calculation...
+[2026-10-28 00:14:54,145] [ais_bench] [[32mINFO[0m] Adding units to metrics...
+[2026-10-28 00:14:54,145] [ais_bench] [[32mINFO[0m] Performance data calculation completed!
+[2026-10-28 00:14:54,146] [ais_bench] [[32mINFO[0m] Performance Results of task [vllm-api-stream-chat/gsm8k]: 
+╒══════════════════════════╤═════════╤════════════════════╤═══════════════════╤════════════════════╤════════════════════╤════════════════════╤════════════════════╤════════════════════╤═════╕
+│ Performance Parameters   │ Stage   │ Average            │ Min               │ Max                │ Median             │ P75                │ P90                │ P99                │  N  │
+╞══════════════════════════╪═════════╪════════════════════╪═══════════════════╪════════════════════╪════════════════════╪════════════════════╪════════════════════╪════════════════════╪═════╡
+│ E2EL                     │ stable  │ 22058.1 ms         │ 12554.1 ms        │ 46186.2 ms         │ 21390.8 ms         │ 22548.3 ms         │ 23772.2 ms         │ 42190.6 ms         │ 672 │
+├──────────────────────────┼─────────┼────────────────────┼───────────────────┼────────────────────┼────────────────────┼────────────────────┼────────────────────┼────────────────────┼─────┤
+│ TTFT                     │ stable  │ 1149.7 ms          │ 896.3 ms          │ 1775.1 ms          │ 1133.0 ms          │ 1222.2 ms          │ 1338.3 ms          │ 1615.4 ms          │ 672 │
+├──────────────────────────┼─────────┼────────────────────┼───────────────────┼────────────────────┼────────────────────┼────────────────────┼────────────────────┼────────────────────┼─────┤
+│ TPOT                     │ stable  │ 20.4 ms            │ 11.1 ms           │ 44.0 ms            │ 19.8 ms            │ 20.9 ms            │ 22.1 ms            │ 39.8 ms            │ 672 │
+├──────────────────────────┼─────────┼────────────────────┼───────────────────┼────────────────────┼────────────────────┼────────────────────┼────────────────────┼────────────────────┼─────┤
+│ ITL                      │ stable  │ 96.2 ms            │ 0.0 ms            │ 248.1 ms           │ 99.8 ms            │ 103.1 ms           │ 107.4 ms           │ 133.3 ms           │ 672 │
+├──────────────────────────┼─────────┼────────────────────┼───────────────────┼────────────────────┼────────────────────┼────────────────────┼────────────────────┼────────────────────┼─────┤
+│ InputTokens              │ stable  │ 16384.0            │ 16384.0           │ 16384.0            │ 16384.0            │ 16384.0            │ 16384.0            │ 16384.0            │ 672 │
+├──────────────────────────┼─────────┼────────────────────┼───────────────────┼────────────────────┼────────────────────┼────────────────────┼────────────────────┼────────────────────┼─────┤
+│ OutputTokens             │ stable  │ 1024.0             │ 1024.0            │ 1024.0             │ 1024.0             │ 1024.0             │ 1024.0             │ 1024.0             │ 672 │
+├──────────────────────────┼─────────┼────────────────────┼───────────────────┼────────────────────┼────────────────────┼────────────────────┼────────────────────┼────────────────────┼─────┤
+│ OutputTokenThroughput    │ stable  │ 47.3249 token/s    │ 22.1711 token/s   │ 81.5673 token/s    │ 47.871 token/s     │ 49.2474 token/s    │ 50.8298 token/s    │ 68.9056 token/s    │ 672 │
+├──────────────────────────┼─────────┼────────────────────┼───────────────────┼────────────────────┼────────────────────┼────────────────────┼────────────────────┼────────────────────┼─────┤
+│ PrefillTokenThroughput   │ stable  │ 14482.1178 token/s │ 9230.1276 token/s │ 18279.2786 token/s │ 14460.5051 token/s │ 15527.4025 token/s │ 16671.1118 token/s │ 18080.1765 token/s │ 672 │
+╘══════════════════════════╧═════════╧════════════════════╧═══════════════════╧════════════════════╧════════════════════╧════════════════════╧════════════════════╧════════════════════╧═════╛
+╒═════════════════════════╤═════════╤═════════════════════╕
+│ Common Metric           │ Stage   │ Value               │
+╞═════════════════════════╪═════════╪═════════════════════╡
+│ Benchmark Duration      │ stable  │ 68625.4239 ms       │
+├─────────────────────────┼─────────┼─────────────────────┤
+│ Total Requests          │ stable  │ 672                 │
+├─────────────────────────┼─────────┼─────────────────────┤
+│ Failed Requests         │ stable  │ 0                   │
+├─────────────────────────┼─────────┼─────────────────────┤
+│ Success Requests        │ stable  │ 672                 │
+├─────────────────────────┼─────────┼─────────────────────┤
+│ Concurrency             │ stable  │ 215.9993            │
+├─────────────────────────┼─────────┼─────────────────────┤
+│ Max Concurrency         │ stable  │ 224                 │
+├─────────────────────────┼─────────┼─────────────────────┤
+│ Request Throughput      │ stable  │ 9.7923 req/s        │
+├─────────────────────────┼─────────┼─────────────────────┤
+│ Total Input Tokens      │ stable  │ 11010048            │
+├─────────────────────────┼─────────┼─────────────────────┤
+│ Total Generated Tokens  │ stable  │ 688128              │
+├─────────────────────────┼─────────┼─────────────────────┤
+│ Input Token Throughput  │ stable  │ 160436.8668 token/s │
+├─────────────────────────┼─────────┼─────────────────────┤
+│ Output Token Throughput │ stable  │ 10027.3042 token/s  │
+├─────────────────────────┼─────────┼─────────────────────┤
+│ Total Token Throughput  │ stable  │ 170464.171 token/s  │
+╘═════════════════════════╧═════════╧═════════════════════╛[2026-10-28 00:14:54,152] [ais_bench] [[32mINFO[0m] Performance Result files located in /work/pd-main-20261028/runs/resume_16k_cc224_target20/aisbench/outputs/20261028_001254/performances/vllm-api-stream-chat.
+
+2026-10-28 00:14:55,601 - INFO - [完成] 全量数据集测试完成，结果保存在aisbench_result.csv
+2026-10-28 00:14:55,674 - INFO - queries: normal={0: 21289405, 1: 21699009, 2: 22043071, 3: 22223297}, external={0: 951485, 1: 991169, 2: 1046591, 3: 1076417}
+2026-10-28 00:14:55,710 - INFO - hits: normal={0: 20337920, 1: 20707840, 2: 20996480, 3: 21146880}, external={0: 918494, 1: 990690, 2: 1046112, 3: 1059682}
+
+======================================================================================================================
+Prefix cache hit detail
+======================================================================================================================
+scope                              hbm_hit_rate       hbm(hit/query)       external_hit_rate    external(hit/query)
+----------------------------------------------------------------------------------------------------------------------
+197.13.52.1:31160/engine0          99.22%             3625088/3653632      100.00%              28544/28544
+197.13.52.1:31160/engine1          99.22%             3657600/3686400      100.00%              28800/28800
+197.13.52.1:31160/engine2          99.22%             3625088/3653632      100.00%              28544/28544
+197.13.52.1:31160/engine3          99.22%             3657600/3686400      100.00%              28800/28800
+----------------------------------------------------------------------------------------------------------------------
+ALL_PODS                           99.22%             14565376/14680064    100.00%              114688/114688
+======================================================================================================================
+2026-10-28 00:14:55,712 - INFO - {'current_time': '2026-10-28 00:14:55', 'input_len': 16384.0, 'output_len': 1024.0, 'total_req': 672.0, 'max_cc': '224', 'cc': 215.9993, 'rr': '0', 'repeat_rate': 1.0, 'TTFT avg': 1149.7, 'TTFT P90': 1338.3, 'TPOT avg': 20.4, 'TPOT SLO_P90': 22.1, 'E2E_time': 68.6254239, 'output_throughput': 10027.3042, 'single_output_throughput': 626.7065125, 'E2E_throughput': 170464.171, 'single_E2E_throughput': 10654.0106875, 'qps': 9.7923, 'qpm': 587.5379999999999, 'input_token_throughput': 160436.8668, 'prefill_token_throughput': 9999, 'E2EL avg': 22058.1, 'E2EL P90': 23772.2}
+2026-10-28 00:14:55,713 - INFO - aisbench.log copied to: /work/pd-main-20261028/runs/resume_16k_cc224_target20/aisbench/outputs/20261028_001254
+2026-10-28 00:14:55,713 - INFO - aisbench.log saved at current directory: /work/pd-main-20261028/runs/resume_16k_cc224_target20/tool
+2026-10-28 00:14:55,715 - INFO - 文件已存在，读取现有数据
+2026-10-28 00:14:55,717 - INFO - 成功追加新行

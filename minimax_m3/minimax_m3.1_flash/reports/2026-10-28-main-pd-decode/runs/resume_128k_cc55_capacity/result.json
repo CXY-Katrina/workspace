@@ -1,0 +1,186 @@
+{
+  "run": "resume_128k_cc55_capacity",
+  "valid": true,
+  "workload": {
+    "role": "decode",
+    "input_len": 131072,
+    "output_len": 1024,
+    "concurrency": 55,
+    "request_rate": 0.0,
+    "prefix_hit_target": 0.9,
+    "prefix_num": 1,
+    "dp": 4,
+    "data_num": 220,
+    "seed": 1024,
+    "npu_num": 16,
+    "fixed_initial_prefix_seed": true,
+    "request_path": "proxy -> P21 -> D28+22",
+    "proxy": "197.13.45.1:8019",
+    "prefill_topology": "DP1 TP4 PP2",
+    "decode_topology": "DP4 TP4 PP1 EP16",
+    "independent_context_capacity": 55,
+    "capacity_note": "Concurrency is limited by total independent KV tokens / (input + output).",
+    "cache_salt": "resume_128k_cc55_capacity",
+    "cache_isolation": "Unique per-run cache_salt shared by P/D and all warmup/measurement requests",
+    "max_cudagraph_capture_size": 1024,
+    "hccl_buffsize": 1024,
+    "steady_state_calculator": "StablePerfMetricCalculator"
+  },
+  "requests": {
+    "intended": 220,
+    "completed": 220,
+    "errors": 0,
+    "output_tokens": {
+      "1024": 220
+    },
+    "input_tokens": {
+      "131072": 205,
+      "131073": 9,
+      "131071": 5,
+      "131074": 1
+    }
+  },
+  "prefix": {
+    "decode": {
+      "queries": 28835846.0,
+      "hits": 25935360.0,
+      "ratio": 0.8994138753550008,
+      "generation_tokens": 225280.0,
+      "preemptions": 0.0
+    },
+    "prefill": {
+      "queries": 28835846.0,
+      "hits": 25935360.0,
+      "ratio": 0.8994138753550008,
+      "generation_tokens": 220.0,
+      "preemptions": 0.0
+    }
+  },
+  "steady_table": {
+    "E2EL": [
+      "30415.0 ms",
+      "21060.5 ms",
+      "62663.9 ms",
+      "28973.5 ms",
+      "32040.5 ms",
+      "37829.2 ms",
+      "53131.7 ms",
+      "165"
+    ],
+    "TTFT": [
+      "5644.9 ms",
+      "2352.3 ms",
+      "20022.2 ms",
+      "5017.5 ms",
+      "5997.0 ms",
+      "8301.5 ms",
+      "17854.0 ms",
+      "165"
+    ],
+    "TPOT": [
+      "24.2 ms",
+      "16.1 ms",
+      "45.3 ms",
+      "22.7 ms",
+      "26.0 ms",
+      "31.3 ms",
+      "42.7 ms",
+      "165"
+    ],
+    "ITL": [
+      "94.3 ms",
+      "0.0 ms",
+      "325.7 ms",
+      "95.4 ms",
+      "101.6 ms",
+      "103.7 ms",
+      "172.0 ms",
+      "165"
+    ],
+    "InputTokens": [
+      "131072.0364",
+      "131071.0",
+      "131074.0",
+      "131072.0",
+      "131072.0",
+      "131072.0",
+      "131073.0",
+      "165"
+    ],
+    "OutputTokens": [
+      "1024.0",
+      "1024.0",
+      "1024.0",
+      "1024.0",
+      "1024.0",
+      "1024.0",
+      "1024.0",
+      "165"
+    ],
+    "OutputTokenThroughput": [
+      "34.9778 token/s",
+      "16.3411 token/s",
+      "48.6219 token/s",
+      "35.3426 token/s",
+      "39.1277 token/s",
+      "42.2837 token/s",
+      "47.0319 token/s",
+      "165"
+    ],
+    "PrefillTokenThroughput": [
+      "27391.1129 token/s",
+      "6546.3719 token/s",
+      "55720.2462 token/s",
+      "26123.104 token/s",
+      "33704.1938 token/s",
+      "41918.9401 token/s",
+      "51422.5377 token/s",
+      "165"
+    ],
+    "Benchmark Duration": [
+      "101978.3829 ms"
+    ],
+    "Total Requests": [
+      "165"
+    ],
+    "Failed Requests": [
+      "0"
+    ],
+    "Success Requests": [
+      "165"
+    ],
+    "Concurrency": [
+      "49.2112"
+    ],
+    "Max Concurrency": [
+      "55"
+    ],
+    "Request Throughput": [
+      "1.618 req/s"
+    ],
+    "Total Input Tokens": [
+      "21626886"
+    ],
+    "Total Generated Tokens": [
+      "168960"
+    ],
+    "Input Token Throughput": [
+      "212073.2393 token/s"
+    ],
+    "Output Token Throughput": [
+      "1656.8217 token/s"
+    ],
+    "Total Token Throughput": [
+      "213730.061 token/s"
+    ]
+  },
+  "metrics": {
+    "tpot_mean_ms": 24.2,
+    "tpot_p90_ms": 31.3,
+    "tpot_p99_ms": 42.7,
+    "output_token_throughput": 1656.8217,
+    "stable_requests": 165.0,
+    "stable_duration_s": 101.9783829
+  },
+  "service_note": "Per-run D head service log is preserved. Global final P/D-worker health checked separately."
+}

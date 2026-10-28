@@ -1,0 +1,37 @@
+{
+  "started_bjt": "2026-10-28 07:32",
+  "stop_before_bjt": "2026-10-28 09:00",
+  "watchdog_start_bjt": "2026-10-28 08:59",
+  "prefill_host": "177.11.21.1",
+  "decode_hosts": [
+    "177.11.28.1",
+    "177.11.22.1"
+  ],
+  "prefill_topology": "TP4 PP2 DP1",
+  "decode_topology": "TP4 DP4 EP16",
+  "accuracy_gate_override": "User explicitly requested performance after reviewing 79.80% GPQA result.",
+  "cases": [
+    {
+      "input": 16384,
+      "output": 1024,
+      "prefix_hit": 1,
+      "tpot_mean_targets_ms": [
+        20,
+        50
+      ]
+    },
+    {
+      "input": 131072,
+      "output": 1024,
+      "prefix_hit": 0.9,
+      "tpot_mean_targets_ms": [
+        30,
+        50
+      ]
+    }
+  ],
+  "allowed_tpot_overage_ms": 1,
+  "prefix_groups": 1,
+  "source_head": "1b3df109893a98954531ab4bb4dd531f6ff3ad05",
+  "stop_others": false
+}
