@@ -181,117 +181,283 @@ sequenceDiagram
 
 ### 2.4 类图
 
+本节以[图片1](https://github.com/CXY-Katrina/workspace/blob/main/minimax_m3/%E5%9B%BE%E7%89%871.png)的上下文与 Attention 接口、[图片2](https://github.com/CXY-Katrina/workspace/blob/main/minimax_m3/%E5%9B%BE%E7%89%872.png)的缓存设计为准，本地 MindIE-LLM 代码用于核对调用关系。类图统一使用 `AclGraphModelWrapper`、`ModelRunner`，省略实验后缀；从 Wrapper 开始，只展示核心类及接口。其他章节暂保留原有代码说明。
+
+> 这是目标设计图。图中的 `CPMetadata`、`DeepseekV4ForCausalLM`、统一的 `update_for_async()` 以及缓存枚举扩展来自图片或设计补齐，不表示参考代码已全部实现。`AttentionBackend` 在本节统一表示图片中的执行与缓存接口；当前代码将其职责分散在 backend、impl 和 attention layer 中。
+
+#### 2.4.1 核心类与接口主链路
+
 ```mermaid
 classDiagram
-    class Generator {
-        +model_config
-        +generator_backend
-        +warm_up()
-        +generate_token()
-        +swap_cache()
+    direction TB
+    class AclGraphModelWrapper {
+        +prepare_model_inputs(model_inputs)
+        +forward_from_model_inputs(input_ids, position_ids, context)
     }
-
-    class GeneratorBackend {
-        +model_wrapper
-        +sampler
-        +forward()
-        +sample()
-        +update_cache_policy()
-    }
-
-    class GeneratorAclGraph {
-        +cache_pool
-        +prepare_model_inputs()
-        +forward_from_model_inputs()
-        +compile()
-        +update_cache_policy()
-    }
-
-    class ModelWrapper {
-        +forward()
-        +generate_position_ids()
-        +make_context()
-    }
-
-    class AclGraphModelWrapperExp {
-        +model_runner
-        +prepare_model_inputs()
-        +forward_from_model_inputs()
-        +forward()
-    }
-
-    class ModelRunnerExp {
+    class ModelRunner {
         +load_weights()
+        +build_forward_context(model_inputs) ForwardContext
         +compile()
-        +build_forward_context()
-        +forward()
-        -_bind_kv_cache()
-        -_padding_forward_context()
+        +forward(input_ids, position_ids, context) ForwardOutput
     }
-
+    class BaseRouter {
+        +model_cls
+        +config
+        +input_builder
+        +tokenizer
+    }
+    class ForwardContext {
+        +attn_metadata_dict
+        +dp_metadata
+        +cp_metadata
+        +batch_descriptor
+        +update_for_async(forward_output)
+    }
     class AclGraphBackend {
         +capture_sizes
         +graphs
-        +get_padded_graph_size()
-        +call()
-        +compute_logits()
+        +__call__(input_ids, position_ids)
     }
-
-    class ForwardContext {
-        +is_prefill
-        +attn_metadata
-        +dp_metadata
-        +mtp_metadata
-        +batch_descriptor
-        +to_device()
-        +copy()
-    }
-
-    class InputBuffer {
-        +register(name, tensor)
-        +get(name)
-    }
-
-    class BaseRouter {
-        +config
-        +generation_config
-        +llm_config
-        +input_builder
-        +model_cls
-        +tokenizer
-    }
-
     class BaseModelForCausalLM {
-        +forward()
-        +compute_logits()
+        <<abstract>>
+        +forward(input_ids, position_ids) hidden_states
+        +compute_logits(hidden_states) logits
+    }
+    class AttentionBackend {
+        <<interface>>
+        +get_cache_spec() CacheSpec
+        +bind_cache(caches)
+        +forward(query, key, value)
+    }
+    class ModelCachePool {
+        <<singleton>>
+        +allocate_device_cache(mem_size)
+        +clear()
+    }
+    class CacheSpec {
+        +dtype : torch.dtype
+        +shape : List~int~
+        +format : int
+        +cache_type : CacheType
+        +ratio : int
     }
 
-    class Attention {
-        +key_cache
-        +value_cache
-        +forward()
-    }
+    AclGraphModelWrapper *-- ModelRunner : 适配输入与前向调用
+    ModelRunner --> BaseRouter : 选择模型及配置
+    ModelRunner --> ForwardContext : build / set
+    ModelRunner *-- AclGraphBackend : compile / forward
+    ModelRunner --> ModelCachePool : 初始化并分配缓存
+    AclGraphBackend o-- BaseModelForCausalLM : 包装具体模型实例
+    BaseModelForCausalLM ..> AttentionBackend : 具体模型组装并调用
+    AttentionBackend ..> ForwardContext : get_forward_context()
+    ModelCachePool ..> AttentionBackend : get_cache_spec / bind_cache
+    AttentionBackend ..> CacheSpec : get_cache_spec 返回
+    ModelCachePool ..> CacheSpec : 按规格分组并分配缓存
+```
 
+三条数据链路在同一组接口上收敛：
+
+| 链路 | 接口与数据流 |
+| --- | --- |
+| 模型选择与组网 | `LoadConfig → get_router_ins() → BaseRouter.model_cls → model_cls(MindIELLMConfig) → load_weights()` |
+| 缓存准备与编译 | 模型组网注册各层 → `get_cache_spec()` 返回 `CacheSpec` → `ModelCachePool.allocate_device_cache()` → `bind_cache()` → `compile()` 捕获图 |
+| 每步推理 | `prepare_model_inputs()` → `build_forward_context()` → `forward_from_model_inputs()` → `ModelRunner.forward()` → eager/replay → `compute_logits()` |
+
+`ModelRunner` 负责运行时数据准备、上下文发布和输出整理；模型只接收 `input_ids / position_ids` 等计算输入，层内通过模块函数 `get_forward_context()` 读取本次前向的 metadata。该函数不是 `ForwardContext` 的实例方法。`ForwardOutput` 是设计层的输出契约，包含 logits、可选 hidden states；异步回填所需的 device token、请求到行的映射和完成事件由调用方补入。
+
+#### 2.4.2 上下文与模块元数据（补齐图片1）
+
+```mermaid
+classDiagram
+    direction TB
+    class ForwardContext {
+        +attn_metadata_dict : dict
+        +dp_metadata : DPMetadata
+        +cp_metadata : CPMetadata
+        +update_for_async(forward_output)
+    }
+    class ModuleMetadata {
+        <<abstract>>
+        +from_model_inputs(model_inputs) ModuleMetadata
+        +register_graph_input_buffers()
+        +copy()
+        +update_for_async(model_inputs)
+    }
+    class AttentionMetadata
+    class DPMetadata
+    class CPMetadata
+    class SfaMetadata
+    class GqaMetadata
+
+    ForwardContext *-- AttentionMetadata : attn_metadata_dict 按层索引
+    ForwardContext *-- DPMetadata : dp_metadata
+    ForwardContext *-- CPMetadata : cp_metadata
+    ModuleMetadata <|-- AttentionMetadata
+    ModuleMetadata <|-- DPMetadata
+    ModuleMetadata <|-- CPMetadata
+    AttentionMetadata <|-- SfaMetadata
+    AttentionMetadata <|-- GqaMetadata
+```
+
+`build_forward_context(model_inputs)` 由 Runner 编排，调用各 metadata 的 `from_model_inputs()`；不同 Attention 层可按自身实现生成不同 metadata，存入 `attn_metadata_dict[layer_name]`，不要求全模型共用一个 Attention 类型。DP、CP 以及按需扩展的 MTP metadata 复用 `ModuleMetadata` 契约。
+
+`register_graph_input_buffers()` 为 metadata 注册固定地址缓冲区，`copy()` 将本步数据写入这些缓冲区。token 和 position 的固定缓冲区仍可由现有 `InputBuffer` 提供，主图省略该存储辅助类。eager 和 capture 时由 Python 层调用 `get_forward_context()`；replay 使用捕获图引用的固定缓冲区，不重新执行 Python 模型前向。
+
+保留图片中的两层异步接口：`ForwardContext.update_for_async(forward_output)` 接收前一步 device 结果和本步请求映射，形成已回填的本步输入视图；各模块的 `update_for_async(model_inputs)` 消费该视图，更新 seq len、slot mapping、block tables 及相关并行元数据。后者接收的是完成回填后的输入，不直接解释不同模型的原始输出。
+
+#### 2.4.3 缓存规格、分组和绑定（补齐图片2）
+
+```mermaid
+classDiagram
+    direction LR
+    class ModelCachePool {
+        <<singleton>>
+        +groups : List~CacheGroupInfo~
+        +allocate_device_cache(mem_size)
+        +clear()
+        -_cal_num_blocks(mem_size)
+    }
+    class CacheGroupInfo {
+        +bytes_of_blocks : int
+        +num_blocks : int
+        +block_size : int
+        +cache_type : CacheType
+        +ratio : int
+    }
+    class AttentionBackend {
+        <<interface>>
+        +get_cache_spec() CacheSpec
+        +bind_cache(caches)
+        +forward(query, key, value)
+    }
+    class CacheSpec {
+        +dtype : torch.dtype
+        +shape : List~int~
+        +format : int
+        +cache_type : CacheType
+        +ratio : int
+    }
+    class CacheType {
+        <<enumeration>>
+        TOKEN
+        STATE
+        SLIDING_WINDOW
+        REMAINDER
+    }
+    class DsaAttentionImpl
+    class FiaAttentionImpl
+
+    ModelCachePool *-- CacheGroupInfo : 缓存分组
+    ModelCachePool ..> AttentionBackend : 收集规格并绑定内存
+    AttentionBackend ..> CacheSpec : get_cache_spec 返回
+    CacheSpec --> CacheType : 缓存类别
+    CacheGroupInfo --> CacheType : 分组类别
+    AttentionBackend <|.. DsaAttentionImpl
+    AttentionBackend <|.. FiaAttentionImpl
+```
+
+每层通过 `get_cache_spec()` 声明缓存的 dtype、shape、format、类别和压缩比例，缓存池据此分组，统计每组 `bytes_of_blocks`，根据显存预算计算 `num_blocks`，申请后逐层 `bind_cache()`。这样可以覆盖层间不同规格、压缩 KV 和非标准 KV 状态，不依赖全模型统一的 KV head/shape。
+
+图中 `CacheSpec` 表示单项规格；同一层需要 K、V、index 或多个 state 时可返回多项规格。参考代码使用并行列表表达多项，图中压缩成单项契约以突出含义。`CacheType` 保留图片2的 `TOKEN / STATE / SLIDING_WINDOW / REMAINDER`；其中 STATE 与 REMAINDER 的计费、生命周期和回收规则需由具体后端定义，不能直接套用 TOKEN 的块数公式。类别是枚举引用，图中不画对象组合关系。
+
+缓存分配和绑定必须在 capture 前完成；replay 期间缓存地址保持稳定。如果重新分配改变了捕获图引用的地址，须使相关图失效并重新捕获。
+
+#### 2.4.4 模型如何选择、结构如何搭建
+
+模型选择只保留 `BaseRouter` 这一核心抽象。Runner 读取模型目录 `config.json.model_type`，通过 `get_router_ins(load_config)` 选择 `runtime.models.{model_type}.router_{model_type}`；Router 提供 `model_cls`、结构配置、输入构造器和 tokenizer。Runner 汇总 `MindIELLMConfig`，实例化具体模型并加载权重，再交给 `AclGraphBackend` 包装。具体 Router 可覆盖默认的模型类解析规则。
+
+```mermaid
+classDiagram
+    direction TB
+    class BaseModelForCausalLM {
+        <<abstract>>
+        +forward(input_ids, position_ids)
+        +compute_logits(hidden_states)
+    }
+    class DeepseekV4ForCausalLM
+    class Qwen3ForCausalLM
+    class CustomLayer {
+        <<abstract>>
+        +forward(...)
+    }
     class LinearBase {
         +quant_method
-        +weight_loader()
-        +call()
+        +weight_loader(...)
+        +forward(...)
+    }
+    class VocabParallelEmbedding
+    class ParallelLMHead
+    class RMSNorm
+    class FusedMoE
+    class RotaryEmbedding
+    class AttentionBackend {
+        <<interface>>
+        +get_cache_spec()
+        +bind_cache(caches)
+        +forward(...)
     }
 
-    Generator --> GeneratorAclGraph
-    GeneratorAclGraph --|> GeneratorBackend
-    GeneratorBackend --> AclGraphModelWrapperExp
-    AclGraphModelWrapperExp --|> ModelWrapper
-    AclGraphModelWrapperExp --> ModelRunnerExp
-    ModelRunnerExp --> BaseRouter
-    ModelRunnerExp --> AclGraphBackend
-    ModelRunnerExp --> ForwardContext
-    ModelRunnerExp --> InputBuffer
-    AclGraphBackend --> BaseModelForCausalLM
-    BaseModelForCausalLM <|-- Qwen2ForCausalLM
-    BaseModelForCausalLM *-- Attention
-    BaseModelForCausalLM *-- LinearBase
+    BaseModelForCausalLM <|-- DeepseekV4ForCausalLM
+    BaseModelForCausalLM <|-- Qwen3ForCausalLM
+    Qwen3ForCausalLM ..> CustomLayer : 复用基础层
+    CustomLayer <|-- LinearBase
+    CustomLayer <|-- VocabParallelEmbedding
+    VocabParallelEmbedding <|-- ParallelLMHead
+    CustomLayer <|-- RMSNorm
+    CustomLayer <|-- FusedMoE
+    Qwen3ForCausalLM ..> RotaryEmbedding : RoPE
+    DeepseekV4ForCausalLM ..> AttentionBackend : 模型专属 Attention
 ```
+
+模型沿 `Embedding → Decoder layers → Norm → LM Head` 搭建。Decoder 内组合 Attention、Linear、Norm、RoPE 和 MLP/MoE；其中 `CustomLayer` 是通用层扩展入口，`LinearBase` 收敛权重加载、并行切分和量化策略，Attention 缓存接口独立支持不同层的存储需求。`RotaryEmbedding` 在参考实现中直接继承 `nn.Module`，不强行归入 `CustomLayer`。图中以 Qwen3 说明基础层复用，以 DeepseekV4 说明专属 Attention，两者均可组合其他基础层。图中省略各模型的 Decoder/MLP 包装类、并行 Linear 子类和具体量化类；具体模型到基类的箭头表示继承关系，可包含代码中的中间父类。
+
+#### 2.4.5 异步时的数据依赖与接口顺序
+
+异步前向仍沿用 `prepare_model_inputs()` 与 `forward_from_model_inputs()`，不另加一套模型异步类。主机可以预先构造下一批输入和 metadata；执行前再按请求映射，将前一步采样后的 device token、位置和长度补到本步输入。下面从 Wrapper 起展示这一过程，采样由调用方完成。
+
+```mermaid
+sequenceDiagram
+    participant W as AclGraphModelWrapper
+    participant R as ModelRunner
+    participant C as ForwardContext / Metadata
+    participant G as AclGraphBackend
+    participant M as Model / AttentionBackend
+
+    W->>W: prepare_model_inputs(model_inputs[t+1])
+    W->>R: build_forward_context(model_inputs[t+1])
+    R->>C: from_model_inputs()，预构造本步元数据
+    R-->>W: context
+    Note over W,R: 调用方提供 output[t]：device token、请求映射、完成事件
+    W->>W: forward_from_model_inputs(..., previous_output=output[t])
+    W->>R: forward(input_ids, position_ids, context, previous_output)
+    Note over R,C: 执行流等待结果就绪；写缓冲前等待前次使用结束
+    R->>C: update_for_async(output[t])
+    C->>C: 按请求匹配回填输入，再调用各 metadata.update_for_async(model_inputs)
+    R->>C: copy() 到固定图缓冲区，set_forward_context(context)
+    R->>G: forward(input_ids, position_ids)
+    G->>M: prefill eager / decode replay
+    M->>C: get_forward_context()（eager / capture 时）
+    M-->>G: hidden_states
+    G-->>R: hidden_states
+    R->>M: compute_logits(hidden_states)
+    M-->>R: logits
+    R-->>W: ForwardOutput[t+1]
+    Note over W,R: 调用方采样并记录 device token 的完成事件，供下一步回填
+```
+
+`update_for_async()` 的设计边界是本步输入与元数据更新，不承担采样。连续请求按 ID/行映射回填；新增、结束或重排的请求不能按上一批行号直接覆盖。copy、回填与 replay 通过同一执行流排序或事件建立依赖，固定缓冲区在前一次使用完成后复用；跨流张量记录使用流以维持生命周期。`get_forward_context()` 对应当前执行上下文，Host 预构造下一步时不能覆盖正在提交算子的上下文；若多执行流并发提交，需改为流/任务隔离的上下文访问器。
+
+| 设计接口 | 与本地参考代码的关系 |
+| --- | --- |
+| `AclGraphModelWrapper / ModelRunner` | 本节统一设计名称；参考实现存在同名兼容类及带实验后缀的另一条实现路径，不能仅通过改名互换 |
+| `build_forward_context / get_forward_context` | 已有调用链；图中将构造入口统一放在 Runner |
+| `from_model_inputs / register_graph_input_buffers` | 对应现有 `from_model_input / register_buffer` 的设计命名 |
+| `update_for_async` | 目标统一接口；参考代码仍在上层结果回填逻辑中直接更新输入及 metadata，Runner 内也存在显式流同步，完整异步需一并收敛 |
+| `AttentionBackend.get_cache_spec / bind_cache` | 图片要求的统一契约；参考缓存池调用注册层的 `get_cache_spec / bind_model_cache`，backend/impl/layer 的职责仍需整理 |
+| `ModelCachePool / CacheGroupInfo / CacheSpec` | 参考目录 `runtime/utils/distributed/model_cache_pool.py` 与 `runtime/utils/cache_spec.py` 已有对应结构 |
+| `CacheType / CPMetadata / 模型示例` | 参考枚举为 `TOKEN / SEQUENCE / SLIDING_WINDOW`；图片保留 STATE、REMAINDER、独立 CP metadata 和 DeepseekV4，属于目标补齐内容 |
+
+参考代码根目录：`C:\Users\Katrina\Desktop\MindIE-LLM`。主要核对位置为 `modeling/model_wrapper/aclgraph/`、`runtime/model_runner/`、`runtime/models/base/`、`runtime/layers/` 和 `runtime/utils/`。完整接口、继承和缓存结构以上述 Mermaid 类图为准。
 
 ## 3. 详细设计
 
