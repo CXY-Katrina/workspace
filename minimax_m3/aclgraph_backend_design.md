@@ -187,6 +187,11 @@ sequenceDiagram
 
 #### 2.4.1 核心类与接口主链路
 
+![核心类与接口主链路（16:9）](aclgraph_core_classes.png)
+
+<details>
+<summary>展开 Mermaid 类图源代码</summary>
+
 ```mermaid
 classDiagram
     direction TB
@@ -255,6 +260,8 @@ classDiagram
     ModelCachePool ..> CacheSpec : 按规格分组并分配缓存
 ```
 
+</details>
+
 三条数据链路在同一组接口上收敛：
 
 | 链路 | 接口与数据流 |
@@ -266,6 +273,11 @@ classDiagram
 `ModelRunner` 负责运行时数据准备、上下文发布和输出整理；模型只接收 `input_ids / position_ids` 等计算输入，层内通过模块函数 `get_forward_context()` 读取本次前向的 metadata。该函数不是 `ForwardContext` 的实例方法。`ForwardOutput` 是设计层的输出契约，包含 logits、可选 hidden states；异步回填所需的 device token、请求到行的映射和完成事件由调用方补入。
 
 #### 2.4.2 上下文与模块元数据（补齐图片1）
+
+![上下文与模块元数据（16:9）](aclgraph_metadata_classes.png)
+
+<details>
+<summary>展开 Mermaid 类图源代码</summary>
 
 ```mermaid
 classDiagram
@@ -299,6 +311,8 @@ classDiagram
     AttentionMetadata <|-- GqaMetadata
 ```
 
+</details>
+
 `build_forward_context(model_inputs)` 由 Runner 编排，调用各 metadata 的 `from_model_inputs()`；不同 Attention 层可按自身实现生成不同 metadata，存入 `attn_metadata_dict[layer_name]`，不要求全模型共用一个 Attention 类型。DP、CP 以及按需扩展的 MTP metadata 复用 `ModuleMetadata` 契约。
 
 `register_graph_input_buffers()` 为 metadata 注册固定地址缓冲区，`copy()` 将本步数据写入这些缓冲区。token 和 position 的固定缓冲区仍可由现有 `InputBuffer` 提供，主图省略该存储辅助类。eager 和 capture 时由 Python 层调用 `get_forward_context()`；replay 使用捕获图引用的固定缓冲区，不重新执行 Python 模型前向。
@@ -306,6 +320,11 @@ classDiagram
 保留图片中的两层异步接口：`ForwardContext.update_for_async(forward_output)` 接收前一步 device 结果和本步请求映射，形成已回填的本步输入视图；各模块的 `update_for_async(model_inputs)` 消费该视图，更新 seq len、slot mapping、block tables 及相关并行元数据。后者接收的是完成回填后的输入，不直接解释不同模型的原始输出。
 
 #### 2.4.3 缓存规格、分组和绑定（补齐图片2）
+
+![缓存规格、分组和绑定（16:9）](aclgraph_cache_classes.png)
+
+<details>
+<summary>展开 Mermaid 类图源代码</summary>
 
 ```mermaid
 classDiagram
@@ -356,6 +375,8 @@ classDiagram
     AttentionBackend <|.. FiaAttentionImpl
 ```
 
+</details>
+
 每层通过 `get_cache_spec()` 声明缓存的 dtype、shape、format、类别和压缩比例，缓存池据此分组，统计每组 `bytes_of_blocks`，根据显存预算计算 `num_blocks`，申请后逐层 `bind_cache()`。这样可以覆盖层间不同规格、压缩 KV 和非标准 KV 状态，不依赖全模型统一的 KV head/shape。
 
 图中 `CacheSpec` 表示单项规格；同一层需要 K、V、index 或多个 state 时可返回多项规格。参考代码使用并行列表表达多项，图中压缩成单项契约以突出含义。`CacheType` 保留图片2的 `TOKEN / STATE / SLIDING_WINDOW / REMAINDER`；其中 STATE 与 REMAINDER 的计费、生命周期和回收规则需由具体后端定义，不能直接套用 TOKEN 的块数公式。类别是枚举引用，图中不画对象组合关系。
@@ -365,6 +386,11 @@ classDiagram
 #### 2.4.4 模型如何选择、结构如何搭建
 
 模型选择只保留 `BaseRouter` 这一核心抽象。Runner 读取模型目录 `config.json.model_type`，通过 `get_router_ins(load_config)` 选择 `runtime.models.{model_type}.router_{model_type}`；Router 提供 `model_cls`、结构配置、输入构造器和 tokenizer。Runner 汇总 `MindIELLMConfig`，实例化具体模型并加载权重，再交给 `AclGraphBackend` 包装。具体 Router 可覆盖默认的模型类解析规则。
+
+![模型结构与基础层（16:9）](aclgraph_model_classes.png)
+
+<details>
+<summary>展开 Mermaid 类图源代码</summary>
 
 ```mermaid
 classDiagram
@@ -408,6 +434,8 @@ classDiagram
     Qwen3ForCausalLM ..> RotaryEmbedding : RoPE
     DeepseekV4ForCausalLM ..> AttentionBackend : 模型专属 Attention
 ```
+
+</details>
 
 模型沿 `Embedding → Decoder layers → Norm → LM Head` 搭建。Decoder 内组合 Attention、Linear、Norm、RoPE 和 MLP/MoE；其中 `CustomLayer` 是通用层扩展入口，`LinearBase` 收敛权重加载、并行切分和量化策略，Attention 缓存接口独立支持不同层的存储需求。`RotaryEmbedding` 在参考实现中直接继承 `nn.Module`，不强行归入 `CustomLayer`。图中以 Qwen3 说明基础层复用，以 DeepseekV4 说明专属 Attention，两者均可组合其他基础层。图中省略各模型的 Decoder/MLP 包装类、并行 Linear 子类和具体量化类；具体模型到基类的箭头表示继承关系，可包含代码中的中间父类。
 
