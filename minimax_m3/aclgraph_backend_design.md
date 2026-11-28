@@ -415,28 +415,54 @@ classDiagram
 
 异步前向仍沿用 `prepare_model_inputs()` 与 `forward_from_model_inputs()`，不另加一套模型异步类。主机可以预先构造下一批输入和 metadata；执行前再按请求映射，将前一步采样后的 device token、位置和长度补到本步输入。下面从 Wrapper 起展示这一过程，采样由调用方完成。
 
+目标设计中，构造与更新的调用责任分别如下。`ModuleMetadata` 是抽象契约，实际被调用的是按模型和并行配置选择的 Attention、DP、CP 等具体 Metadata 类或实例。
+
+| 调用位置 | 被调用接口 | 作用 |
+| --- | --- | --- |
+| `ModelRunner.build_forward_context()` | 各具体 Metadata 类的 `from_model_inputs(model_inputs)` | 创建本步各模块的元数据，再组装为 `ForwardContext` |
+| `ModelRunner.forward()` | 本步 `ForwardContext.update_for_async(previous_output)` | 等待结果就绪后，衔接上一轮采样结果与本步输入 |
+| `ForwardContext.update_for_async()` | 所持各 Metadata 实例的 `update_for_async(updated_model_inputs)` | 将完成回填的本步输入同步到各模块元数据 |
+
+![ACLGraph 异步推理时序图（目标接口）](aclgraph_async_sequence.png)
+
+[查看 SVG 矢量图](aclgraph_async_sequence.svg)。实线箭头表示调用，虚线箭头表示返回；设备依赖由执行流排序或事件建立，方法返回不代表设备计算已经完成。
+
+<details>
+<summary>展开 Mermaid 时序图源代码</summary>
+
 ```mermaid
+%%{init: {"theme":"base","fontFamily":"Microsoft YaHei, sans-serif","themeVariables":{"primaryColor":"#eef6ff","primaryTextColor":"#16324f","primaryBorderColor":"#8aabc9","lineColor":"#52718c","signalColor":"#28475f","signalTextColor":"#16324f","actorBkg":"#eef6ff","actorBorder":"#8aabc9","actorTextColor":"#16324f","noteBkgColor":"#fff8df","noteBorderColor":"#ddc97d","noteTextColor":"#5d5023","labelBoxBkgColor":"#eaf7f3","labelBoxBorderColor":"#83b9a6","labelTextColor":"#235c4b","loopTextColor":"#235c4b","fontSize":"16px"},"sequence":{"mirrorActors":false,"actorMargin":120,"width":240,"height":46,"messageMargin":8,"noteMargin":6,"boxMargin":6,"boxTextMargin":4,"diagramMarginX":24,"diagramMarginY":18,"actorFontSize":16,"messageFontSize":16,"noteFontSize":15}}}%%
 sequenceDiagram
     participant W as AclGraphModelWrapper
     participant R as ModelRunner
-    participant C as ForwardContext / Metadata
+    participant C as ForwardContext
+    participant D as 具体 ModuleMetadata
     participant G as AclGraphBackend
     participant M as Model / AttentionBackend
 
     W->>W: prepare_model_inputs(model_inputs[t+1])
     W->>R: build_forward_context(model_inputs[t+1])
-    R->>C: from_model_inputs()，预构造本步元数据
+    loop 按配置选择各具体 Metadata 类
+        R->>D: from_model_inputs(model_inputs[t+1])
+        D-->>R: metadata 实例
+    end
+    R->>C: 创建并组装 ForwardContext(metadata 实例)
     R-->>W: context
     Note over W,R: 调用方提供 output[t]：device token、请求映射、完成事件
     W->>W: forward_from_model_inputs(..., previous_output=output[t])
     W->>R: forward(input_ids, position_ids, context, previous_output)
-    Note over R,C: 执行流等待结果就绪；写缓冲前等待前次使用结束
+    R->>R: 执行流等待结果就绪与缓冲区可复用
     R->>C: update_for_async(output[t])
-    C->>C: 按请求匹配回填输入，再调用各 metadata.update_for_async(model_inputs)
-    R->>C: copy() 到固定图缓冲区，set_forward_context(context)
-    R->>G: forward(input_ids, position_ids)
+    C->>C: 按请求映射回填本步输入
+    loop 遍历本步持有的 Metadata 实例
+        C->>D: update_for_async(updated_model_inputs)
+    end
+    R->>C: copy() 到固定图缓冲区
+    C->>D: copy() 模块元数据
+    R->>R: set_forward_context(context)
+    R->>G: __call__(input_ids, position_ids)
     G->>M: prefill eager / decode replay
-    M->>C: get_forward_context()（eager / capture 时）
+    M->>M: get_forward_context() 读取 metadata（仅 eager / capture）
     M-->>G: hidden_states
     G-->>R: hidden_states
     R->>M: compute_logits(hidden_states)
@@ -444,6 +470,8 @@ sequenceDiagram
     R-->>W: ForwardOutput[t+1]
     Note over W,R: 调用方采样并记录 device token 的完成事件，供下一步回填
 ```
+
+</details>
 
 `update_for_async()` 的设计边界是本步输入与元数据更新，不承担采样。连续请求按 ID/行映射回填；新增、结束或重排的请求不能按上一批行号直接覆盖。copy、回填与 replay 通过同一执行流排序或事件建立依赖，固定缓冲区在前一次使用完成后复用；跨流张量记录使用流以维持生命周期。`get_forward_context()` 对应当前执行上下文，Host 预构造下一步时不能覆盖正在提交算子的上下文；若多执行流并发提交，需改为流/任务隔离的上下文访问器。
 
