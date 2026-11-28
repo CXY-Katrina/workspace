@@ -255,6 +255,8 @@ classDiagram
     ModelCachePool ..> CacheSpec : 按规格分组并分配缓存
 ```
 
+[下载此类图 PNG](aclgraph_core_classes.png)
+
 三条数据链路在同一组接口上收敛：
 
 | 链路 | 接口与数据流 |
@@ -298,6 +300,8 @@ classDiagram
     AttentionMetadata <|-- SfaMetadata
     AttentionMetadata <|-- GqaMetadata
 ```
+
+[下载此类图 PNG](aclgraph_metadata_classes.png)
 
 `build_forward_context(model_inputs)` 由 Runner 编排，调用各 metadata 的 `from_model_inputs()`；不同 Attention 层可按自身实现生成不同 metadata，存入 `attn_metadata_dict[layer_name]`，不要求全模型共用一个 Attention 类型。DP、CP 以及按需扩展的 MTP metadata 复用 `ModuleMetadata` 契约。
 
@@ -356,6 +360,8 @@ classDiagram
     AttentionBackend <|.. FiaAttentionImpl
 ```
 
+[下载此类图 PNG](aclgraph_cache_classes.png)
+
 每层通过 `get_cache_spec()` 声明缓存的 dtype、shape、format、类别和压缩比例，缓存池据此分组，统计每组 `bytes_of_blocks`，根据显存预算计算 `num_blocks`，申请后逐层 `bind_cache()`。这样可以覆盖层间不同规格、压缩 KV 和非标准 KV 状态，不依赖全模型统一的 KV head/shape。
 
 图中 `CacheSpec` 表示单项规格；同一层需要 K、V、index 或多个 state 时可返回多项规格。参考代码使用并行列表表达多项，图中压缩成单项契约以突出含义。`CacheType` 保留图片2的 `TOKEN / STATE / SLIDING_WINDOW / REMAINDER`；其中 STATE 与 REMAINDER 的计费、生命周期和回收规则需由具体后端定义，不能直接套用 TOKEN 的块数公式。类别是枚举引用，图中不画对象组合关系。
@@ -408,6 +414,8 @@ classDiagram
     Qwen3ForCausalLM ..> RotaryEmbedding : RoPE
     DeepseekV4ForCausalLM ..> AttentionBackend : 模型专属 Attention
 ```
+
+[下载此类图 PNG](aclgraph_model_classes.png)
 
 模型沿 `Embedding → Decoder layers → Norm → LM Head` 搭建。Decoder 内组合 Attention、Linear、Norm、RoPE 和 MLP/MoE；其中 `CustomLayer` 是通用层扩展入口，`LinearBase` 收敛权重加载、并行切分和量化策略，Attention 缓存接口独立支持不同层的存储需求。`RotaryEmbedding` 在参考实现中直接继承 `nn.Module`，不强行归入 `CustomLayer`。图中以 Qwen3 说明基础层复用，以 DeepseekV4 说明专属 Attention，两者均可组合其他基础层。图中省略各模型的 Decoder/MLP 包装类、并行 Linear 子类和具体量化类；具体模型到基类的箭头表示继承关系，可包含代码中的中间父类。
 
